@@ -8,18 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */; };
-		558A54EE25F6A4C9003E1072 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* ContentView.swift */; };
+		558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* NationalDayView.swift */; };
 		558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54EF25F6A4CA003E1072 /* Assets.xcassets */; };
 		558A54F325F6A4CA003E1072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */; };
+		55C04754261FA653000DCD90 /* NationalDayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C04753261FA653000DCD90 /* NationalDayListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		558A54E825F6A4C9003E1072 /* TodayIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayIs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIsApp.swift; sourceTree = "<group>"; };
-		558A54ED25F6A4C9003E1072 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		558A54ED25F6A4C9003E1072 /* NationalDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayView.swift; sourceTree = "<group>"; };
 		558A54EF25F6A4CA003E1072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		558A54F425F6A4CA003E1072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		55C04753261FA653000DCD90 /* NationalDayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +55,8 @@
 			isa = PBXGroup;
 			children = (
 				558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */,
-				558A54ED25F6A4C9003E1072 /* ContentView.swift */,
+				55C04753261FA653000DCD90 /* NationalDayListView.swift */,
+				558A54ED25F6A4C9003E1072 /* NationalDayView.swift */,
 				558A54EF25F6A4CA003E1072 /* Assets.xcassets */,
 				558A54F425F6A4CA003E1072 /* Info.plist */,
 				558A54F125F6A4CA003E1072 /* Preview Content */,
@@ -138,8 +141,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				558A54EE25F6A4C9003E1072 /* ContentView.swift in Sources */,
+				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
 				558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */,
+				55C04754261FA653000DCD90 /* NationalDayListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

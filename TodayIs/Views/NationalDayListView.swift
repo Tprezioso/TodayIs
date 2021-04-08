@@ -19,6 +19,8 @@ struct NationalDayListView: View {
                 }
                            
             }.navigationTitle("Today's Day is...")
+        }.onAppear {
+            NetworkManager.shared.findData()
         }
     }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,10 @@
 		558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54EF25F6A4CA003E1072 /* Assets.xcassets */; };
 		558A54F325F6A4CA003E1072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */; };
 		55C04754261FA653000DCD90 /* NationalDayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C04753261FA653000DCD90 /* NationalDayListView.swift */; };
+		55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C04758261FA94D000DCD90 /* NetworkManager.swift */; };
+		55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475B261FAA2A000DCD90 /* TIError.swift */; };
+		55C04760261FAA5A000DCD90 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475F261FAA5A000DCD90 /* Alert.swift */; };
+		55C0476B261FB7F8000DCD90 /* HTMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = 55C0476A261FB7F8000DCD90 /* HTMLKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,9 @@
 		558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		558A54F425F6A4CA003E1072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55C04753261FA653000DCD90 /* NationalDayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListView.swift; sourceTree = "<group>"; };
+		55C04758261FA94D000DCD90 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		55C0475B261FAA2A000DCD90 /* TIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIError.swift; sourceTree = "<group>"; };
+		55C0475F261FAA5A000DCD90 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +36,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C0476B261FB7F8000DCD90 /* HTMLKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */,
-				55C04753261FA653000DCD90 /* NationalDayListView.swift */,
-				558A54ED25F6A4C9003E1072 /* NationalDayView.swift */,
+				55C04767261FAB6E000DCD90 /* Views */,
+				55C04764261FAB38000DCD90 /* Utilities */,
 				558A54EF25F6A4CA003E1072 /* Assets.xcassets */,
 				558A54F425F6A4CA003E1072 /* Info.plist */,
 				558A54F125F6A4CA003E1072 /* Preview Content */,
@@ -70,6 +78,41 @@
 				558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		55C04762261FAB2B000DCD90 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				55C0475B261FAA2A000DCD90 /* TIError.swift */,
+				55C0475F261FAA5A000DCD90 /* Alert.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		55C04764261FAB38000DCD90 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				55C04765261FAB54000DCD90 /* Managers */,
+				55C04762261FAB2B000DCD90 /* Alert */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		55C04765261FAB54000DCD90 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				55C04758261FA94D000DCD90 /* NetworkManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		55C04767261FAB6E000DCD90 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				55C04753261FA653000DCD90 /* NationalDayListView.swift */,
+				558A54ED25F6A4C9003E1072 /* NationalDayView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -88,6 +131,9 @@
 			dependencies = (
 			);
 			name = TodayIs;
+			packageProductDependencies = (
+				55C0476A261FB7F8000DCD90 /* HTMLKit */,
+			);
 			productName = TodayIs;
 			productReference = 558A54E825F6A4C9003E1072 /* TodayIs.app */;
 			productType = "com.apple.product-type.application";
@@ -115,6 +161,9 @@
 				Base,
 			);
 			mainGroup = 558A54DF25F6A4C9003E1072;
+			packageReferences = (
+				55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */,
+			);
 			productRefGroup = 558A54E925F6A4C9003E1072 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -141,6 +190,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55C04760261FAA5A000DCD90 /* Alert.swift in Sources */,
+				55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */,
+				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
 				558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */,
 				55C04754261FA653000DCD90 /* NationalDayListView.swift in Sources */,
@@ -332,6 +384,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/vapor-community/htmlkit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		55C0476A261FB7F8000DCD90 /* HTMLKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */;
+			productName = HTMLKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 558A54E025F6A4C9003E1072 /* Project object */;
 }

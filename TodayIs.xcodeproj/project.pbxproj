@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5A726225A2A000D5757 /* SwiftSoup */; };
+		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */; };
 		558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* NationalDayView.swift */; };
 		558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54EF25F6A4CA003E1072 /* Assets.xcassets */; };
@@ -16,10 +17,10 @@
 		55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C04758261FA94D000DCD90 /* NetworkManager.swift */; };
 		55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475B261FAA2A000DCD90 /* TIError.swift */; };
 		55C04760261FAA5A000DCD90 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475F261FAA5A000DCD90 /* Alert.swift */; };
-		55C0476B261FB7F8000DCD90 /* HTMLKit in Frameworks */ = {isa = PBXBuildFile; productRef = 55C0476A261FB7F8000DCD90 /* HTMLKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		558A54E825F6A4C9003E1072 /* TodayIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayIs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIsApp.swift; sourceTree = "<group>"; };
 		558A54ED25F6A4C9003E1072 /* NationalDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayView.swift; sourceTree = "<group>"; };
@@ -37,7 +38,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55C0476B261FB7F8000DCD90 /* HTMLKit in Frameworks */,
 				553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */,
+				553ED5AB26226C0B000D5757 /* Holiday.swift */,
 				55C04767261FAB6E000DCD90 /* Views */,
 				55C04764261FAB38000DCD90 /* Utilities */,
 				558A54EF25F6A4CA003E1072 /* Assets.xcassets */,
@@ -134,7 +135,6 @@
 			);
 			name = TodayIs;
 			packageProductDependencies = (
-				55C0476A261FB7F8000DCD90 /* HTMLKit */,
 				553ED5A726225A2A000D5757 /* SwiftSoup */,
 			);
 			productName = TodayIs;
@@ -165,7 +165,6 @@
 			);
 			mainGroup = 558A54DF25F6A4C9003E1072;
 			packageReferences = (
-				55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */,
 				553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 558A54E925F6A4C9003E1072 /* Products */;
@@ -196,6 +195,7 @@
 			files = (
 				55C04760261FAA5A000DCD90 /* Alert.swift in Sources */,
 				55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */,
+				553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */,
 				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
 				558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */,
@@ -398,14 +398,6 @@
 				minimumVersion = 2.3.2;
 			};
 		};
-		55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/vapor-community/htmlkit.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -413,11 +405,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
-		};
-		55C0476A261FB7F8000DCD90 /* HTMLKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */;
-			productName = HTMLKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

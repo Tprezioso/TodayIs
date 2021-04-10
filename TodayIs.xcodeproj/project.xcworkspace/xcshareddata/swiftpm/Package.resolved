@@ -2,24 +2,6 @@
   "object": {
     "pins": [
       {
-        "package": "HTMLKit",
-        "repositoryURL": "https://github.com/vapor-community/htmlkit.git",
-        "state": {
-          "branch": null,
-          "revision": "ac158d7cec293ca4395a3c731d575066b632bf87",
-          "version": "2.1.0"
-        }
-      },
-      {
-        "package": "Lingo",
-        "repositoryURL": "https://github.com/miroslavkovac/Lingo.git",
-        "state": {
-          "branch": null,
-          "revision": "e4b032f65bde917209a1cb0962c0fd13fa0add2f",
-          "version": "3.1.0"
-        }
-      },
-      {
         "package": "SwiftSoup",
         "repositoryURL": "https://github.com/scinfu/SwiftSoup",
         "state": {

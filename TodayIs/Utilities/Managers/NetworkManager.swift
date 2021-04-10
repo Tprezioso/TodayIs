@@ -16,6 +16,8 @@ final class NetworkManager {
 
     private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
     
+    var holidays = [Holiday]()
+    
 //    func getTodaysHoliday(completed: @escaping (Result<[Appetizer], TIError>) -> Void) {
 //        guard let url = URL(string: baseURL) else {
 //            completed(.failure(TIError.invalidURL))
@@ -67,7 +69,8 @@ final class NetworkManager {
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let links: [Element] = try doc.select("h3 a").array()
                 
-                print("a Tag link >>>>>\(try links.first?.text())")
+                print("Holiday Name >>>>> \(try links.first?.text() ?? "No Holiday Name")")
+                print("Holiday link >>>>> \(try links.first?.attr("href") ?? "No Link")")
             } catch Exception.Error(let type, let message) {
                 print(message)
             } catch {

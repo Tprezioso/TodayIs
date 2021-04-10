@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SwiftSoup
 
 final class NetworkManager {
     
@@ -60,7 +60,20 @@ final class NetworkManager {
             print("couldn't cast data into String")
             return
           }
-          print(htmlString)
+//            print(htmlString)
+           
+            do {
+               
+                let doc: Document = try SwiftSoup.parse(htmlString)
+                let links: [Element] = try doc.select("h3 a").array()
+                
+                print("a Tag link >>>>>\(try links.first?.text())")
+            } catch Exception.Error(let type, let message) {
+                print(message)
+            } catch {
+                print("error")
+            }
+            
         }
         task.resume()
 

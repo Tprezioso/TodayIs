@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5A726225A2A000D5757 /* SwiftSoup */; };
 		558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */; };
 		558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* NationalDayView.swift */; };
 		558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54EF25F6A4CA003E1072 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55C0476B261FB7F8000DCD90 /* HTMLKit in Frameworks */,
+				553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,6 +135,7 @@
 			name = TodayIs;
 			packageProductDependencies = (
 				55C0476A261FB7F8000DCD90 /* HTMLKit */,
+				553ED5A726225A2A000D5757 /* SwiftSoup */,
 			);
 			productName = TodayIs;
 			productReference = 558A54E825F6A4C9003E1072 /* TodayIs.app */;
@@ -163,6 +166,7 @@
 			mainGroup = 558A54DF25F6A4C9003E1072;
 			packageReferences = (
 				55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */,
+				553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 558A54E925F6A4C9003E1072 /* Products */;
 			projectDirPath = "";
@@ -386,6 +390,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
 		55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/vapor-community/htmlkit.git";
@@ -397,6 +409,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		553ED5A726225A2A000D5757 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
 		55C0476A261FB7F8000DCD90 /* HTMLKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 55C04769261FB7F8000DCD90 /* XCRemoteSwiftPackageReference "htmlkit" */;

@@ -9,7 +9,6 @@ import UIKit
 import SwiftSoup
 
 final class NetworkManager {
-    
     static let shared = NetworkManager()
     private let cache = NSCache<NSString, UIImage>()
     private init() {}
@@ -52,5 +51,40 @@ final class NetworkManager {
         }
         task.resume()
     }
-    
+
+    func getDetailHoliday(url: String, completed: @escaping (Result<DetailHoliday, TIError>) -> Void) {
+        guard let url = URL(string: url) else {
+                    completed(.failure(TIError.invalidURL))
+                    return
+                }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
+            guard let data = data else {
+                completed(.failure(TIError.invalidData))
+                return
+            }
+            
+            guard let htmlString = String(data: data, encoding: .utf8) else {
+                print("couldn't cast data into String")
+                return
+            }
+            
+            do {
+                let doc: Document = try SwiftSoup.parse(htmlString)
+                let links: Element = try doc.select("h3 a img").first()!
+                let p: Element = try doc.select("p").first()!
+                let pText = try p.text()
+                let pLink = try links.attr("data-opt-src")
+                let detailHoliday = DetailHoliday(image: pLink, description: pText)
+
+                completed(.success(detailHoliday))
+            } catch Exception.Error(let type, let message) {
+                print(type, message)
+            } catch {
+                completed(.failure(TIError.invalidData))
+            }
+        }
+        task.resume()
+
+    }
 }

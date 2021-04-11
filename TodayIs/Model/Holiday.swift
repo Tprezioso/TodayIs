@@ -12,3 +12,9 @@ struct Holiday: Identifiable {
     let name: String
     let url: String
 }
+
+struct DetailHoliday: Identifiable {
+    let id = UUID()
+    let image: String
+    let description: String
+}

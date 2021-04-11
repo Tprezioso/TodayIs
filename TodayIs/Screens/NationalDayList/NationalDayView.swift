@@ -24,7 +24,12 @@ struct NationalDayView: View {
             } label: {
                 Text("Share")
             }
-        }.navigationTitle(holiday.name)
+        }.onAppear {
+            NetworkManager.shared.getDetailHoliday(url: "https://nationaldaycalendar.com/days-2/national-barbershop-quartet-day-april-11/") { [self] result in
+                print(result)
+            }
+        }
+        .navigationTitle(holiday.name)
         .navigationBarTitleDisplayMode(.inline)
         .padding()
     }

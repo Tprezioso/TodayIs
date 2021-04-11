@@ -16,11 +16,16 @@ struct NationalDayView: View {
             Image("PlaceholderImage")
                 .resizable()
                 .scaledToFit()
-            Text("\(holiday.name)")
-            
+            Text("akjsdfhlajfhlakjfhlaskjhflsadkjfhdslkjfhdslkfjahsdlfkjdshflksdajhfdlksjfhlsadkjfhasldkjfhsadlkjfhdskjfhaslkdjfhalsjkdfhlaskjdfhlaskjfh")
 
             Spacer()
-        }
+            Button {
+                
+            } label: {
+                Text("Share")
+            }
+        }.navigationTitle(holiday.name)
+        .navigationBarTitleDisplayMode(.inline)
         .padding()
     }
 }

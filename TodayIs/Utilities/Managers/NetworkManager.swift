@@ -13,9 +13,7 @@ final class NetworkManager {
     static let shared = NetworkManager()
     private let cache = NSCache<NSString, UIImage>()
     private init() {}
-
     private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
-    
     var holidays = [Holiday]()
     
     func getHolidayData(completed: @escaping (Result<[Holiday], TIError>) -> Void) {
@@ -26,7 +24,6 @@ final class NetworkManager {
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
             guard let data = data else {
-                
                 completed(.failure(TIError.invalidData))
                 return
             }
@@ -47,16 +44,13 @@ final class NetworkManager {
                     holidays.append(holiday)
                 }
                 completed(.success(holidays))
-                print(holidays)
             } catch Exception.Error(let type, let message) {
                 print(type, message)
             } catch {
                 completed(.failure(TIError.invalidData))
             }
-            
         }
         task.resume()
-        
     }
     
 }

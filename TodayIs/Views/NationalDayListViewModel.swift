@@ -24,7 +24,6 @@ final class NationalDayListViewModel: ObservableObject {
                 
                 case .failure(let error):
                     switch error {
-                
                     case .invalidData:
                         alertItem = AlertContext.invalidData
                     

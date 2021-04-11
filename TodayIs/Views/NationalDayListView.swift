@@ -11,16 +11,23 @@ struct NationalDayListView: View {
     @StateObject var viewModel = NationalDayListViewModel()
     
     var body: some View {
-        NavigationView {
-            List(viewModel.holidays) { holiday in
-                NavigationLink(destination: NationalDayView(), isActive: $viewModel.isShowingDetailView) {
-                    Text("\(holiday.name)")
+        ZStack {
+            NavigationView {
+                List(viewModel.holidays) { holiday in
+                    NavigationLink(destination: NationalDayView(), isActive: $viewModel.isShowingDetailView) {
+                        Text("\(holiday.name)")
+                        
+                    }
                     
-                }
-                           
-            }.navigationTitle("Today's Day is...")
-        }.onAppear {
-            viewModel.getHolidays()
+                }.navigationTitle("Today's Day is...")
+            }.onAppear {
+                viewModel.getHolidays()
+            }
+            if viewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                    .scaleEffect(2, anchor: .center)
+            }
         }
     }
 }

@@ -47,6 +47,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		553ED5B2262355DE000D5757 /* NationalDayList */ = {
+			isa = PBXGroup;
+			children = (
+				55C04753261FA653000DCD90 /* NationalDayListView.swift */,
+				553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */,
+				558A54ED25F6A4C9003E1072 /* NationalDayView.swift */,
+			);
+			path = NationalDayList;
+			sourceTree = "<group>";
+		};
+		553ED5B42623560A000D5757 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				553ED5AB26226C0B000D5757 /* Holiday.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		558A54DF25F6A4C9003E1072 = {
 			isa = PBXGroup;
 			children = (
@@ -67,9 +85,9 @@
 			isa = PBXGroup;
 			children = (
 				558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */,
-				553ED5AB26226C0B000D5757 /* Holiday.swift */,
-				55C04767261FAB6E000DCD90 /* Views */,
+				55C04767261FAB6E000DCD90 /* Screens */,
 				55C04764261FAB38000DCD90 /* Utilities */,
+				553ED5B42623560A000D5757 /* Model */,
 				558A54EF25F6A4CA003E1072 /* Assets.xcassets */,
 				558A54F425F6A4CA003E1072 /* Info.plist */,
 				558A54F125F6A4CA003E1072 /* Preview Content */,
@@ -111,14 +129,12 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		55C04767261FAB6E000DCD90 /* Views */ = {
+		55C04767261FAB6E000DCD90 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				55C04753261FA653000DCD90 /* NationalDayListView.swift */,
-				553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */,
-				558A54ED25F6A4C9003E1072 /* NationalDayView.swift */,
+				553ED5B2262355DE000D5757 /* NationalDayList */,
 			);
-			path = Views;
+			path = Screens;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

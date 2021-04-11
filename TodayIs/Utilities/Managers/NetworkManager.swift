@@ -18,11 +18,16 @@ final class NetworkManager {
     
     var holidays = [Holiday]()
     
-    func findData() {
-        let url = URL(string: baseURL)!
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { (data, response, error) in
+    func getHolidayData(completed: @escaping (Result<[Holiday], TIError>) -> Void) {
+        guard let url = URL(string: baseURL) else {
+                    completed(.failure(TIError.invalidURL))
+                    return
+                }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
             guard let data = data else {
-                print("data was nil")
+                
+                completed(.failure(TIError.invalidData))
                 return
             }
             
@@ -38,15 +43,15 @@ final class NetworkManager {
                 for title: Element in links {
                     let linksText: String = try title.text()
                     let linksHref: String = try title.attr("href")
-                    print(linksText, linksHref)
+                    let holiday = Holiday(name: linksText, url: linksHref)
+                    holidays.append(holiday)
                 }
-                
-//                print("Holiday Name >>>>> \(try links.first?.text() ?? "No Holiday Name")")
-//                print("Holiday link >>>>> \(try links.first?.attr("href") ?? "No Link")")
+                completed(.success(holidays))
+                print(holidays)
             } catch Exception.Error(let type, let message) {
                 print(type, message)
             } catch {
-                print(error)
+                completed(.failure(TIError.invalidData))
             }
             
         }

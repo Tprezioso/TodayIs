@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5A726225A2A000D5757 /* SwiftSoup */; };
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
+		553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */; };
 		558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */; };
 		558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* NationalDayView.swift */; };
 		558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54EF25F6A4CA003E1072 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
+		553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListViewModel.swift; sourceTree = "<group>"; };
 		558A54E825F6A4C9003E1072 /* TodayIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayIs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIsApp.swift; sourceTree = "<group>"; };
 		558A54ED25F6A4C9003E1072 /* NationalDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				55C04753261FA653000DCD90 /* NationalDayListView.swift */,
+				553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */,
 				558A54ED25F6A4C9003E1072 /* NationalDayView.swift */,
 			);
 			path = Views;
@@ -198,6 +201,7 @@
 				553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */,
 				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
+				553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */,
 				558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */,
 				55C04754261FA653000DCD90 /* NationalDayListView.swift in Sources */,
 			);

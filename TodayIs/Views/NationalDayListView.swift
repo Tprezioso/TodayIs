@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct NationalDayListView: View {
-    @State private var isShowingDetailView = false
+    @StateObject var viewModel = NationalDayListViewModel()
     
     var body: some View {
         NavigationView {
-            List() {
-                NavigationLink(destination: NationalDayView(), isActive: $isShowingDetailView) {
-                    Text("Hello")
+            List(viewModel.holidays) { holiday in
+                NavigationLink(destination: NationalDayView(), isActive: $viewModel.isShowingDetailView) {
+                    Text("\(holiday.name)")
                     
                 }
                            
             }.navigationTitle("Today's Day is...")
         }.onAppear {
-            NetworkManager.shared.findData()
+            viewModel.getHolidays()
         }
     }
 }

@@ -11,9 +11,6 @@ final class NationalDayViewModel: ObservableObject {
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
     @Published var detailHoliday = DetailHoliday(image: "", description: "")
-//    @Published var imageLoader = ImageLoader()
-//    @StateObject var imageLoader = ImageLoader()
-
     
     func getHoliday(url: String) {
         isLoading = true

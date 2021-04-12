@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct NationalDayView: View {
     var holiday: Holiday

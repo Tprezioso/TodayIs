@@ -10,7 +10,7 @@ import SwiftUI
 struct Holiday: Identifiable {
     let id = UUID()
     let name: String
-    let url: String
+    var url: String
 }
 
 struct DetailHoliday: Identifiable {

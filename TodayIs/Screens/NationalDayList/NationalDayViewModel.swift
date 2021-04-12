@@ -1,5 +1,5 @@
 //
-//  NationalDayListViewModel.swift
+//  NationalDayViewModel.swift
 //  TodayIs
 //
 //  Created by Thomas Prezioso Jr on 4/11/21.
@@ -7,23 +7,21 @@
 
 import SwiftUI
 
-final class NationalDayListViewModel: ObservableObject {
-    @Published var holidays = [Holiday]()
+final class NationalDayViewModel: ObservableObject {
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
-    @Published var isShowingDetail = false
-    @Published var isShowingDetailView = false
-    @Published var selectedHoliday: Holiday?
-
-    func getHolidays() {
+    @Published var detailHoliday = DetailHoliday(image: "", description: "")
+    @StateObject var imageLoader = ImageLoader()
+    
+    func getHoliday(url: String) {
         isLoading = true
-        NetworkManager.shared.getHolidayData { [self] result in
+        NetworkManager.shared.getDetailHoliday(url: url) { [self] result in
             DispatchQueue.main.async {
                 isLoading = false
                 switch result {
-                case .success(let holidays):
-                    self.holidays = holidays
-                    
+                case .success(let detailHoliday):
+                    self.detailHoliday = detailHoliday
+                
                 case .failure(let error):
                     switch error {
                     case .invalidData:
@@ -42,5 +40,4 @@ final class NationalDayListViewModel: ObservableObject {
             }
         }
     }
-
 }

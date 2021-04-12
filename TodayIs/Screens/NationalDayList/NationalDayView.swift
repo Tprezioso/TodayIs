@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct NationalDayView: View {
-    let holiday: Holiday
-//    @Binding var isShowingDetailView: Bool
+    var holiday: Holiday
+    @StateObject var viewModel = NationalDayViewModel()
+    @StateObject var imageLoader = ImageLoader()
     
     var body: some View {
         VStack {
-            Image("PlaceholderImage")
-                .resizable()
+            RemoteImage(image: imageLoader.image)
                 .scaledToFit()
-            Text("akjsdfhlajfhlakjfhlaskjhflsadkjfhdslkjfhdslkfjahsdlfkjdshflksdajhfdlksjfhlsadkjfhasldkjfhsadlkjfhdskjfhaslkdjfhalsjkdfhlaskjdfhlaskjfh")
+                .frame(width: 300, height: 225)
+//            Image(viewModel.detailHoliday.image ?? "PlaceholderImage")
+//                .resizable()
+//                .scaledToFit()
+            Text(viewModel.detailHoliday.description)
 
             Spacer()
             Button {
@@ -24,10 +28,13 @@ struct NationalDayView: View {
             } label: {
                 Text("Share")
             }
-        }.onAppear {
-            NetworkManager.shared.getDetailHoliday(url: "https://nationaldaycalendar.com/days-2/national-barbershop-quartet-day-april-11/") { [self] result in
-                print(result)
-            }
+        }
+        .alert(item: $viewModel.alertItem) { alertItem in
+            Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+        }
+        .onAppear {
+            viewModel.getHoliday(url: holiday.url)
+            imageLoader.load(fromURLString: viewModel.detailHoliday.image)
         }
         .navigationTitle(holiday.name)
         .navigationBarTitleDisplayMode(.inline)

@@ -15,23 +15,16 @@ struct NationalDayListView: View {
             NavigationView {
                 List(viewModel.holidays) { holiday in
                     NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
-                    
-//                    Text("\(holiday.name)")
-//                        .onTapGesture {
-//                            viewModel.selectedHoliday = holiday
-//                            viewModel.isShowingDetail = true
-//                        }
                 }.navigationTitle("Today is...")
                 
             }
-        }.onAppear {
+        }
+        .alert(item: $viewModel.alertItem) { alertItem in
+            Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+        }
+        .onAppear {
             viewModel.getHolidays()
         }
-//        if viewModel.isShowingDetail {
-//            NationalDayView(holiday: viewModel.selectedHoliday!,
-//                            isShowingDetailView: $viewModel.isShowingDetailView)
-//        }
-        
         if viewModel.isLoading {
             ProgressView()
                 .progressViewStyle(CircularProgressViewStyle(tint: .gray))

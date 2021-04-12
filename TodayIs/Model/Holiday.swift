@@ -15,6 +15,6 @@ struct Holiday: Identifiable {
 
 struct DetailHoliday: Identifiable {
     let id = UUID()
-    let image: String
+    let imageURL: String
     let description: String
 }

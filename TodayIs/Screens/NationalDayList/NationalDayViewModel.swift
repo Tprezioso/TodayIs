@@ -10,7 +10,7 @@ import SwiftUI
 final class NationalDayViewModel: ObservableObject {
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
-    @Published var detailHoliday = DetailHoliday(image: "", description: "")
+    @Published var detailHoliday = DetailHoliday(imageURL: "", description: "")
     
     func getHoliday(url: String) {
         isLoading = true

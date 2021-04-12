@@ -15,6 +15,7 @@ struct NationalDayListView: View {
             NavigationView {
                 List(viewModel.holidays) { holiday in
                     NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
+                    
                 }.navigationTitle("Today is...")
                 
             }

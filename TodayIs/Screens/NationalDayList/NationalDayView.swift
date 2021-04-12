@@ -14,9 +14,11 @@ struct NationalDayView: View {
     
     var body: some View {
         VStack {
-            Image(viewModel.detailHoliday.image ?? "PlaceholderImage")
-                .resizable()
-                .scaledToFit()
+            URLImage(url: URL(string: viewModel.detailHoliday.imageURL)!) { image in
+                image
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
             Text(viewModel.detailHoliday.description)
 
             Spacer()

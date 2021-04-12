@@ -11,7 +11,9 @@ final class NationalDayViewModel: ObservableObject {
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
     @Published var detailHoliday = DetailHoliday(image: "", description: "")
-    @StateObject var imageLoader = ImageLoader()
+//    @Published var imageLoader = ImageLoader()
+//    @StateObject var imageLoader = ImageLoader()
+
     
     func getHoliday(url: String) {
         isLoading = true
@@ -21,7 +23,7 @@ final class NationalDayViewModel: ObservableObject {
                 switch result {
                 case .success(let detailHoliday):
                     self.detailHoliday = detailHoliday
-                
+                    
                 case .failure(let error):
                     switch error {
                     case .invalidData:

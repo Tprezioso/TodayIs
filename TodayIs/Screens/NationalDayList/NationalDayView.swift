@@ -10,16 +10,12 @@ import SwiftUI
 struct NationalDayView: View {
     var holiday: Holiday
     @StateObject var viewModel = NationalDayViewModel()
-    @StateObject var imageLoader = ImageLoader()
     
     var body: some View {
         VStack {
-            RemoteImage(image: imageLoader.image)
+            Image(viewModel.detailHoliday.image ?? "PlaceholderImage")
+                .resizable()
                 .scaledToFit()
-                .frame(width: 300, height: 225)
-//            Image(viewModel.detailHoliday.image ?? "PlaceholderImage")
-//                .resizable()
-//                .scaledToFit()
             Text(viewModel.detailHoliday.description)
 
             Spacer()
@@ -34,16 +30,9 @@ struct NationalDayView: View {
         }
         .onAppear {
             viewModel.getHoliday(url: holiday.url)
-            imageLoader.load(fromURLString: viewModel.detailHoliday.image)
         }
         .navigationTitle(holiday.name)
         .navigationBarTitleDisplayMode(.inline)
         .padding()
     }
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        NationalDayView(holiday: <#Holiday#>, isShowingDetailView: <#Binding<Bool>#>)
-//    }
-//}

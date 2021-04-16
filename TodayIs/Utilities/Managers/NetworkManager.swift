@@ -39,7 +39,9 @@ final class NetworkManager {
                 for title: Element in links {
                     let linksText: String = try title.text()
                     var linksHref: String = try title.attr("href")
-                    linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                    if Array(linksHref)[4] != "s" {
+                        linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                    }
                     let holiday = Holiday(name: linksText, url: linksHref)
                     holidays.append(holiday)
                 }
@@ -72,10 +74,10 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let links: Element = try doc.select("h3 a img").first()!
-                let p: Element = try doc.select("p").first()!
+                let links: Element = try doc.select("img")[3] //h3 a img
+                let p: Element = try doc.select("p")[3]
                 let pText = try p.text()
-                let pLink = try links.attr("data-opt-src")
+                let pLink = try links.attr("src")
                 let detailHoliday = DetailHoliday(imageURL: pLink, description: pText)
 
                 completed(.success(detailHoliday))
@@ -89,28 +91,29 @@ final class NetworkManager {
     }
 
     func downloadImage(fromURLString urlString: String, completed: @escaping (UIImage?) -> Void) {
-            let cacheKey = NSString(string: urlString)
-            
-            if let image = cache.object(forKey: cacheKey) {
-                completed(image)
-                return
-            }
-            
-            guard let url = URL(string:urlString) else {
+        let cacheKey = NSString(string: urlString)
+        
+        if let image = cache.object(forKey: cacheKey) {
+            completed(image)
+            return
+        }
+        
+        guard let str = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return completed(nil) }
+        guard let urlImage = URL(string: str) else {
+            completed(nil)
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: urlImage)) { data, response, error in
+            guard let data = data, let image = UIImage(data: data) else {
                 completed(nil)
                 return
             }
             
-            let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data, response, error in
-                guard let data = data, let image = UIImage(data: data) else {
-                    completed(nil)
-                    return
-                }
-                
-                self.cache.setObject(image, forKey: cacheKey)
-                completed(image)
-            }
-            task.resume()
+            self.cache.setObject(image, forKey: cacheKey)
+            completed(image)
         }
-
+        task.resume()
+    }
+    
 }

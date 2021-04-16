@@ -11,6 +11,8 @@ final class NationalDayViewModel: ObservableObject {
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
     @Published var detailHoliday = DetailHoliday(imageURL: "", description: "")
+    @Published var imageLoader = ImageLoader()
+    @Published var image: Image? = nil
     
     func getHoliday(url: String) {
         isLoading = true
@@ -20,7 +22,7 @@ final class NationalDayViewModel: ObservableObject {
                 switch result {
                 case .success(let detailHoliday):
                     self.detailHoliday = detailHoliday
-                    
+                    load(fromURLString: detailHoliday.imageURL)
                 case .failure(let error):
                     switch error {
                     case .invalidData:
@@ -39,4 +41,14 @@ final class NationalDayViewModel: ObservableObject {
             }
         }
     }
+    
+    func load(fromURLString urlString: String) {
+        NetworkManager.shared.downloadImage(fromURLString: urlString) { uiImage in
+            guard let uiImage = uiImage else { return }
+            DispatchQueue.main.async {
+                self.image = Image(uiImage: uiImage)
+            }
+        }
+    }
+
 }

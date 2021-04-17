@@ -75,8 +75,15 @@ final class NetworkManager {
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let links: Element = try doc.select("img")[3] //h3 a img
-                let p: Element = try doc.select("p").first()!
-                let pText = try p.text()
+                let p: Elements = try doc.select("p")
+                let p1 = try p[0].text()
+                let p2 = try p[1].text()
+                var pText = ""
+                if p1 == "" {
+                    pText = p2
+                } else {
+                    pText = p1 + p2
+                }
                 let pLink = try links.attr("src")
                 let detailHoliday = DetailHoliday(imageURL: pLink, description: pText)
 

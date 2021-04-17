@@ -13,10 +13,10 @@ struct NationalDayView: View {
     @StateObject var viewModel = NationalDayViewModel()
     
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
             RemoteImage(image: viewModel.image)
                 .scaledToFit()
-//            DayRemoteImage(urlString: viewModel.detailHoliday.imageURL)
+                .padding(.bottom)
             Text(viewModel.detailHoliday.description)
             Spacer()
             Button {
@@ -24,6 +24,7 @@ struct NationalDayView: View {
             } label: {
                 Text("Share")
             }
+            Spacer()
         }
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)

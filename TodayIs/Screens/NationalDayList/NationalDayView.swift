@@ -22,6 +22,7 @@ struct NationalDayView: View {
             }
             Spacer()
             Button {
+                viewModel.shareButton(urlString: holiday.url)
                 print("Share Button Tapped")
             } label: {
                 Text("Share")

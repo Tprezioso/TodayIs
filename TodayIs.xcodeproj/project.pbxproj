@@ -21,6 +21,7 @@
 		55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C04758261FA94D000DCD90 /* NetworkManager.swift */; };
 		55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475B261FAA2A000DCD90 /* TIError.swift */; };
 		55C04760261FAA5A000DCD90 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475F261FAA5A000DCD90 /* Alert.swift */; };
+		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		55C04758261FA94D000DCD90 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		55C0475B261FAA2A000DCD90 /* TIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIError.swift; sourceTree = "<group>"; };
 		55C0475F261FAA5A000DCD90 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		55E77C1C262C99E4000AF1BD /* TIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */,
+				55E77C1B262C99C4000AF1BD /* Views */,
 				55C04767261FAB6E000DCD90 /* Screens */,
 				55C04764261FAB38000DCD90 /* Utilities */,
 				553ED5B42623560A000D5757 /* Model */,
@@ -143,6 +146,14 @@
 				553ED5B2262355DE000D5757 /* NationalDayList */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		55E77C1B262C99C4000AF1BD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				55E77C1C262C99E4000AF1BD /* TIButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,6 +238,7 @@
 				55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */,
 				557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */,
 				553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */,
+				55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */,
 				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
 				553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */,

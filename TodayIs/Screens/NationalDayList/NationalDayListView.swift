@@ -19,7 +19,7 @@ struct NationalDayListView: View {
                 }.navigationTitle("Today is...")
                 
             }
-        }
+            .accentColor(.green)
         .alert(item: $viewModel.alertItem) { alertItem in
             Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
         }
@@ -31,6 +31,7 @@ struct NationalDayListView: View {
                 .progressViewStyle(CircularProgressViewStyle(tint: .gray))
                 .scaleEffect(2, anchor: .center)
         }
+    }
     }
 }
 

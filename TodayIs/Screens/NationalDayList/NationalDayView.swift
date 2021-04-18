@@ -13,36 +13,47 @@ struct NationalDayView: View {
     @StateObject var viewModel = NationalDayViewModel()
     
     var body: some View {
-        VStack(spacing: 5) {
-            VStack {
-                RemoteImage(image: viewModel.image)
-                    .scaledToFit()
-                    .padding(.bottom)
-                Text(viewModel.detailHoliday.description)
+        ZStack {
+            VStack(spacing: 5) {
+                VStack {
+                    RemoteImage(image: viewModel.image)
+                        .scaledToFit()
+                        .padding(.bottom)
+                    Text(viewModel.detailHoliday.description)
+                }
+                VStack(spacing: 20) {
+                    Button {
+                        viewModel.shareButton(urlString: holiday.url)
+                    } label: {
+                        TIButton(title: "Share")
+                    }
+                    
+                    Button {
+                        print("Calendar button tapped")
+                    } label: {
+                        TIButton(title: "Add to Calendar")
+                    }
+                }.padding()
+                Spacer()
             }
-            Spacer()
-            Button {
-                viewModel.shareButton(urlString: holiday.url)
-                print("Share Button Tapped")
-            } label: {
-                Text("Share")
+            .alert(item: $viewModel.alertItem) { alertItem in
+                Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
             }
-            Button {
-                print("Calendar button tapped")
-            } label: {
-                Text("Add to Calendar")
+            
+            .onAppear {
+                viewModel.getHoliday(url: holiday.url)
+                
             }
-            Spacer()
+            .navigationTitle(holiday.name)
+            .navigationBarTitleDisplayMode(.inline)
+            .padding()
+            
+            if viewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                    .scaleEffect(2, anchor: .center)
+            }
         }
-        .alert(item: $viewModel.alertItem) { alertItem in
-            Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-        }
-        .onAppear {
-            viewModel.getHoliday(url: holiday.url)
-
-        }
-        .navigationTitle(holiday.name)
-        .navigationBarTitleDisplayMode(.inline)
-        .padding()
     }
+    
 }

@@ -28,14 +28,14 @@ final class NetworkManager {
             }
             
             guard let htmlString = String(data: data, encoding: .utf8) else {
-                print("couldn't cast data into String")
+                completed(.failure(TIError.invalidData))
                 return
             }
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let links: [Element] = try doc.select("h3 a").array()
-                
+                holidays.removeAll()
                 for title: Element in links {
                     let linksText: String = try title.text()
                     var linksHref: String = try title.attr("href")
@@ -68,7 +68,7 @@ final class NetworkManager {
             }
             
             guard let htmlString = String(data: data, encoding: .utf8) else {
-                print("couldn't cast data into String")
+                completed(.failure(TIError.invalidData))
                 return
             }
             

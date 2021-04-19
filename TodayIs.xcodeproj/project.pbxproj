@@ -11,7 +11,6 @@
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */; };
 		553ED5B82623BA99000D5757 /* NationalDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */; };
-		553ED5C02623D339000D5757 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5BF2623D339000D5757 /* URLImage */; };
 		557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557AED092628F50E009B6FCD /* RemoteImage.swift */; };
 		558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */; };
 		558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* NationalDayView.swift */; };
@@ -47,7 +46,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				553ED5C02623D339000D5757 /* URLImage in Frameworks */,
 				553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,9 +149,17 @@
 		55E77C1B262C99C4000AF1BD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				55E77C1C262C99E4000AF1BD /* TIButton.swift */,
+				55E77C20262DB965000AF1BD /* Buttons */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		55E77C20262DB965000AF1BD /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				55E77C1C262C99E4000AF1BD /* TIButton.swift */,
+			);
+			path = Buttons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,7 +180,6 @@
 			name = TodayIs;
 			packageProductDependencies = (
 				553ED5A726225A2A000D5757 /* SwiftSoup */,
-				553ED5BF2623D339000D5757 /* URLImage */,
 			);
 			productName = TodayIs;
 			productReference = 558A54E825F6A4C9003E1072 /* TodayIs.app */;
@@ -205,7 +210,6 @@
 			mainGroup = 558A54DF25F6A4C9003E1072;
 			packageReferences = (
 				553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				553ED5BE2623D339000D5757 /* XCRemoteSwiftPackageReference "url-image" */,
 			);
 			productRefGroup = 558A54E925F6A4C9003E1072 /* Products */;
 			projectDirPath = "";
@@ -442,14 +446,6 @@
 				minimumVersion = 2.3.2;
 			};
 		};
-		553ED5BE2623D339000D5757 /* XCRemoteSwiftPackageReference "url-image" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/dmytro-anokhin/url-image";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.3;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -457,11 +453,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
-		};
-		553ED5BF2623D339000D5757 /* URLImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 553ED5BE2623D339000D5757 /* XCRemoteSwiftPackageReference "url-image" */;
-			productName = URLImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

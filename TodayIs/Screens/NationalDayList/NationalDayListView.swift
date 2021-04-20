@@ -26,7 +26,14 @@ struct NationalDayListView: View {
                 .onAppear {
                     viewModel.getHolidays()
                 }
-                Text("Powered by")
+                VStack {
+                    Text("Powered by:")
+                    Image("NationalDayLogo")
+                        .resizable()
+                        .frame(width: 75, height: 50)
+                        .scaledToFit()
+                }
+                //Image logo to be but in soon
             }
             if viewModel.isLoading {
                 ProgressView()

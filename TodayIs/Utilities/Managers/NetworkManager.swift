@@ -78,9 +78,10 @@ final class NetworkManager {
                 let p: Elements = try doc.select("p")
                 let p1 = try p[0].text()
                 let p2 = try p[1].text()
+                let p3 = try p[2].text()
                 var pText = ""
                 if p1 == "" {
-                    pText = p2
+                    pText = p2 + p3
                 } else {
                     pText = p1 + p2
                 }

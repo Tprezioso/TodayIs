@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NationalDayListView: View {
     @StateObject var viewModel = NationalDayListViewModel()
+    @Environment(\.openURL) var openURL
     
     var body: some View {
         ZStack {
@@ -26,14 +27,19 @@ struct NationalDayListView: View {
                 .onAppear {
                     viewModel.getHolidays()
                 }
-                VStack {
-                    Text("Powered by:")
-                    Image("NationalDayLogo")
-                        .resizable()
-                        .frame(width: 75, height: 50)
-                        .scaledToFit()
+                Button {
+                    openURL(URL(string: "https://nationaldaycalendar.com/")!)
+                } label: {
+                    VStack {
+                        Text("Powered by:")
+                            .foregroundColor(.primary)
+                        Image("NationalDayLogo")
+                            .resizable()
+                            .frame(width: 75, height: 50)
+                            .scaledToFit()
+                    }
+
                 }
-                //Image logo to be but in soon
             }
             if viewModel.isLoading {
                 ProgressView()

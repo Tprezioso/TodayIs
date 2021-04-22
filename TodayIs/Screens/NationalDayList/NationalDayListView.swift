@@ -13,33 +13,25 @@ struct NationalDayListView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                NavigationView {
+            NavigationView {
+                VStack {
                     List(viewModel.holidays) { holiday in
                         NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
-                    }.navigationTitle("Today is...")
-                    
-                }
-                .accentColor(.green)
-                .alert(item: $viewModel.alertItem) { alertItem in
-                    Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-                }
-                .onAppear {
-                    viewModel.getHolidays()
-                }
-                Button {
-                    openURL(URL(string: "https://nationaldaycalendar.com/")!)
-                } label: {
-                    VStack {
-                        Text("Powered by:")
-                            .foregroundColor(.primary)
-                        Image("NationalDayLogo")
-                            .resizable()
-                            .frame(width: 75, height: 50)
-                            .scaledToFit()
+                    }.listStyle(PlainListStyle())
+                    .navigationTitle("Today is...")
+                    Button {
+                        openURL(URL(string: "https://nationaldaycalendar.com/")!)
+                    } label: {
+                        NationalDayLogo()
                     }
-
                 }
+            }
+            .accentColor(.green)
+            .alert(item: $viewModel.alertItem) { alertItem in
+                Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+            }
+            .onAppear {
+                viewModel.getHolidays()
             }
             if viewModel.isLoading {
                 ProgressView()

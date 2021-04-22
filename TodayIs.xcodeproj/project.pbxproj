@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		550714E72630E2FD0036DE22 /* NationalDayLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550714E62630E2FD0036DE22 /* NationalDayLogo.swift */; };
 		553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5A726225A2A000D5757 /* SwiftSoup */; };
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		550714E62630E2FD0036DE22 /* NationalDayLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayLogo.swift; sourceTree = "<group>"; };
 		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListViewModel.swift; sourceTree = "<group>"; };
 		553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayViewModel.swift; sourceTree = "<group>"; };
@@ -53,13 +55,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		550714E9263104120036DE22 /* NationalDayDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				558A54ED25F6A4C9003E1072 /* NationalDayView.swift */,
+				553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */,
+			);
+			path = NationalDayDetailView;
+			sourceTree = "<group>";
+		};
 		553ED5B2262355DE000D5757 /* NationalDayList */ = {
 			isa = PBXGroup;
 			children = (
 				55C04753261FA653000DCD90 /* NationalDayListView.swift */,
 				553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */,
-				558A54ED25F6A4C9003E1072 /* NationalDayView.swift */,
-				553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */,
 			);
 			path = NationalDayList;
 			sourceTree = "<group>";
@@ -141,6 +150,7 @@
 		55C04767261FAB6E000DCD90 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				550714E9263104120036DE22 /* NationalDayDetailView */,
 				553ED5B2262355DE000D5757 /* NationalDayList */,
 			);
 			path = Screens;
@@ -158,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				55E77C1C262C99E4000AF1BD /* TIButton.swift */,
+				550714E62630E2FD0036DE22 /* NationalDayLogo.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -238,6 +249,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				553ED5B82623BA99000D5757 /* NationalDayViewModel.swift in Sources */,
+				550714E72630E2FD0036DE22 /* NationalDayLogo.swift in Sources */,
 				55C04760261FAA5A000DCD90 /* Alert.swift in Sources */,
 				55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */,
 				557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */,

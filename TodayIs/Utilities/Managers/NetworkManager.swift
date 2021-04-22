@@ -34,13 +34,16 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let links: [Element] = try doc.select("h3 a").array()
+                let links: [Element] = try doc.select("h3 ").array()
                 holidays.removeAll()
                 for title: Element in links {
                     let linksText: String = try title.text()
-                    var linksHref: String = try title.attr("href")
-                    if Array(linksHref)[4] != "s" {
-                        linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                    var linksHref: String = try title.select("a").attr("href")
+                    if linksHref != "" {
+                        if Array(linksHref)[4] != "s" {
+                            linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                        }
+
                     }
                     let holiday = Holiday(name: linksText, url: linksHref)
                     holidays.append(holiday)

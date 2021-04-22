@@ -16,7 +16,12 @@ struct NationalDayListView: View {
             NavigationView {
                 VStack {
                     List(viewModel.holidays) { holiday in
-                        NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
+                        if holiday.url == "" {
+                            Text("\(holiday.name)")
+                        } else {
+                            NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
+
+                        }
                     }.listStyle(PlainListStyle())
                     .navigationTitle("Today is...")
                     Button {

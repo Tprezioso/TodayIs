@@ -28,7 +28,7 @@ struct NationalDayView: View {
                     }
                     
                     Button {
-                        print("Calendar button tapped")
+                        viewModel.addToCalendar()
                     } label: {
                         TIButton(title: "Add to Calendar")
                     }

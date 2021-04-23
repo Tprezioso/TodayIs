@@ -24,7 +24,6 @@ final class NationalDayListViewModel: ObservableObject {
                 case .success(let holidays):
                     self.holidays.removeAll()
                     self.holidays = holidays
-                    
                 case .failure(let error):
                     switch error {
                     case .invalidData:

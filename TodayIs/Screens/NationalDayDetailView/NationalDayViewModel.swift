@@ -65,16 +65,16 @@ final class NationalDayViewModel: ObservableObject {
         case .authorized:
             insertEvent(store: eventStore, holidayName: holidayName)
         case .denied:
-            print("Access denied")
+            //TODO: - added new error handling
+            alertItem = AlertContext.invalidData
         case .notDetermined:
-            eventStore.requestAccess(to: .event, completion:
-                                        {[weak self] (granted: Bool, error: Error?) -> Void in
+            eventStore.requestAccess(to: .event) { [weak self] (granted: Bool, error: Error?) -> Void in
                                             if granted {
                                                 self!.insertEvent(store: self!.eventStore,holidayName: holidayName)
                                             } else {
                                                 print("Access denied")
                                             }
-                                        })
+                                        }
         default:
             print("Case default")
         }
@@ -86,14 +86,14 @@ final class NationalDayViewModel: ObservableObject {
         for calendar in calendars {
             if calendar.title == "Calendar" {
                 let startDate = Date()
-                let endDate = startDate.addingTimeInterval(2 * 60 * 60)
+                let endDate = Date()
                 let event = EKEvent(eventStore: store)
                 event.calendar = calendar
                 
                 event.title = holidayName
                 event.startDate = startDate
                 event.endDate = endDate
-                
+                event.isAllDay = true
                 do {
                     try store.save(event, span: .thisEvent)
                 }

@@ -21,6 +21,7 @@
 		55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C04758261FA94D000DCD90 /* NetworkManager.swift */; };
 		55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475B261FAA2A000DCD90 /* TIError.swift */; };
 		55C04760261FAA5A000DCD90 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475F261FAA5A000DCD90 /* Alert.swift */; };
+		55E1FF6F26350576007FA5CB /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 55E1FF6E26350576007FA5CB /* SwiftUIRefresh */; };
 		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E1FF6F26350576007FA5CB /* SwiftUIRefresh in Frameworks */,
 				553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,6 +193,7 @@
 			name = TodayIs;
 			packageProductDependencies = (
 				553ED5A726225A2A000D5757 /* SwiftSoup */,
+				55E1FF6E26350576007FA5CB /* SwiftUIRefresh */,
 			);
 			productName = TodayIs;
 			productReference = 558A54E825F6A4C9003E1072 /* TodayIs.app */;
@@ -221,6 +224,7 @@
 			mainGroup = 558A54DF25F6A4C9003E1072;
 			packageReferences = (
 				553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+				55E1FF6D26350576007FA5CB /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 			);
 			productRefGroup = 558A54E925F6A4C9003E1072 /* Products */;
 			projectDirPath = "";
@@ -458,6 +462,14 @@
 				minimumVersion = 2.3.2;
 			};
 		};
+		55E1FF6D26350576007FA5CB /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/timbersoftware/SwiftUIRefresh.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -465,6 +477,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		55E1FF6E26350576007FA5CB /* SwiftUIRefresh */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55E1FF6D26350576007FA5CB /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
+			productName = SwiftUIRefresh;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -22,7 +22,13 @@ struct NationalDayListView: View {
                             NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
 
                         }
-                    }.listStyle(PlainListStyle())
+                    }.pullToRefresh(isShowing: $viewModel.isShowing) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            viewModel.getHolidays()
+                            self.viewModel.isShowing = false
+                        }
+                    }
+                    .listStyle(PlainListStyle())
                     .navigationTitle("Today is...")
                     Button {
                         openURL(URL(string: "https://nationaldaycalendar.com/")!)

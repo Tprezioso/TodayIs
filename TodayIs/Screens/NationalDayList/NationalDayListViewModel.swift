@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIRefresh
 
 final class NationalDayListViewModel: ObservableObject {
     @Published var holidays = [Holiday]()
@@ -14,6 +15,7 @@ final class NationalDayListViewModel: ObservableObject {
     @Published var isShowingDetail = false
     @Published var isShowingDetailView = false
     @Published var selectedHoliday: Holiday?
+    @Published var isShowing = false
 
     func getHolidays() {
         isLoading = true

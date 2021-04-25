@@ -24,6 +24,7 @@ final class NationalDayListViewModel: ObservableObject {
                 case .success(let holidays):
                     self.holidays.removeAll()
                     self.holidays = holidays
+                    self.holidays.removeFirst()
                 case .failure(let error):
                     switch error {
                     case .invalidData:

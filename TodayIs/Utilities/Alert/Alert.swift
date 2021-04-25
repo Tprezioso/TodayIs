@@ -38,6 +38,15 @@ struct AlertContext {
                                             message: Text("Your Holiday has been saved in the Calendar app"),
                                             dismissButton: .default(Text("OK")))
 
+    static let savedError = AlertItem(title: Text("Error Saving"),
+                                            message: Text("Error saving event in calendar"),
+                                            dismissButton: .default(Text("OK")))
+
+    // MARK: - 
+    static let calendarAccessDenied = AlertItem(title: Text("Calendar Access Denied"),
+                                            message: Text("Calendar Access was Denied"),
+                                            dismissButton: .default(Text("OK")))
+
     // MARK: - Account Alerts
     static let invalidForm = AlertItem(title: Text("Invalid Form"),
                                             message: Text("Please make sure all the form fields have been filled out"),

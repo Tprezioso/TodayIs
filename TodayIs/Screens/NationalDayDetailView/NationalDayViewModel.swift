@@ -75,7 +75,7 @@ final class NationalDayViewModel: ObservableObject {
                                                 self!.alertItem = AlertContext.savedHoliday
 
                                             } else {
-                                                print("Access denied")
+                                                self!.alertItem = AlertContext.calendarAccessDenied
                                             }
                                         }
         default:
@@ -92,7 +92,6 @@ final class NationalDayViewModel: ObservableObject {
                 let endDate = Date()
                 let event = EKEvent(eventStore: store)
                 event.calendar = calendar
-                
                 event.title = holidayName
                 event.startDate = startDate
                 event.endDate = endDate
@@ -101,7 +100,8 @@ final class NationalDayViewModel: ObservableObject {
                     try store.save(event, span: .thisEvent)
                 }
                 catch {
-                    print("Error saving event in calendar")             }
+                    alertItem = AlertContext.savedError
+                }
             }
         }
     }

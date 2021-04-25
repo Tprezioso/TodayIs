@@ -64,6 +64,7 @@ final class NationalDayViewModel: ObservableObject {
         switch EKEventStore.authorizationStatus(for: .event) {
         case .authorized:
             insertEvent(store: eventStore, holidayName: holidayName)
+            alertItem = AlertContext.savedHoliday
         case .denied:
             //TODO: - added new error handling
             alertItem = AlertContext.invalidData
@@ -71,6 +72,8 @@ final class NationalDayViewModel: ObservableObject {
             eventStore.requestAccess(to: .event) { [weak self] (granted: Bool, error: Error?) -> Void in
                                             if granted {
                                                 self!.insertEvent(store: self!.eventStore,holidayName: holidayName)
+                                                self!.alertItem = AlertContext.savedHoliday
+
                                             } else {
                                                 print("Access denied")
                                             }

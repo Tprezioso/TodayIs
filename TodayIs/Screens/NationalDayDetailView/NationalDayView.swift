@@ -18,7 +18,10 @@ struct NationalDayView: View {
                     RemoteImage(image: viewModel.image)
                         .scaledToFit()
                         .padding(.bottom)
-                    Text(viewModel.detailHoliday.description)
+                    ScrollView {
+                        Text(viewModel.detailHoliday.description)
+                            .lineLimit(nil)
+                    }
                 }
                 VStack(spacing: 20) {
                     Button {

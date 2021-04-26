@@ -37,7 +37,7 @@ struct NationalDayListView: View {
                     }
                 }
             }
-            .accentColor(.green)
+            .accentColor(.red)
             .alert(item: $viewModel.alertItem) { alertItem in
                 Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
             }

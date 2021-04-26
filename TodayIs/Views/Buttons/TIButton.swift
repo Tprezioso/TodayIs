@@ -16,7 +16,7 @@ struct TIButton: View {
             .fontWeight(.semibold)
             .frame(width: 260, height: 50)
             .foregroundColor(.white)
-            .background(Color.green)
+            .background(Color.red)
             .cornerRadius(10)
     }
 }

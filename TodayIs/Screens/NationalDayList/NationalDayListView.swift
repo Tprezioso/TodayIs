@@ -20,7 +20,6 @@ struct NationalDayListView: View {
                             Text("\(holiday.name)")
                         } else {
                             NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
-
                         }
                     }.pullToRefresh(isShowing: $viewModel.isShowing) {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {

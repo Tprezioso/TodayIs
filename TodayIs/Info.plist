@@ -32,11 +32,9 @@
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIImageRespectsSafeAreaInsets</key>
-		<true/>
-		<key>UIColorName</key>
-		<string>BackgroundColor</string>
+		<false/>
 		<key>UIImageName</key>
-		<string>180</string>
+		<string>114</string>
 	</dict>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

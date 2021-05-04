@@ -121,6 +121,11 @@ final class NetworkManager {
             }
             
             do {
+                let date = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "EEEE, MMMM dd"
+                let currentDateString: String = dateFormatter.string(from: date)
+
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let price: Element = try doc.getElementsByClass("et_pb_text_inner").first()!
                 let links: [Element] = try price.select("h3").array()
@@ -128,14 +133,19 @@ final class NetworkManager {
                 for title: Element in links {
                     let linksText: String = try title.text()
                     var linksHref: String = try title.select("a").attr("href")
-                    if linksHref != "" {
-                        if Array(linksHref)[4] != "s" {
-                            linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-                        }
-
+                    if linksText.prefix(3) == currentDateString.prefix(3) {
+                        break
                     }
-                    let holiday = Holiday(name: linksText, url: linksHref)
-                    holidays.append(holiday)
+                        if linksHref != "" {
+                            if Array(linksHref)[4] != "s" {
+                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                            }
+
+                        }
+                        let holiday = Holiday(name: linksText, url: linksHref)
+                        holidays.append(holiday)
+
+                    
                 }
                 completed(.success(holidays))
             } catch Exception.Error(let type, let message) {

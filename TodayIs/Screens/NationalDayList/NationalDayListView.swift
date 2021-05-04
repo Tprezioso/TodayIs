@@ -18,6 +18,8 @@ struct NationalDayListView: View {
                     List(viewModel.holidays) { holiday in
                         if holiday.url == "" {
                             Text("\(holiday.name)")
+                                .font(.title)
+                                .fontWeight(.semibold)
                         } else {
                             NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
                         }
@@ -26,6 +28,13 @@ struct NationalDayListView: View {
                             viewModel.getHolidays()
                             self.viewModel.isShowing = false
                         }
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            NavigationLink("Tomorrow", destination: TomorrowListView())
+
+                        }
+                            
                     }
                     .listStyle(PlainListStyle())
                     .navigationTitle("Today is...")

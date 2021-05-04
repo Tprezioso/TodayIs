@@ -13,6 +13,8 @@
 		553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */; };
 		553ED5B82623BA99000D5757 /* NationalDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */; };
 		557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557AED092628F50E009B6FCD /* RemoteImage.swift */; };
+		5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5583E83026418BE900CD66DC /* TomorrowListView.swift */; };
+		5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5583E83326418EF200CD66DC /* TomorrowListViewModel.swift */; };
 		558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */; };
 		558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* NationalDayView.swift */; };
 		558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54EF25F6A4CA003E1072 /* Assets.xcassets */; };
@@ -31,6 +33,8 @@
 		553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListViewModel.swift; sourceTree = "<group>"; };
 		553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayViewModel.swift; sourceTree = "<group>"; };
 		557AED092628F50E009B6FCD /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
+		5583E83026418BE900CD66DC /* TomorrowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowListView.swift; sourceTree = "<group>"; };
+		5583E83326418EF200CD66DC /* TomorrowListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowListViewModel.swift; sourceTree = "<group>"; };
 		558A54E825F6A4C9003E1072 /* TodayIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayIs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIsApp.swift; sourceTree = "<group>"; };
 		558A54ED25F6A4C9003E1072 /* NationalDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayView.swift; sourceTree = "<group>"; };
@@ -84,6 +88,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5583E83226418E9300CD66DC /* TomorrowListView */ = {
+			isa = PBXGroup;
+			children = (
+				5583E83026418BE900CD66DC /* TomorrowListView.swift */,
+				5583E83326418EF200CD66DC /* TomorrowListViewModel.swift */,
+			);
+			path = TomorrowListView;
+			sourceTree = "<group>";
+		};
 		558A54DF25F6A4C9003E1072 = {
 			isa = PBXGroup;
 			children = (
@@ -104,8 +117,8 @@
 			isa = PBXGroup;
 			children = (
 				558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */,
-				55E77C1B262C99C4000AF1BD /* Views */,
 				55C04767261FAB6E000DCD90 /* Screens */,
+				55E77C1B262C99C4000AF1BD /* Views */,
 				55C04764261FAB38000DCD90 /* Utilities */,
 				553ED5B42623560A000D5757 /* Model */,
 				558A54EF25F6A4CA003E1072 /* Assets.xcassets */,
@@ -154,6 +167,7 @@
 			children = (
 				553ED5B2262355DE000D5757 /* NationalDayList */,
 				550714E9263104120036DE22 /* NationalDayDetailView */,
+				5583E83226418E9300CD66DC /* TomorrowListView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -260,8 +274,10 @@
 				553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */,
 				55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */,
 				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
+				5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */,
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
 				553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */,
+				5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */,
 				558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */,
 				55C04754261FA653000DCD90 /* NationalDayListView.swift in Sources */,
 			);

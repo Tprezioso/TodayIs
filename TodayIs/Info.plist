@@ -31,8 +31,6 @@
 	<true/>
 	<key>UILaunchScreen</key>
 	<dict>
-		<key>UIImageRespectsSafeAreaInsets</key>
-		<false/>
 		<key>UIImageName</key>
 		<string>114</string>
 	</dict>

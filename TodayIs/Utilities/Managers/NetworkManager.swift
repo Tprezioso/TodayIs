@@ -93,7 +93,12 @@ final class NetworkManager {
                 } else {
                     pText = p1 + p2
                 }
+
+                if pText == "" {
+                    pText = "No Description Available"
+                }
                 let pLink = try links.attr("src")
+                
                 let detailHoliday = DetailHoliday(imageURL: pLink, description: pText)
 
                 completed(.success(detailHoliday))

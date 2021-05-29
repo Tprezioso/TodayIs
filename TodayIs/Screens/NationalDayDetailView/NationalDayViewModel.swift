@@ -70,14 +70,14 @@ final class NationalDayViewModel: ObservableObject {
             alertItem = AlertContext.invalidData
         case .notDetermined:
             eventStore.requestAccess(to: .event) { [weak self] (granted: Bool, error: Error?) -> Void in
-                                            if granted {
-                                                self!.insertEvent(store: self!.eventStore,holidayName: holidayName)
-                                                self!.alertItem = AlertContext.savedHoliday
-
-                                            } else {
-                                                self!.alertItem = AlertContext.calendarAccessDenied
-                                            }
-                                        }
+                if granted {
+                    self!.insertEvent(store: self!.eventStore,holidayName: holidayName)
+                    self!.alertItem = AlertContext.savedHoliday
+                    
+                } else {
+                    self!.alertItem = AlertContext.calendarAccessDenied
+                }
+            }
         default:
             print("Case default")
         }

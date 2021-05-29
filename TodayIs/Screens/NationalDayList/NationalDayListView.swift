@@ -13,7 +13,7 @@ struct NationalDayListView: View {
     
     var body: some View {
         ZStack {
-            NavigationView {
+//            NavigationView {
                 VStack {
                     List(viewModel.holidays) { holiday in
                         if holiday.url == "" {
@@ -29,23 +29,14 @@ struct NationalDayListView: View {
                             self.viewModel.isShowing = false
                         }
                     }
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarTrailing) {
-                            NavigationLink("Tomorrow", destination: TomorrowListView())
-
-                        }
-                            
-                    }
-                    .listStyle(PlainListStyle())
-                    .navigationTitle("Today is...")
                     Button {
                         openURL(URL(string: "https://nationaldaycalendar.com/")!)
                     } label: {
                         NationalDayLogo()
                     }
                 }
-            }
-            .accentColor(.red)
+
+//            }
             .alert(item: $viewModel.alertItem) { alertItem in
                 Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
             }

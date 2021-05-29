@@ -14,7 +14,7 @@ struct TodayIsApp: App {
    
     var body: some Scene {
         WindowGroup {
-            NationalDayListView()
+            TabBarView()
         }
 //        .onChange(of: scenePhase) { newScenePhase in
 //              switch newScenePhase {

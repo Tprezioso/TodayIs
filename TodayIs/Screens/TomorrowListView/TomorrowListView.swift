@@ -12,35 +12,34 @@ struct TomorrowListView: View {
     @Environment(\.openURL) var openURL
     
     var body: some View {
-        VStack {
-            List(viewModel.holidays) { holiday in
-                if holiday.url == "" {
-                    Text("\(holiday.name)")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                } else {
-                    NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
+            VStack {
+//                NavigationView {
+                List(viewModel.holidays) { holiday in
+                    if holiday.url == "" {
+                        Text("\(holiday.name)")
+                            .font(.title)
+                            .fontWeight(.semibold)
+                    } else {
+                        NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
+                    }
+                }.pullToRefresh(isShowing: $viewModel.isShowing) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        viewModel.getTomorrowsHolidays()
+                        self.viewModel.isShowing = false
+                    }
                 }
-            }.pullToRefresh(isShowing: $viewModel.isShowing) {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    viewModel.getTomorrowsHolidays()
-                    self.viewModel.isShowing = false
+                Button {
+                    openURL(URL(string: "https://nationaldaycalendar.com/")!)
+                } label: {
+                    NationalDayLogo()
                 }
+//            }
+            .alert(item: $viewModel.alertItem) { alertItem in
+                Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
             }
-            .listStyle(PlainListStyle())
-            .navigationTitle("Tomorrow is...")
-            Button {
-                openURL(URL(string: "https://nationaldaycalendar.com/")!)
-            } label: {
-                NationalDayLogo()
-            }
+            .onAppear {
+                viewModel.getTomorrowsHolidays()
         }
-        .accentColor(.red)
-        .alert(item: $viewModel.alertItem) { alertItem in
-            Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-        }
-        .onAppear {
-            viewModel.getTomorrowsHolidays()
         }
         if viewModel.isLoading {
             ProgressView()

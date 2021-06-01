@@ -12,18 +12,22 @@ struct SearchView: View {
     @State private var wakeUp = Date()
     var body: some View {
         VStack(alignment: .center) {
-            DatePicker(
-                "Select A date", selection: $wakeUp, displayedComponents: .date)
-                .datePickerStyle(WheelDatePickerStyle())
-                .labelsHidden()
-
-            Button {
-                let dateSelected = wakeUp.getFormattedDate(format: "MMMM dd")
-                print(dateSelected)
-                viewModel.getHolidays(searchDate: dateSelected)
-            } label: {
-                TIButton(title: "Search")
+            VStack {
+                DatePicker(
+                    "Select A date", selection: $wakeUp, displayedComponents: .date)
+                    .frame(height: 170)
+                    .padding()
+                    .datePickerStyle(WheelDatePickerStyle())
+                    .labelsHidden()
+                Button {
+                    let dateSelected = wakeUp.getFormattedDate(format: "MMMM dd")
+                    print(dateSelected)
+                    viewModel.getHolidays(searchDate: dateSelected)
+                } label: {
+                    TIButton(title: "Search")
+                }
             }
+            
             List(viewModel.holidays) { holiday in
                 if holiday.url == "" {
                     Text("\(holiday.name)")
@@ -33,9 +37,7 @@ struct SearchView: View {
                     NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
                 }
             }
-
             Spacer()
-            
 //            SearchBar(viewModel: viewModel)
 //                .padding()
         }

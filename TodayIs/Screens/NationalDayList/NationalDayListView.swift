@@ -13,30 +13,27 @@ struct NationalDayListView: View {
     
     var body: some View {
         ZStack {
-//            NavigationView {
-                VStack {
-                    List(viewModel.holidays) { holiday in
-                        if holiday.url == "" {
-                            Text("\(holiday.name)")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                        } else {
-                            NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
-                        }
-                    }.pullToRefresh(isShowing: $viewModel.isShowing) {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            viewModel.getHolidays()
-                            self.viewModel.isShowing = false
-                        }
+            VStack {
+                List(viewModel.holidays) { holiday in
+                    if holiday.url == "" {
+                        Text("\(holiday.name)")
+                            .font(.title)
+                            .fontWeight(.semibold)
+                    } else {
+                        NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
                     }
-                    Button {
-                        openURL(URL(string: "https://nationaldaycalendar.com/")!)
-                    } label: {
-                        NationalDayLogo()
+                }.pullToRefresh(isShowing: $viewModel.isShowing) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        viewModel.getHolidays()
+                        self.viewModel.isShowing = false
                     }
                 }
-
-//            }
+                Button {
+                    openURL(URL(string: "https://nationaldaycalendar.com/")!)
+                } label: {
+                    NationalDayLogo()
+                }
+            }
             .alert(item: $viewModel.alertItem) { alertItem in
                 Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
             }

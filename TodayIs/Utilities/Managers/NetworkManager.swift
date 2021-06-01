@@ -14,8 +14,10 @@ final class NetworkManager {
     private init() {}
     private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
     private let tomorrowURL = "https://nationaldaycalendar.com/tomorrow/"
+   
     var holidays = [Holiday]()
     
+    // MARK: - Get Todays Holidays
     func getHolidayData(completed: @escaping (Result<[Holiday], TIError>) -> Void) {
         guard let url = URL(string: baseURL) else {
                     completed(.failure(TIError.invalidURL))
@@ -60,6 +62,7 @@ final class NetworkManager {
         task.resume()
     }
 
+    // MARK: - Get Detail for Selected Holiday
     func getDetailHoliday(url: String, completed: @escaping (Result<DetailHoliday, TIError>) -> Void) {
         guard let url = URL(string: url) else {
                     completed(.failure(TIError.invalidURL))
@@ -111,6 +114,7 @@ final class NetworkManager {
         task.resume()
     }
 
+    // MARK: - Get Tomorrows Holidays
     func getTomorrowsHolidayData(completed: @escaping (Result<[Holiday], TIError>) -> Void) {
         guard let url = URL(string: tomorrowURL) else {
                     completed(.failure(TIError.invalidURL))
@@ -164,7 +168,58 @@ final class NetworkManager {
         }
         task.resume()
     }
+    
+    // MARK: - Search for Holidays on a Specific Date
+    
+    func searchForHoliday(searchTerm: String, completed: @escaping (Result<[Holiday], TIError>) -> Void) {
+        print("\(searchTerm)")
+        let searchURL = "https://nationaldaycalendar.com/?s=\(searchTerm)&et_pb_searchform_submit=et_search_proccess&et_pb_include_pages=no"
+        guard let url = URL(string: searchURL) else {
+                    completed(.failure(TIError.invalidURL))
+                    return
+                }
+        
+        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
+            guard let data = data else {
+                completed(.failure(TIError.invalidData))
+                return
+            }
+            
+            guard let htmlString = String(data: data, encoding: .utf8) else {
+                completed(.failure(TIError.invalidData))
+                return
+            }
+            
+            do {
+                let doc: Document = try SwiftSoup.parse(htmlString)
+                let image: Element = try doc.getElementById("left-area")!
+                let title: [Element] = try image.select("h2").array()
+                holidays.removeAll()
+                for title: Element in title {
+                    let linksText: String = try title.text()
+                    var linksHref: String = try title.select("a").attr("href")
+                    if linksHref != "" {
+                        if Array(linksHref)[4] != "s" {
+                            linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                        }
 
+                    }
+                    let holiday = Holiday(name: linksText, url: linksHref)
+                    holidays.append(holiday)
+                }
+                completed(.success(holidays))
+            } catch Exception.Error(let type, let message) {
+                print(type, message)
+            } catch {
+                completed(.failure(TIError.invalidData))
+            }
+        }
+        task.resume()
+
+    }
+
+    
+    // MARK: - Download Image
     func downloadImage(fromURLString urlString: String, completed: @escaping (UIImage?) -> Void) {
         let cacheKey = NSString(string: urlString)
         

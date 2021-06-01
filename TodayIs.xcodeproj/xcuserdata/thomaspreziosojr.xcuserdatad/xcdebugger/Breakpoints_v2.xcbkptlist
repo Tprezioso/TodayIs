@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "77037B47-BA06-428A-9FB0-4451D5481A4C"
+            uuid = "517FA89F-31DD-492B-8066-03194ED656A7"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "getHolidayData(completed:)"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "searchForHoliday(searchTerm:completed:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

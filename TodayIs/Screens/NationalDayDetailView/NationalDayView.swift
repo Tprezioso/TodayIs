@@ -37,8 +37,8 @@ struct NationalDayView: View {
                     }
                     
                     Link(destination: URL(string: "\(holiday.url)")!, label: {
-                            TIButton(title: "Learn More")
-                        })
+                        TIButton(title: "Learn More")
+                    })
                 }.padding()
                 Spacer()
             }

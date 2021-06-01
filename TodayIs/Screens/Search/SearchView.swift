@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State var searchText = ""
+    @StateObject var viewModel = SearchViewModel()
     
     var body: some View {
         VStack {
-            SearchBar(text: $searchText)
+            SearchBar(viewModel: viewModel)
                 .padding()
               Spacer()
         }

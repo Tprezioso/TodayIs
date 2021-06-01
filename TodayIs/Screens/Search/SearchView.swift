@@ -29,14 +29,8 @@ struct SearchView: View {
             }
             
             List(viewModel.holidays) { holiday in
-                if holiday.url == "" {
-                    Text("\(holiday.name)")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                } else {
                     NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
-                }
-            }
+            }.listStyle(PlainListStyle())
             Spacer()
 //            SearchBar(viewModel: viewModel)
 //                .padding()

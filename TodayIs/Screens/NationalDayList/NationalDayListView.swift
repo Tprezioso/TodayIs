@@ -32,7 +32,7 @@ struct NationalDayListView: View {
                     openURL(URL(string: "https://nationaldaycalendar.com/")!)
                 } label: {
                     NationalDayLogo()
-                }
+                }.padding()
             }
             .alert(item: $viewModel.alertItem) { alertItem in
                 Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)

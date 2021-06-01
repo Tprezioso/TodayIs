@@ -46,7 +46,7 @@ struct SearchBar: View {
      
                 if isEditing {
                     Button(action: {
-                        viewModel.getHolidays()
+//                        viewModel.getHolidays()
                         self.isEditing = false
                         self.viewModel.searchText = ""
                         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -56,15 +56,6 @@ struct SearchBar: View {
                     .padding(.trailing, 10)
                     .transition(.move(edge: .trailing))
                     .animation(.default)
-                }
-            }
-            List(viewModel.holidays) { holiday in
-                if holiday.url == "" {
-                    Text("\(holiday.name)")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                } else {
-                    NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
                 }
             }
         }

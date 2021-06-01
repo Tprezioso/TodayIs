@@ -17,9 +17,9 @@ final class SearchViewModel: ObservableObject {
     @Published var isShowingDetail = false
     @Published var isShowingDetailView = false
     
-    func getHolidays() {
+    func getHolidays(searchDate: String) {
         isLoading = true
-        NetworkManager.shared.searchForHoliday(searchTerm: searchText.condenseWhitespace()) { [self] result in
+        NetworkManager.shared.searchForHoliday(searchTerm: searchDate.condenseWhitespace()) { [self] result in
             DispatchQueue.main.async {
                 isLoading = false
                 switch result {

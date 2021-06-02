@@ -30,6 +30,11 @@
 		55E5620A266674AF006F77C8 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56209266674AF006F77C8 /* SearchViewModel.swift */; };
 		55E5620D26667B27006F77C8 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5620C26667B27006F77C8 /* String+Ext.swift */; };
 		55E5620F2666B2DB006F77C8 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5620E2666B2DB006F77C8 /* Date+Ext.swift */; };
+		55E562112668336F006F77C8 /* MoreDetailedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E562102668336F006F77C8 /* MoreDetailedView.swift */; };
+		55E5621326683428006F77C8 /* TipJarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5621226683428006F77C8 /* TipJarView.swift */; };
+		55E562182668351D006F77C8 /* DeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E562172668351D006F77C8 /* DeveloperView.swift */; };
+		55E5621B26684839006F77C8 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 55E5621A26684839006F77C8 /* Purchases */; };
+		55E5621D2668488F006F77C8 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5621C2668488F006F77C8 /* IAPManager.swift */; };
 		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +62,10 @@
 		55E56209266674AF006F77C8 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		55E5620C26667B27006F77C8 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		55E5620E2666B2DB006F77C8 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
+		55E562102668336F006F77C8 /* MoreDetailedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDetailedView.swift; sourceTree = "<group>"; };
+		55E5621226683428006F77C8 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
+		55E562172668351D006F77C8 /* DeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperView.swift; sourceTree = "<group>"; };
+		55E5621C2668488F006F77C8 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		55E77C1C262C99E4000AF1BD /* TIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +76,7 @@
 			files = (
 				55E1FF6F26350576007FA5CB /* SwiftUIRefresh in Frameworks */,
 				553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */,
+				55E5621B26684839006F77C8 /* Purchases in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +171,10 @@
 			isa = PBXGroup;
 			children = (
 				5598E17C2662FAAA0047B02B /* MoreView.swift */,
+				55E562102668336F006F77C8 /* MoreDetailedView.swift */,
+				55E56214266834D8006F77C8 /* TipJar */,
+				55E56215266834E8006F77C8 /* ChangeIcon */,
+				55E56216266834FA006F77C8 /* Developer */,
 			);
 			path = More;
 			sourceTree = "<group>";
@@ -214,6 +228,30 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		55E56214266834D8006F77C8 /* TipJar */ = {
+			isa = PBXGroup;
+			children = (
+				55E5621226683428006F77C8 /* TipJarView.swift */,
+				55E5621C2668488F006F77C8 /* IAPManager.swift */,
+			);
+			path = TipJar;
+			sourceTree = "<group>";
+		};
+		55E56215266834E8006F77C8 /* ChangeIcon */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ChangeIcon;
+			sourceTree = "<group>";
+		};
+		55E56216266834FA006F77C8 /* Developer */ = {
+			isa = PBXGroup;
+			children = (
+				55E562172668351D006F77C8 /* DeveloperView.swift */,
+			);
+			path = Developer;
+			sourceTree = "<group>";
+		};
 		55E77C1B262C99C4000AF1BD /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +288,7 @@
 			packageProductDependencies = (
 				553ED5A726225A2A000D5757 /* SwiftSoup */,
 				55E1FF6E26350576007FA5CB /* SwiftUIRefresh */,
+				55E5621A26684839006F77C8 /* Purchases */,
 			);
 			productName = TodayIs;
 			productReference = 558A54E825F6A4C9003E1072 /* TodayIs.app */;
@@ -281,6 +320,7 @@
 			packageReferences = (
 				553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				55E1FF6D26350576007FA5CB /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
+				55E5621926684839006F77C8 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 			);
 			productRefGroup = 558A54E925F6A4C9003E1072 /* Products */;
 			projectDirPath = "";
@@ -308,10 +348,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E5621D2668488F006F77C8 /* IAPManager.swift in Sources */,
 				553ED5B82623BA99000D5757 /* NationalDayViewModel.swift in Sources */,
 				550714E72630E2FD0036DE22 /* NationalDayLogo.swift in Sources */,
 				55C04760261FAA5A000DCD90 /* Alert.swift in Sources */,
 				55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */,
+				55E5621326683428006F77C8 /* TipJarView.swift in Sources */,
+				55E562112668336F006F77C8 /* MoreDetailedView.swift in Sources */,
 				55E5620A266674AF006F77C8 /* SearchViewModel.swift in Sources */,
 				557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */,
 				553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */,
@@ -327,6 +370,7 @@
 				558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */,
 				5598E1772662F7890047B02B /* TabBarView.swift in Sources */,
 				55E5620D26667B27006F77C8 /* String+Ext.swift in Sources */,
+				55E562182668351D006F77C8 /* DeveloperView.swift in Sources */,
 				55C04754261FA653000DCD90 /* NationalDayListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -538,6 +582,14 @@
 				minimumVersion = 0.0.3;
 			};
 		};
+		55E5621926684839006F77C8 /* XCRemoteSwiftPackageReference "purchases-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.11.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -550,6 +602,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 55E1FF6D26350576007FA5CB /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */;
 			productName = SwiftUIRefresh;
+		};
+		55E5621A26684839006F77C8 /* Purchases */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 55E5621926684839006F77C8 /* XCRemoteSwiftPackageReference "purchases-ios" */;
+			productName = Purchases;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -9,7 +9,11 @@ import SwiftUI
 
 struct MoreView: View {
     var body: some View {
-        Text("Hello, More!")
+        List {
+            NavigationLink("Tip Jar", destination: TipJarView())
+            NavigationLink("Change Icon", destination: MoreDetailedView())
+            NavigationLink("Developer", destination: DeveloperView())
+        }.listStyle(InsetGroupedListStyle())
     }
 }
 

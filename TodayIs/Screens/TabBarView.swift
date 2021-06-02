@@ -44,7 +44,10 @@ struct TabBarView: View {
                     }
                     .tag(3)
 
-                MoreView()
+                NavigationView {
+                    MoreView()
+                        .navigationTitle("More")
+                }
                     .tabItem {
                         Label("More", systemImage: "ellipsis")
                     }

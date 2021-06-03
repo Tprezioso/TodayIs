@@ -35,6 +35,7 @@
 		55E562182668351D006F77C8 /* DeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E562172668351D006F77C8 /* DeveloperView.swift */; };
 		55E5621B26684839006F77C8 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 55E5621A26684839006F77C8 /* Purchases */; };
 		55E5621D2668488F006F77C8 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5621C2668488F006F77C8 /* IAPManager.swift */; };
+		55E5621F266972AC006F77C8 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5621E266972AC006F77C8 /* SwiftUIView.swift */; };
 		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		55E5621226683428006F77C8 /* TipJarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipJarView.swift; sourceTree = "<group>"; };
 		55E562172668351D006F77C8 /* DeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperView.swift; sourceTree = "<group>"; };
 		55E5621C2668488F006F77C8 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
+		55E5621E266972AC006F77C8 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		55E77C1C262C99E4000AF1BD /* TIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,6 +124,7 @@
 		558A54DF25F6A4C9003E1072 = {
 			isa = PBXGroup;
 			children = (
+				55E5621E266972AC006F77C8 /* SwiftUIView.swift */,
 				558A54EA25F6A4C9003E1072 /* TodayIs */,
 				558A54E925F6A4C9003E1072 /* Products */,
 			);
@@ -201,6 +204,7 @@
 		55C04765261FAB54000DCD90 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				55E5621C2668488F006F77C8 /* IAPManager.swift */,
 				55C04758261FA94D000DCD90 /* NetworkManager.swift */,
 			);
 			path = Managers;
@@ -232,7 +236,6 @@
 			isa = PBXGroup;
 			children = (
 				55E5621226683428006F77C8 /* TipJarView.swift */,
-				55E5621C2668488F006F77C8 /* IAPManager.swift */,
 			);
 			path = TipJar;
 			sourceTree = "<group>";
@@ -367,6 +370,7 @@
 				5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */,
 				5598E17A2662FA910047B02B /* SearchView.swift in Sources */,
 				5598E17D2662FAAA0047B02B /* MoreView.swift in Sources */,
+				55E5621F266972AC006F77C8 /* SwiftUIView.swift in Sources */,
 				558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */,
 				5598E1772662F7890047B02B /* TabBarView.swift in Sources */,
 				55E5620D26667B27006F77C8 /* String+Ext.swift in Sources */,

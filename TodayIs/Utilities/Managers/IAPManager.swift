@@ -16,7 +16,7 @@ class IAPManager: ObservableObject {
 
     init() {
         Purchases.debugLogsEnabled = true
-        Purchases.configure(withAPIKey: "API KEY")
+        Purchases.configure(withAPIKey: "MUQJwNwqVNadGbiooHEzVsojeHldTzyL")
         Purchases.shared.offerings { (offerings, _) in
             if let packages = offerings?.current?.availablePackages {
                 self.packages = packages

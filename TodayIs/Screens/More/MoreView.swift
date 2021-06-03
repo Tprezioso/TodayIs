@@ -11,7 +11,7 @@ struct MoreView: View {
     var body: some View {
         List {
             NavigationLink("Tip Jar", destination: TipJarView())
-            NavigationLink("Change Icon", destination: MoreDetailedView())
+            NavigationLink("Change Icon", destination: IconView())
             NavigationLink("Developer", destination: DeveloperView())
         }.listStyle(InsetGroupedListStyle())
     }

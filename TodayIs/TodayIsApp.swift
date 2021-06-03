@@ -14,6 +14,7 @@ struct TodayIsApp: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
+                .environmentObject(IconNames())
         }
     }
 }

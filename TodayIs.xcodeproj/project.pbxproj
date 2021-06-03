@@ -36,6 +36,11 @@
 		55E5621B26684839006F77C8 /* Purchases in Frameworks */ = {isa = PBXBuildFile; productRef = 55E5621A26684839006F77C8 /* Purchases */; };
 		55E5621D2668488F006F77C8 /* IAPManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5621C2668488F006F77C8 /* IAPManager.swift */; };
 		55E5621F266972AC006F77C8 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5621E266972AC006F77C8 /* SwiftUIView.swift */; };
+		55E5622126697E4A006F77C8 /* IconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5622026697E4A006F77C8 /* IconView.swift */; };
+		55E562242669833C006F77C8 /* Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E562232669833C006F77C8 /* Blue.png */; };
+		55E5622626698361006F77C8 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E5622526698361006F77C8 /* Green.png */; };
+		55E5622826698381006F77C8 /* Pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E5622726698381006F77C8 /* Pink.png */; };
+		55E5622A266985EE006F77C8 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56229266985EE006F77C8 /* IconNames.swift */; };
 		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +73,11 @@
 		55E562172668351D006F77C8 /* DeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperView.swift; sourceTree = "<group>"; };
 		55E5621C2668488F006F77C8 /* IAPManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPManager.swift; sourceTree = "<group>"; };
 		55E5621E266972AC006F77C8 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		55E5622026697E4A006F77C8 /* IconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconView.swift; sourceTree = "<group>"; };
+		55E562232669833C006F77C8 /* Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Blue.png; sourceTree = "<group>"; };
+		55E5622526698361006F77C8 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green.png; sourceTree = "<group>"; };
+		55E5622726698381006F77C8 /* Pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pink.png; sourceTree = "<group>"; };
+		55E56229266985EE006F77C8 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
 		55E77C1C262C99E4000AF1BD /* TIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -194,6 +204,7 @@
 		55C04764261FAB38000DCD90 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				55E562222669826E006F77C8 /* AlternateIcons */,
 				55E5620B26667B13006F77C8 /* Extensions */,
 				55C04765261FAB54000DCD90 /* Managers */,
 				55C04762261FAB2B000DCD90 /* Alert */,
@@ -243,6 +254,8 @@
 		55E56215266834E8006F77C8 /* ChangeIcon */ = {
 			isa = PBXGroup;
 			children = (
+				55E5622026697E4A006F77C8 /* IconView.swift */,
+				55E56229266985EE006F77C8 /* IconNames.swift */,
 			);
 			name = ChangeIcon;
 			sourceTree = "<group>";
@@ -253,6 +266,16 @@
 				55E562172668351D006F77C8 /* DeveloperView.swift */,
 			);
 			path = Developer;
+			sourceTree = "<group>";
+		};
+		55E562222669826E006F77C8 /* AlternateIcons */ = {
+			isa = PBXGroup;
+			children = (
+				55E5622526698361006F77C8 /* Green.png */,
+				55E562232669833C006F77C8 /* Blue.png */,
+				55E5622726698381006F77C8 /* Pink.png */,
+			);
+			path = AlternateIcons;
 			sourceTree = "<group>";
 		};
 		55E77C1B262C99C4000AF1BD /* Views */ = {
@@ -341,6 +364,9 @@
 			files = (
 				558A54F325F6A4CA003E1072 /* Preview Assets.xcassets in Resources */,
 				558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */,
+				55E562242669833C006F77C8 /* Blue.png in Resources */,
+				55E5622626698361006F77C8 /* Green.png in Resources */,
+				55E5622826698381006F77C8 /* Pink.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +380,7 @@
 				55E5621D2668488F006F77C8 /* IAPManager.swift in Sources */,
 				553ED5B82623BA99000D5757 /* NationalDayViewModel.swift in Sources */,
 				550714E72630E2FD0036DE22 /* NationalDayLogo.swift in Sources */,
+				55E5622126697E4A006F77C8 /* IconView.swift in Sources */,
 				55C04760261FAA5A000DCD90 /* Alert.swift in Sources */,
 				55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */,
 				55E5621326683428006F77C8 /* TipJarView.swift in Sources */,
@@ -366,6 +393,7 @@
 				5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */,
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
 				55E5620F2666B2DB006F77C8 /* Date+Ext.swift in Sources */,
+				55E5622A266985EE006F77C8 /* IconNames.swift in Sources */,
 				553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */,
 				5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */,
 				5598E17A2662FA910047B02B /* SearchView.swift in Sources */,

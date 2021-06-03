@@ -47,6 +47,7 @@ struct TabBarView: View {
                 NavigationView {
                     MoreView()
                         .navigationTitle("More")
+                    
                 }
                     .tabItem {
                         Label("More", systemImage: "ellipsis")

@@ -12,16 +12,16 @@ struct DeveloperView: View {
         VStack() {
             Image("Me")
                 .resizable()
-                .frame(width: 250, height: 250)
+                .frame(width: 200, height: 200)
                 .clipShape(Circle())
                 .scaledToFit()
             Text("Tommy Prezioso")
                 .font(.title)
-            Spacer()
+                .bold()
             VStack() {
-                LinkButtons(url: "https://www.twitter.com/tommyprezioso", image: "twitter-512", title: "Twitter")
-                LinkButtons(url: "https://www.github.com/tprezioso", image: "GitHub", title: "Github")
-                LinkButtons(url: "https://www.swifttom.com/", image: "Swift", title: "SwiftTom.com")
+                LinkButtons(url: "https://www.twitter.com/tommyprezioso", title: "Twitter")
+                LinkButtons(url: "https://www.github.com/tprezioso",  title: "Github")
+                LinkButtons(url: "https://www.swifttom.com/",  title: "Blog")
                 
             }
             Spacer()
@@ -32,33 +32,38 @@ struct DeveloperView: View {
 
 struct DeveloperView_Previews: PreviewProvider {
     static var previews: some View {
-        DeveloperView()
+        Group {
+            DeveloperView()
+            DeveloperView()
+                .preferredColorScheme(.dark)
+        }
     }
 }
 
 struct LinkButtons: View {
     var url: String
-    var image: String
+//    var image: String
     var title: String
     
     var body: some View {
         Link(destination: URL(string: url)!) {
-            VStack(alignment: .leading) {
                 HStack() {
-                    Image(image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 55, height: 55)
+//                    Image(image)
+//                        .resizable()
+//                        .scaledToFit()
+//                        .clipShape(Circle())
+//                        .frame(width: 45, height: 45)
                     Text(title)
-                        .font(.title)
-                        .foregroundColor(.black)
-                }.frame(width: 250 ,height: 30)
-                .padding()
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black, lineWidth: 2)
-                )
-            }
+                        .fontWeight(.semibold)
+
+                }.font(.title3)
+                .frame(width: 260, height: 55)
+                .foregroundColor(.white)
+                .background(Color.red)
+                .cornerRadius(10)
+                .padding(5)
+                
         }
+
     }
 }

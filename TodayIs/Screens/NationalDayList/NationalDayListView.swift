@@ -9,7 +9,6 @@ import SwiftUI
 
 struct NationalDayListView: View {
     @StateObject var viewModel = NationalDayListViewModel()
-    @Environment(\.openURL) var openURL
     
     var body: some View {
         ZStack {
@@ -28,11 +27,7 @@ struct NationalDayListView: View {
                         self.viewModel.isShowing = false
                     }
                 }
-                Button {
-                    openURL(URL(string: "https://nationaldaycalendar.com/")!)
-                } label: {
-                    NationalDayLogo()
-                }.padding()
+                NationalHolidayLinkLogo()
             }
             .alert(item: $viewModel.alertItem) { alertItem in
                 Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
@@ -55,3 +50,4 @@ struct NationalDayListView_Previews: PreviewProvider {
         NationalDayListView()
     }
 }
+

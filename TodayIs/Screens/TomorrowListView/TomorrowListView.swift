@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TomorrowListView: View {
     @StateObject var viewModel = TomorrowListViewModel()
-    @Environment(\.openURL) var openURL
     
     var body: some View {
         VStack {
@@ -27,17 +26,13 @@ struct TomorrowListView: View {
                     self.viewModel.isShowing = false
                 }
             }
-            Button {
-                openURL(URL(string: "https://nationaldaycalendar.com/")!)
-            } label: {
-                NationalDayLogo()
-            }.padding()
-            .alert(item: $viewModel.alertItem) { alertItem in
-                Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
-            }
-            .onAppear {
-                viewModel.getTomorrowsHolidays()
-            }
+            NationalHolidayLinkLogo()
+                .alert(item: $viewModel.alertItem) { alertItem in
+                    Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+                }
+                .onAppear {
+                    viewModel.getTomorrowsHolidays()
+                }
         }
         if viewModel.isLoading {
             ProgressView()

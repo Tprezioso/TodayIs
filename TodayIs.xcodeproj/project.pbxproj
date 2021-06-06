@@ -44,6 +44,7 @@
 		55E56230266C4EAB006F77C8 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5622F266C4EAB006F77C8 /* EmptyState.swift */; };
 		55E56233266C4F03006F77C8 /* SearchDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56232266C4F03006F77C8 /* SearchDatePicker.swift */; };
 		55E56236266C4F5F006F77C8 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56235266C4F5F006F77C8 /* SearchListView.swift */; };
+		55E56238266C5109006F77C8 /* NationalHolidayLinkLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56237266C5109006F77C8 /* NationalHolidayLinkLogo.swift */; };
 		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		55E5622F266C4EAB006F77C8 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		55E56232266C4F03006F77C8 /* SearchDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatePicker.swift; sourceTree = "<group>"; };
 		55E56235266C4F5F006F77C8 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
+		55E56237266C5109006F77C8 /* NationalHolidayLinkLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalHolidayLinkLogo.swift; sourceTree = "<group>"; };
 		55E77C1C262C99E4000AF1BD /* TIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -324,6 +326,7 @@
 			children = (
 				55E77C1C262C99E4000AF1BD /* TIButton.swift */,
 				550714E62630E2FD0036DE22 /* NationalDayLogo.swift */,
+				55E56237266C5109006F77C8 /* NationalHolidayLinkLogo.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 				55E56233266C4F03006F77C8 /* SearchDatePicker.swift in Sources */,
 				553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */,
 				5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */,
+				55E56238266C5109006F77C8 /* NationalHolidayLinkLogo.swift in Sources */,
 				5598E17A2662FA910047B02B /* SearchView.swift in Sources */,
 				5598E17D2662FAAA0047B02B /* MoreView.swift in Sources */,
 				55E5621F266972AC006F77C8 /* SwiftUIView.swift in Sources */,

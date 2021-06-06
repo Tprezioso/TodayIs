@@ -15,5 +15,6 @@ struct SearchListView: View {
             NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
         }.listStyle(PlainListStyle())
     }
+
 }
 

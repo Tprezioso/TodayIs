@@ -41,6 +41,9 @@
 		55E5622626698361006F77C8 /* Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E5622526698361006F77C8 /* Green.png */; };
 		55E5622826698381006F77C8 /* Pink.png in Resources */ = {isa = PBXBuildFile; fileRef = 55E5622726698381006F77C8 /* Pink.png */; };
 		55E5622A266985EE006F77C8 /* IconNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56229266985EE006F77C8 /* IconNames.swift */; };
+		55E56230266C4EAB006F77C8 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5622F266C4EAB006F77C8 /* EmptyState.swift */; };
+		55E56233266C4F03006F77C8 /* SearchDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56232266C4F03006F77C8 /* SearchDatePicker.swift */; };
+		55E56236266C4F5F006F77C8 /* SearchListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56235266C4F5F006F77C8 /* SearchListView.swift */; };
 		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +81,9 @@
 		55E5622526698361006F77C8 /* Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Green.png; sourceTree = "<group>"; };
 		55E5622726698381006F77C8 /* Pink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pink.png; sourceTree = "<group>"; };
 		55E56229266985EE006F77C8 /* IconNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconNames.swift; sourceTree = "<group>"; };
+		55E5622F266C4EAB006F77C8 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
+		55E56232266C4F03006F77C8 /* SearchDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatePicker.swift; sourceTree = "<group>"; };
+		55E56235266C4F5F006F77C8 /* SearchListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListView.swift; sourceTree = "<group>"; };
 		55E77C1C262C99E4000AF1BD /* TIButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -278,9 +284,36 @@
 			path = AlternateIcons;
 			sourceTree = "<group>";
 		};
+		55E5622E266C4E8E006F77C8 /* Empty States */ = {
+			isa = PBXGroup;
+			children = (
+				55E5622F266C4EAB006F77C8 /* EmptyState.swift */,
+			);
+			path = "Empty States";
+			sourceTree = "<group>";
+		};
+		55E56231266C4EE5006F77C8 /* PickerViews */ = {
+			isa = PBXGroup;
+			children = (
+				55E56232266C4F03006F77C8 /* SearchDatePicker.swift */,
+			);
+			path = PickerViews;
+			sourceTree = "<group>";
+		};
+		55E56234266C4F43006F77C8 /* ListViews */ = {
+			isa = PBXGroup;
+			children = (
+				55E56235266C4F5F006F77C8 /* SearchListView.swift */,
+			);
+			path = ListViews;
+			sourceTree = "<group>";
+		};
 		55E77C1B262C99C4000AF1BD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				55E56234266C4F43006F77C8 /* ListViews */,
+				55E56231266C4EE5006F77C8 /* PickerViews */,
+				55E5622E266C4E8E006F77C8 /* Empty States */,
 				55E77C20262DB965000AF1BD /* Buttons */,
 			);
 			path = Views;
@@ -392,13 +425,16 @@
 				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
 				5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */,
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
+				55E56230266C4EAB006F77C8 /* EmptyState.swift in Sources */,
 				55E5620F2666B2DB006F77C8 /* Date+Ext.swift in Sources */,
 				55E5622A266985EE006F77C8 /* IconNames.swift in Sources */,
+				55E56233266C4F03006F77C8 /* SearchDatePicker.swift in Sources */,
 				553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */,
 				5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */,
 				5598E17A2662FA910047B02B /* SearchView.swift in Sources */,
 				5598E17D2662FAAA0047B02B /* MoreView.swift in Sources */,
 				55E5621F266972AC006F77C8 /* SwiftUIView.swift in Sources */,
+				55E56236266C4F5F006F77C8 /* SearchListView.swift in Sources */,
 				558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */,
 				5598E1772662F7890047B02B /* TabBarView.swift in Sources */,
 				55E5620D26667B27006F77C8 /* String+Ext.swift in Sources */,

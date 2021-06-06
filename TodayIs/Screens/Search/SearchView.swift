@@ -10,10 +10,15 @@ import SwiftUI
 struct SearchView: View {
     @StateObject var viewModel = SearchViewModel()
     var body: some View {
-        VStack(alignment: .center) {
-            SearchListView(searchedHoliday: viewModel.holidays)
-            SearchDatePicker(viewModel: viewModel)
-            Spacer()
+        ZStack {
+            VStack(alignment: .center) {
+                SearchListView(searchedHoliday: viewModel.holidays)
+                SearchDatePicker(viewModel: viewModel)
+                Spacer()
+            }
+            if viewModel.holidays.isEmpty {
+                EmptyState(message: "Please use the Calendar picker below to search for a holiday on a specific date")
+            }
         }
     }
 }
@@ -55,5 +60,22 @@ struct SearchDatePicker: View {
             }
         }
 
+    }
+}
+
+struct EmptyState: View {
+    let message: String
+    var body: some View {
+        ZStack {
+            VStack {
+                Text(message)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.secondary)
+                    .padding()
+                Spacer()
+            }
+        }
     }
 }

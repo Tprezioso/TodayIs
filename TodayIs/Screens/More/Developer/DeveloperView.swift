@@ -22,10 +22,8 @@ struct DeveloperView: View {
                 LinkButtons(url: "https://www.twitter.com/tommyprezioso", title: "Twitter")
                 LinkButtons(url: "https://www.github.com/tprezioso",  title: "Github")
                 LinkButtons(url: "https://www.swifttom.com/",  title: "Blog")
-                
             }
             Spacer()
-            
         }
     }
 }
@@ -64,6 +62,5 @@ struct LinkButtons: View {
                 .padding(5)
                 
         }
-
     }
 }

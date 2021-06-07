@@ -2,7 +2,7 @@
 //  SearchView.swift
 //  TodayIs
 //
-//  Created by Thomas Prezioso Jr on 5/29/21.
+//  Created by Thomas Prezioso Jr on 5/29/21..
 //
 
 import SwiftUI
@@ -14,6 +14,7 @@ struct SearchView: View {
             VStack(alignment: .center) {
                 SearchListView(searchedHoliday: viewModel.holidays)
                 SearchDatePicker(viewModel: viewModel)
+                    .padding(.bottom)
                 Spacer()
             }
             if viewModel.holidays.isEmpty {

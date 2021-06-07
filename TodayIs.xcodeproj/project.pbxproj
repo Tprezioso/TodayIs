@@ -232,12 +232,12 @@
 		55C04767261FAB6E000DCD90 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				5598E1762662F7890047B02B /* TabBarView.swift */,
 				553ED5B2262355DE000D5757 /* NationalDayList */,
 				550714E9263104120036DE22 /* NationalDayDetailView */,
 				5583E83226418E9300CD66DC /* TomorrowListView */,
 				5598E1782662FA800047B02B /* Search */,
 				5598E17B2662FA970047B02B /* More */,
-				5598E1762662F7890047B02B /* TabBarView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";

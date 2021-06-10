@@ -34,7 +34,7 @@ struct AlertContext {
                                             dismissButton: .default(Text("OK")))
 
     // MARK: - Saved Alert
-    static let savedHoliday = AlertItem(title: Text("Saved Holidday"),
+    static let savedHoliday = AlertItem(title: Text("Saved Holiday"),
                                             message: Text("Your Holiday has been saved in the Calendar app"),
                                             dismissButton: .default(Text("OK")))
 

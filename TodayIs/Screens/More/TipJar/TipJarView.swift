@@ -18,7 +18,7 @@ struct TipJarView: View {
                     .padding(.horizontal)
 
                 VStack(alignment: .leading) {
-                    Text("If you love the app, you can leave a tip to cover development cost! Any tip at all helps a lot!")
+                    Text("If you love this app, you can leave a tip to cover development cost! Any tip at all helps a lot!")
                         .fontWeight(.semibold)
                 }
                 .padding()

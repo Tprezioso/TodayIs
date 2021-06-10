@@ -42,7 +42,7 @@ struct AlertContext {
                                             message: Text("Error saving event in calendar"),
                                             dismissButton: .default(Text("OK")))
 
-    // MARK: - 
+    // MARK: - Calendar Access Denied
     static let calendarAccessDenied = AlertItem(title: Text("Calendar Access Denied"),
                                             message: Text("Calendar Access was Denied"),
                                             dismissButton: .default(Text("OK")))

@@ -13,10 +13,10 @@ struct EmptyState: View {
         ZStack {
             VStack {
                 Text(message)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.secondary)
+                    .font(.title3)
+                    .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.secondary)
                     .padding()
                 Spacer()
             }

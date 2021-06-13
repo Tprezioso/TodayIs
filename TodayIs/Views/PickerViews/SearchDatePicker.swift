@@ -20,7 +20,7 @@ struct SearchDatePicker: View {
                 .datePickerStyle(WheelDatePickerStyle())
                 .labelsHidden()
             Button {
-                let dateSelected = searchDate.getFormattedDate(format: "MMMM dd")
+                let dateSelected = searchDate.getFormattedDate(format: "MMMM d")
                 print(dateSelected)
                 viewModel.getHolidays(searchDate: dateSelected)
             } label: {

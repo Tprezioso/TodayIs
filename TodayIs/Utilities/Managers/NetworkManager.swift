@@ -173,7 +173,8 @@ final class NetworkManager {
     
     func searchForHoliday(searchTerm: String, completed: @escaping (Result<[Holiday], TIError>) -> Void) {
         print("\(searchTerm)")
-        let searchURL = "https://nationaldaycalendar.com/?s=\(searchTerm)&et_pb_searchform_submit=et_search_proccess&et_pb_include_pages=no"
+        let searchURL = "https://nationaldaycalendar.com/?s=\(searchTerm)&et_pb_searchform_submit=et_search_proccess&et_pb_include_pages=yes"
+       print("Search result: \(searchURL)")
         guard let url = URL(string: searchURL) else {
                     completed(.failure(TIError.invalidURL))
                     return

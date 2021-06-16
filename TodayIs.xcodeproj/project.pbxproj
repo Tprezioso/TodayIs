@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		550714E72630E2FD0036DE22 /* NationalDayLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550714E62630E2FD0036DE22 /* NationalDayLogo.swift */; };
+		550FDB6B267AA596000A211C /* Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB6A267AA596000A211C /* Blue@2x.png */; };
+		550FDB6D267AA59D000A211C /* Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB6C267AA59D000A211C /* Blue@3x.png */; };
+		550FDB6F267AA5AB000A211C /* Green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB6E267AA5AB000A211C /* Green@2x.png */; };
+		550FDB71267AA5B0000A211C /* Green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB70267AA5B0000A211C /* Green@3x.png */; };
+		550FDB73267AA5BF000A211C /* Pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB72267AA5BF000A211C /* Pink@2x.png */; };
+		550FDB75267AA5C4000A211C /* Pink@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB74267AA5C4000A211C /* Pink@3x.png */; };
 		553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5A726225A2A000D5757 /* SwiftSoup */; };
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */; };
@@ -50,6 +56,12 @@
 
 /* Begin PBXFileReference section */
 		550714E62630E2FD0036DE22 /* NationalDayLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayLogo.swift; sourceTree = "<group>"; };
+		550FDB6A267AA596000A211C /* Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue@2x.png"; sourceTree = "<group>"; };
+		550FDB6C267AA59D000A211C /* Blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue@3x.png"; sourceTree = "<group>"; };
+		550FDB6E267AA5AB000A211C /* Green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green@2x.png"; path = "../../../../../../../../Downloads/GreenCalandarIcon/Assets.xcassets/AppIcon.appiconset/Green@2x.png"; sourceTree = "<group>"; };
+		550FDB70267AA5B0000A211C /* Green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green@3x.png"; path = "../../../../../../../../Downloads/GreenCalandarIcon/Assets.xcassets/AppIcon.appiconset/Green@3x.png"; sourceTree = "<group>"; };
+		550FDB72267AA5BF000A211C /* Pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pink@2x.png"; path = "../../../../../../../../Downloads/PinkCalandarIcon/Assets.xcassets/AppIcon.appiconset/Pink@2x.png"; sourceTree = "<group>"; };
+		550FDB74267AA5C4000A211C /* Pink@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pink@3x.png"; path = "../../../../../../../../Downloads/PinkCalandarIcon/Assets.xcassets/AppIcon.appiconset/Pink@3x.png"; sourceTree = "<group>"; };
 		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListViewModel.swift; sourceTree = "<group>"; };
 		553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayViewModel.swift; sourceTree = "<group>"; };
@@ -287,8 +299,14 @@
 			isa = PBXGroup;
 			children = (
 				55E5622526698361006F77C8 /* Green.png */,
+				550FDB6E267AA5AB000A211C /* Green@2x.png */,
+				550FDB70267AA5B0000A211C /* Green@3x.png */,
 				55E562232669833C006F77C8 /* Blue.png */,
+				550FDB6A267AA596000A211C /* Blue@2x.png */,
+				550FDB6C267AA59D000A211C /* Blue@3x.png */,
 				55E5622726698381006F77C8 /* Pink.png */,
+				550FDB72267AA5BF000A211C /* Pink@2x.png */,
+				550FDB74267AA5C4000A211C /* Pink@3x.png */,
 			);
 			path = AlternateIcons;
 			sourceTree = "<group>";
@@ -408,7 +426,13 @@
 			files = (
 				558A54F325F6A4CA003E1072 /* Preview Assets.xcassets in Resources */,
 				558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */,
+				550FDB6D267AA59D000A211C /* Blue@3x.png in Resources */,
+				550FDB71267AA5B0000A211C /* Green@3x.png in Resources */,
 				55E562242669833C006F77C8 /* Blue.png in Resources */,
+				550FDB75267AA5C4000A211C /* Pink@3x.png in Resources */,
+				550FDB6B267AA596000A211C /* Blue@2x.png in Resources */,
+				550FDB6F267AA5AB000A211C /* Green@2x.png in Resources */,
+				550FDB73267AA5BF000A211C /* Pink@2x.png in Resources */,
 				55E5622626698361006F77C8 /* Green.png in Resources */,
 				55E5622826698381006F77C8 /* Pink.png in Resources */,
 			);
@@ -580,7 +604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"TodayIs/Preview Content\"";
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				ENABLE_PREVIEWS = YES;
@@ -590,7 +614,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -604,7 +628,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"TodayIs/Preview Content\"";
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				ENABLE_PREVIEWS = YES;
@@ -614,7 +638,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

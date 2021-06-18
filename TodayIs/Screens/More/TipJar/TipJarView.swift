@@ -9,7 +9,7 @@ import SwiftUI
 import Purchases
 
 struct TipJarView: View {
-    @EnvironmentObject var subscriptionManager: IAPManager
+    @EnvironmentObject private var subscriptionManager: IAPManager
 
         var body: some View {
             VStack {
@@ -24,18 +24,19 @@ struct TipJarView: View {
                 .padding()
 
                 ScrollView {
-//                    ForEach(subscriptionManager.packages, id: \.identifier) { product in
+                    ForEach(subscriptionManager.packages, id: \.identifier) { product in
                         Button(action: {
-                            //subscriptionManager.purchase(product: product)
+                            subscriptionManager.purchase(product: product)
                         }) {
-                            APRow(title: "Coffee", description: "Buy me a coffee")
+                            IAPRow(product: product)
+//                            APRow(title: "Coffee", description: "Buy me a coffee")
                         }
                     }
                     .padding(.vertical)
                 }
             }
         }
-//}
+}
 
 struct TipJarView_Previews: PreviewProvider {
     static var previews: some View {

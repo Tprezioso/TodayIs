@@ -13,48 +13,51 @@ import SwiftSoup
 
 struct TodayIsTimelineProvider: TimelineProvider {
     func placeholder(in context: Context) -> TodayIsTimelineEntry {
-        TodayIsTimelineEntry(date: Date())
+        TodayIsTimelineEntry(date: Date(), title: "Placeholder")
     }
 
     func getSnapshot(in context: Context, completion: @escaping (TodayIsTimelineEntry) -> ()) {
-        let entry = TodayIsTimelineEntry(date: Date())
+        let entry = TodayIsTimelineEntry(date: Date(), title: "Placeholder")
         completion(entry)
     }
 
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        WidgetNetworkManager.shared.getHolidayData { [self] result in
-            DispatchQueue.main.async {
+        WidgetNetworkManager.shared.getHolidayData { result in
+            var entries: [TodayIsTimelineEntry] = []
+            var policy: TimelineReloadPolicy = .atEnd
+            var entry: TodayIsTimelineEntry
+            
                 switch result {
                 case .success(let holidays):
+                    entry = TodayIsTimelineEntry(date: Date(), title: holidays[1].name)
                     print(holidays)
                 case .failure(let error):
+                    entry = TodayIsTimelineEntry(date: Date(), title: "Error")
                     print(error)
-                     
+                    
                 }
-            }
+            entries.append(entry)
+            
+            let timeline = Timeline(entries: entries, policy: policy)
+            completion(timeline)
         }
-                    var entries: [TodayIsTimelineEntry] = []
-                    var policy: TimelineReloadPolicy = .atEnd
-
-                   
-                        let entry = TodayIsTimelineEntry(date: Date())
-                        entries.append(entry)
-                   
-                    let timeline = Timeline(entries: entries, policy: policy)
-                    completion(timeline)
+        
+        
     }
     
 }
 
 struct TodayIsTimelineEntry: TimelineEntry {
     let date: Date
+    let title: String
 }
 
 struct TodayIsWidgetEntryView : View {
     var entry: TodayIsTimelineProvider.Entry
 
     var body: some View {
-        Text(entry.date, style: .time)
+        Text(entry.title)
+            .bold()
     }
 }
 
@@ -73,7 +76,7 @@ struct TodayIsWidget: Widget {
 
 struct TodayIsWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TodayIsWidgetEntryView(entry: TodayIsTimelineEntry(date: Date()))
+        TodayIsWidgetEntryView(entry: TodayIsTimelineEntry(date: Date(), title: "Test"))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

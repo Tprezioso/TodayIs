@@ -24,7 +24,7 @@ struct TodayIsTimelineProvider: TimelineProvider {
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         WidgetNetworkManager.shared.getHolidayData { result in
             var entries: [TodayIsTimelineEntry] = []
-            var policy: TimelineReloadPolicy = .atEnd
+            let policy: TimelineReloadPolicy = .atEnd
             var entry: TodayIsTimelineEntry
             
                 switch result {
@@ -56,8 +56,16 @@ struct TodayIsWidgetEntryView : View {
     var entry: TodayIsTimelineProvider.Entry
 
     var body: some View {
-        Text(entry.title)
-            .bold()
+        ZStack {
+            Color(.secondarySystemBackground)
+            VStack(alignment: .leading) {
+                Text("Today Is....")
+                    .font(.title)
+                Text(entry.title)
+                    .bold()
+            }.padding(5)
+        }
+        
     }
 }
 

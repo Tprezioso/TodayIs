@@ -10,7 +10,6 @@ import SwiftUI
 import Intents
 import SwiftSoup
 
-
 struct TodayIsTimelineProvider: TimelineProvider {
     func placeholder(in context: Context) -> TodayIsTimelineEntry {
         TodayIsTimelineEntry(date: Date(), title: "Placeholder")
@@ -41,10 +40,7 @@ struct TodayIsTimelineProvider: TimelineProvider {
             let timeline = Timeline(entries: entries, policy: policy)
             completion(timeline)
         }
-        
-        
     }
-    
 }
 
 struct TodayIsTimelineEntry: TimelineEntry {
@@ -61,11 +57,12 @@ struct TodayIsWidgetEntryView : View {
             VStack(alignment: .leading) {
                 Text("Today Is....")
                     .font(.title)
+                    .bold()
                 Text(entry.title)
                     .bold()
-            }.padding(5)
+            }
+            .padding(5)
         }
-        
     }
 }
 

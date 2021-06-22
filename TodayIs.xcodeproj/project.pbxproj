@@ -14,6 +14,15 @@
 		550FDB71267AA5B0000A211C /* Green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB70267AA5B0000A211C /* Green@3x.png */; };
 		550FDB73267AA5BF000A211C /* Pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB72267AA5BF000A211C /* Pink@2x.png */; };
 		550FDB75267AA5C4000A211C /* Pink@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB74267AA5C4000A211C /* Pink@3x.png */; };
+		553C68C0268277FB00367E0C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553C68BF268277FB00367E0C /* WidgetKit.framework */; };
+		553C68C2268277FB00367E0C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553C68C1268277FB00367E0C /* SwiftUI.framework */; };
+		553C68C5268277FB00367E0C /* TodayIsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553C68C4268277FB00367E0C /* TodayIsWidget.swift */; };
+		553C68C8268277FC00367E0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 553C68C7268277FC00367E0C /* Assets.xcassets */; };
+		553C68CA268277FC00367E0C /* TodayIsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 553C68C6268277FB00367E0C /* TodayIsWidget.intentdefinition */; };
+		553C68CB268277FC00367E0C /* TodayIsWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 553C68C6268277FB00367E0C /* TodayIsWidget.intentdefinition */; };
+		553C68CE268277FC00367E0C /* TodayIsWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 553C68BD268277FB00367E0C /* TodayIsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		553C68D426827D1400367E0C /* WidgetNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553C68D326827D1400367E0C /* WidgetNetworkManager.swift */; };
+		553C68D62682845F00367E0C /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553C68D52682845F00367E0C /* SwiftSoup */; };
 		553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5A726225A2A000D5757 /* SwiftSoup */; };
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */; };
@@ -54,6 +63,30 @@
 		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		553C68CC268277FC00367E0C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 558A54E025F6A4C9003E1072 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 553C68BC268277FB00367E0C;
+			remoteInfo = TodayIsWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		553C68CF268277FC00367E0C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				553C68CE268277FC00367E0C /* TodayIsWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		550714E62630E2FD0036DE22 /* NationalDayLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayLogo.swift; sourceTree = "<group>"; };
 		550FDB6A267AA596000A211C /* Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue@2x.png"; sourceTree = "<group>"; };
@@ -62,6 +95,14 @@
 		550FDB70267AA5B0000A211C /* Green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green@3x.png"; path = "../../../../../../../../Downloads/GreenCalandarIcon/Assets.xcassets/AppIcon.appiconset/Green@3x.png"; sourceTree = "<group>"; };
 		550FDB72267AA5BF000A211C /* Pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pink@2x.png"; path = "../../../../../../../../Downloads/PinkCalandarIcon/Assets.xcassets/AppIcon.appiconset/Pink@2x.png"; sourceTree = "<group>"; };
 		550FDB74267AA5C4000A211C /* Pink@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Pink@3x.png"; path = "../../../../../../../../Downloads/PinkCalandarIcon/Assets.xcassets/AppIcon.appiconset/Pink@3x.png"; sourceTree = "<group>"; };
+		553C68BD268277FB00367E0C /* TodayIsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayIsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		553C68BF268277FB00367E0C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		553C68C1268277FB00367E0C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		553C68C4268277FB00367E0C /* TodayIsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIsWidget.swift; sourceTree = "<group>"; };
+		553C68C6268277FB00367E0C /* TodayIsWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = TodayIsWidget.intentdefinition; sourceTree = "<group>"; };
+		553C68C7268277FC00367E0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		553C68C9268277FC00367E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		553C68D326827D1400367E0C /* WidgetNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetNetworkManager.swift; sourceTree = "<group>"; };
 		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListViewModel.swift; sourceTree = "<group>"; };
 		553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayViewModel.swift; sourceTree = "<group>"; };
@@ -102,6 +143,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		553C68BA268277FB00367E0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553C68C2268277FB00367E0C /* SwiftUI.framework in Frameworks */,
+				553C68C0268277FB00367E0C /* WidgetKit.framework in Frameworks */,
+				553C68D62682845F00367E0C /* SwiftSoup in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		558A54E525F6A4C9003E1072 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -122,6 +173,27 @@
 				553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */,
 			);
 			path = NationalDayDetailView;
+			sourceTree = "<group>";
+		};
+		553C68BE268277FB00367E0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				553C68BF268277FB00367E0C /* WidgetKit.framework */,
+				553C68C1268277FB00367E0C /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		553C68C3268277FB00367E0C /* TodayIsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				553C68C4268277FB00367E0C /* TodayIsWidget.swift */,
+				553C68D326827D1400367E0C /* WidgetNetworkManager.swift */,
+				553C68C6268277FB00367E0C /* TodayIsWidget.intentdefinition */,
+				553C68C7268277FC00367E0C /* Assets.xcassets */,
+				553C68C9268277FC00367E0C /* Info.plist */,
+			);
+			path = TodayIsWidget;
 			sourceTree = "<group>";
 		};
 		553ED5B2262355DE000D5757 /* NationalDayList */ = {
@@ -155,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				558A54EA25F6A4C9003E1072 /* TodayIs */,
+				553C68C3268277FB00367E0C /* TodayIsWidget */,
+				553C68BE268277FB00367E0C /* Frameworks */,
 				558A54E925F6A4C9003E1072 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -163,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				558A54E825F6A4C9003E1072 /* TodayIs.app */,
+				553C68BD268277FB00367E0C /* TodayIsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -360,6 +435,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		553C68BC268277FB00367E0C /* TodayIsWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 553C68D2268277FC00367E0C /* Build configuration list for PBXNativeTarget "TodayIsWidgetExtension" */;
+			buildPhases = (
+				553C68B9268277FB00367E0C /* Sources */,
+				553C68BA268277FB00367E0C /* Frameworks */,
+				553C68BB268277FB00367E0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TodayIsWidgetExtension;
+			packageProductDependencies = (
+				553C68D52682845F00367E0C /* SwiftSoup */,
+			);
+			productName = TodayIsWidgetExtension;
+			productReference = 553C68BD268277FB00367E0C /* TodayIsWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		558A54E725F6A4C9003E1072 /* TodayIs */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 558A54F725F6A4CA003E1072 /* Build configuration list for PBXNativeTarget "TodayIs" */;
@@ -367,10 +462,12 @@
 				558A54E425F6A4C9003E1072 /* Sources */,
 				558A54E525F6A4C9003E1072 /* Frameworks */,
 				558A54E625F6A4C9003E1072 /* Resources */,
+				553C68CF268277FC00367E0C /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				553C68CD268277FC00367E0C /* PBXTargetDependency */,
 			);
 			name = TodayIs;
 			packageProductDependencies = (
@@ -388,9 +485,12 @@
 		558A54E025F6A4C9003E1072 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					553C68BC268277FB00367E0C = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
 					558A54E725F6A4C9003E1072 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -415,11 +515,20 @@
 			projectRoot = "";
 			targets = (
 				558A54E725F6A4C9003E1072 /* TodayIs */,
+				553C68BC268277FB00367E0C /* TodayIsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		553C68BB268277FB00367E0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553C68C8268277FC00367E0C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		558A54E625F6A4C9003E1072 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -441,6 +550,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		553C68B9268277FB00367E0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				553C68CA268277FC00367E0C /* TodayIsWidget.intentdefinition in Sources */,
+				553C68C5268277FB00367E0C /* TodayIsWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		558A54E425F6A4C9003E1072 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -453,12 +571,14 @@
 				55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */,
 				55E5621326683428006F77C8 /* TipJarView.swift in Sources */,
 				55E562112668336F006F77C8 /* MoreDetailedView.swift in Sources */,
+				553C68CB268277FC00367E0C /* TodayIsWidget.intentdefinition in Sources */,
 				55E5620A266674AF006F77C8 /* SearchViewModel.swift in Sources */,
 				557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */,
 				553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */,
 				55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */,
 				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
 				5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */,
+				553C68D426827D1400367E0C /* WidgetNetworkManager.swift in Sources */,
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
 				55E56230266C4EAB006F77C8 /* EmptyState.swift in Sources */,
 				55E5620F2666B2DB006F77C8 /* Date+Ext.swift in Sources */,
@@ -481,7 +601,59 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		553C68CD268277FC00367E0C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 553C68BC268277FB00367E0C /* TodayIsWidgetExtension */;
+			targetProxy = 553C68CC268277FC00367E0C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		553C68D0268277FC00367E0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
+				INFOPLIST_FILE = TodayIsWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIs.TodayIsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		553C68D1268277FC00367E0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
+				INFOPLIST_FILE = TodayIsWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIs.TodayIsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		558A54F525F6A4CA003E1072 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -601,6 +773,7 @@
 		558A54F825F6A4CA003E1072 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -625,6 +798,7 @@
 		558A54F925F6A4CA003E1072 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -649,6 +823,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		553C68D2268277FC00367E0C /* Build configuration list for PBXNativeTarget "TodayIsWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				553C68D0268277FC00367E0C /* Debug */,
+				553C68D1268277FC00367E0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		558A54E325F6A4C9003E1072 /* Build configuration list for PBXProject "TodayIs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -697,6 +880,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		553C68D52682845F00367E0C /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
 		553ED5A726225A2A000D5757 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;

@@ -50,18 +50,54 @@ struct TodayIsTimelineEntry: TimelineEntry {
 
 struct TodayIsWidgetEntryView : View {
     var entry: TodayIsTimelineProvider.Entry
+    @Environment(\.widgetFamily) var widgetFamily
 
     var body: some View {
         ZStack {
             Color(.secondarySystemBackground)
-            VStack(alignment: .leading) {
-                Text("Today Is....")
-                    .font(.title)
-                    .bold()
-                Text(entry.holidays[1].name)
-                    .bold()
+            switch widgetFamily {
+            case .systemSmall:
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Today Is....")
+                        .font(.title)
+                        .bold()
+                        .padding(.top)
+                    Text(entry.holidays[1].name)
+                        .bold()
+                    Spacer()
+                }
+                .padding(5)
+            case .systemMedium:
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Today Is....")
+                        .font(.title)
+                        .bold()
+                    Text(entry.holidays[0].name)
+                        .font(.title2)
+                        .bold()
+                    Text(entry.holidays[1].name)
+                        .bold()
+                    Text(entry.holidays[2].name)
+                        .bold()
+                    Text(entry.holidays[3].name)
+                        .bold()
+                }
+
+            case .systemLarge:
+                VStack(alignment: .leading) {
+                    Text("Today Is....")
+                        .font(.title)
+                        .bold()
+                        .padding(.bottom)
+                    ForEach(entry.holidays) { holiday in
+                            Text("\(holiday.name)")
+                                .bold()
+                    }
+                    
+                }
+                .padding(5)
+                
             }
-            .padding(5)
         }
     }
 }
@@ -76,6 +112,7 @@ struct TodayIsWidget: Widget {
         }
         .configurationDisplayName("Today Is....")
         .description("This is will show the national holidays for today.")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
 

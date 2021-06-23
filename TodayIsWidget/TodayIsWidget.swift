@@ -12,11 +12,11 @@ import SwiftSoup
 
 struct TodayIsTimelineProvider: TimelineProvider {
     func placeholder(in context: Context) -> TodayIsTimelineEntry {
-        TodayIsTimelineEntry(date: Date(), title: "Placeholder")
+        TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Placeholder", url:"")])
     }
 
     func getSnapshot(in context: Context, completion: @escaping (TodayIsTimelineEntry) -> ()) {
-        let entry = TodayIsTimelineEntry(date: Date(), title: "Placeholder")
+        let entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Placeholder", url:"")])
         completion(entry)
     }
 
@@ -25,13 +25,13 @@ struct TodayIsTimelineProvider: TimelineProvider {
             var entries: [TodayIsTimelineEntry] = []
             let policy: TimelineReloadPolicy = .atEnd
             var entry: TodayIsTimelineEntry
-            
+    
                 switch result {
                 case .success(let holidays):
-                    entry = TodayIsTimelineEntry(date: Date(), title: holidays[1].name)
+                    entry = TodayIsTimelineEntry(date: Date(), holidays: holidays)
                     print(holidays)
                 case .failure(let error):
-                    entry = TodayIsTimelineEntry(date: Date(), title: "Error")
+                    entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Error", url:"")])
                     print(error)
                     
                 }
@@ -45,7 +45,7 @@ struct TodayIsTimelineProvider: TimelineProvider {
 
 struct TodayIsTimelineEntry: TimelineEntry {
     let date: Date
-    let title: String
+    let holidays: [Holiday]
 }
 
 struct TodayIsWidgetEntryView : View {
@@ -58,7 +58,7 @@ struct TodayIsWidgetEntryView : View {
                 Text("Today Is....")
                     .font(.title)
                     .bold()
-                Text(entry.title)
+                Text(entry.holidays[1].name)
                     .bold()
             }
             .padding(5)
@@ -81,7 +81,7 @@ struct TodayIsWidget: Widget {
 
 struct TodayIsWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TodayIsWidgetEntryView(entry: TodayIsTimelineEntry(date: Date(), title: "Test"))
+        TodayIsWidgetEntryView(entry: TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Test", url:"")]))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
@@ -137,9 +137,10 @@ class WidgetNetworkManager {
         task.resume()
     }
 
-    struct Holiday: Identifiable {
-        let id = UUID()
-        var name: String
-        var url: String
-    }
+}
+
+struct Holiday: Identifiable {
+    let id = UUID()
+    var name: String
+    var url: String
 }

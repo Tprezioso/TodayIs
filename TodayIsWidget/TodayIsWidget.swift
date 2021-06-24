@@ -84,6 +84,7 @@ struct TodayIsWidgetEntryView : View {
                     Text(entry.holidays[3].name)
                         .bold()
                 }
+                .padding(6)
 
             case .systemLarge:
                 VStack(alignment: .leading) {

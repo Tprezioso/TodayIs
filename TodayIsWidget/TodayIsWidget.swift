@@ -55,6 +55,7 @@ struct TodayIsWidgetEntryView : View {
     var body: some View {
         ZStack {
             Color(.secondarySystemBackground)
+            
             switch widgetFamily {
             case .systemSmall:
                 VStack(alignment: .leading, spacing: 10) {
@@ -67,6 +68,7 @@ struct TodayIsWidgetEntryView : View {
                     Spacer()
                 }
                 .padding(5)
+           
             case .systemMedium:
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Today Is....")
@@ -93,10 +95,20 @@ struct TodayIsWidgetEntryView : View {
                             Text("\(holiday.name)")
                                 .bold()
                     }
-                    
                 }
                 .padding(5)
-                
+    
+            @unknown default:
+                VStack(alignment: .leading, spacing: 10) {
+                    Text("Today Is....")
+                        .font(.title)
+                        .bold()
+                        .padding(.top)
+                    Text(entry.holidays[1].name)
+                        .bold()
+                    Spacer()
+                }
+                .padding(5)
             }
         }
     }

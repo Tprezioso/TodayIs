@@ -9,7 +9,6 @@ import SwiftUI
 
 final class ImageLoader: ObservableObject {
     @Published var image: Image? = nil
-    
 }
 
 struct RemoteImage: View {

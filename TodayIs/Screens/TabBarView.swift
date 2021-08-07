@@ -14,7 +14,6 @@ struct TabBarView: View {
                 NationalDayListView()
                     .navigationBarTitle("Today is...", displayMode: .large)
                     .listStyle(PlainListStyle())
-
                 }
                     .tabItem {
                         Label("Today", systemImage: "calendar")

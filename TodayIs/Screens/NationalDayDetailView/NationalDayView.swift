@@ -24,23 +24,45 @@ struct NationalDayView: View {
                     }
                 }
                 VStack(spacing: 20) {
-                    Button {
-                        viewModel.shareButton(urlString: holiday.url)
-                    } label: {
-                        TIButton(title: "Share")
-                    }
-                    
+//                    Button {
+//                        viewModel.shareButton(urlString: holiday.url)
+//                    } label: {
+//                        TIButton(title: "Share")
+//                    }
+
                     Button {
                         viewModel.addToCalendar(holidayName: holiday.name)
                     } label: {
                         TIButton(title: "Add to Calendar")
                     }
-                    
+
                     Link(destination: URL(string: "\(holiday.url)")!, label: {
                         TIButton(title: "Learn More")
                     })
                 }.padding()
+//                Menu {
+//                    Button {
+//                        viewModel.addToCalendar(holidayName: holiday.name)
+//                    } label: {
+//                        TIButton(title: "Add to Calendar")
+//                    }
+//
+//                    Link(destination: URL(string: "\(holiday.url)")!, label: {
+//                        TIButton(title: "Learn More")
+//                    })
+//                }
+//                label: {
+//                    TIButton(title: "More")
+//                }
+                
                 Spacer()
+            } .toolbar {
+                Button() {
+                    viewModel.shareButton(urlString: holiday.url)
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                        .foregroundColor(Color(.systemPink))
+                }
             }
             .alert(item: $viewModel.alertItem) { alertItem in
                 Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
@@ -62,4 +84,13 @@ struct NationalDayView: View {
         }
     }
     
+    struct NationalDayView_Previews: PreviewProvider {
+        static var previews: some View {
+            let holiday = Holiday(name: "Holiday", url: "https://www.swifttom.com")
+            NavigationView {
+                NationalDayView(holiday: holiday)
+            }
+        }
+    }
+
 }

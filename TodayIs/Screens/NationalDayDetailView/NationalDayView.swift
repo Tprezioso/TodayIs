@@ -24,12 +24,6 @@ struct NationalDayView: View {
                     }
                 }
                 VStack(spacing: 20) {
-//                    Button {
-//                        viewModel.shareButton(urlString: holiday.url)
-//                    } label: {
-//                        TIButton(title: "Share")
-//                    }
-
                     Button {
                         viewModel.addToCalendar(holidayName: holiday.name)
                     } label: {
@@ -39,22 +33,7 @@ struct NationalDayView: View {
                     Link(destination: URL(string: "\(holiday.url)")!, label: {
                         TIButton(title: "Learn More")
                     })
-                }.padding()
-//                Menu {
-//                    Button {
-//                        viewModel.addToCalendar(holidayName: holiday.name)
-//                    } label: {
-//                        TIButton(title: "Add to Calendar")
-//                    }
-//
-//                    Link(destination: URL(string: "\(holiday.url)")!, label: {
-//                        TIButton(title: "Learn More")
-//                    })
-//                }
-//                label: {
-//                    TIButton(title: "More")
-//                }
-                
+                }
                 Spacer()
             } .toolbar {
                 Button() {

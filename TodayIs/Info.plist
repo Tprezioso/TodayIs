@@ -64,6 +64,10 @@
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
 	<string>This app would like access to your Calendar</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>ConfigurationIntent</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

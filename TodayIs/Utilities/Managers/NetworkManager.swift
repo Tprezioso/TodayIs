@@ -37,7 +37,7 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("et_pb_text_inner").first()!
+                let price: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()!
                 let links: [Element] = try price.select("h3").array()
                 holidays.removeAll()
                 for title: Element in links {
@@ -139,7 +139,7 @@ final class NetworkManager {
                 let currentDateString: String = dateFormatter.string(from: date)
 
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("et_pb_text_inner").first()!
+                let price: Element = try doc.getElementsByClass("ndc-text-tomorrows-celebrations").first()!
                 let links: [Element] = try price.select("h3").array()
                 holidays.removeAll()
                 for title: Element in links {

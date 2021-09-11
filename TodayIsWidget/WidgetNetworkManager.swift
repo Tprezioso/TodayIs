@@ -35,8 +35,8 @@ class WidgetNetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()!
-                let links: [Element] = try price.select("h3").array()
+                let price: Element = try doc.getElementsByClass("eventon_events_list").first()!
+                let links: [Element] = try price.select("p").array()
                 holidays.removeAll()
                 for title: Element in links {
                     let linksText: String = try title.text()

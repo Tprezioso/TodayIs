@@ -16,6 +16,7 @@ final class TomorrowListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var isShowingDetail = false
     @Published var isShowingDetailView = false
+    @Published var isHolidaysEmpty = false
 
     func getTomorrowsHolidays() {
         isLoading = true
@@ -24,9 +25,14 @@ final class TomorrowListViewModel: ObservableObject {
                 isLoading = false
                 switch result {
                 case .success(let holidays):
-                    self.holidays.removeAll()
-                    self.holidays = holidays
-                    self.holidays.removeFirst()
+                    if holidays.isEmpty {
+                        isHolidaysEmpty = true
+                    } else {
+                        self.holidays.removeAll()
+                        self.holidays = holidays
+                        self.holidays.removeFirst()
+                        isHolidaysEmpty = false
+                    }
                 case .failure(let error):
                     switch error {
                     case .invalidData:

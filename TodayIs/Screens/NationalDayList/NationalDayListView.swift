@@ -13,19 +13,23 @@ struct NationalDayListView: View {
     var body: some View {
         ZStack {
             VStack {
-                List(viewModel.holidays) { holiday in
-                    if holiday.url == "" {
-                        Text("\(holiday.name)")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                    } else {
-                        NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
+                if !viewModel.isHolidaysEmpty {
+                    List(viewModel.holidays) { holiday in
+                        if holiday.url == "" {
+                            Text("\(holiday.name)")
+                                .font(.title)
+                                .fontWeight(.semibold)
+                        } else {
+                            NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
+                        }
+                    }.pullToRefresh(isShowing: $viewModel.isShowing) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            viewModel.getHolidays()
+                            self.viewModel.isShowing = false
+                        }
                     }
-                }.pullToRefresh(isShowing: $viewModel.isShowing) {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        viewModel.getHolidays()
-                        self.viewModel.isShowing = false
-                    }
+                } else {
+                    EmptyState(message: "There was an issue loading Today's Holidays!\n Try again later")
                 }
                 NationalHolidayLinkLogo()
             }

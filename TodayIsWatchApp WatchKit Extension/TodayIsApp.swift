@@ -12,7 +12,7 @@ struct TodayIsApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                TodayWatchView()
+                TabBarWatchView()
             }
         }
 

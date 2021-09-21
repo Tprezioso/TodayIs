@@ -10,7 +10,7 @@ import SwiftUI
 struct TabBarWatchView: View {
     var body: some View {
         TabView {
-                    Text("First View")
+            Text("First View")
                         .padding()
                         .tabItem {
                             Image(systemName: "1.circle")

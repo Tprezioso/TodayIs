@@ -84,7 +84,7 @@ struct TodayIsWidgetEntryView : View {
                     Text(entry.holidays[3].name)
                         .bold()
                 }
-                .padding(6)
+                
 
             case .systemLarge:
                 VStack(alignment: .leading) {
@@ -162,8 +162,8 @@ class WidgetNetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("eventon_events_list").first()!
-                let links: [Element] = try price.select("p").array()
+                let price: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()! // eventon_events_list
+                let links: [Element] = try price.select("h3").array() //p
                 holidays.removeAll()
                 for title: Element in links {
                     let linksText: String = try title.text()

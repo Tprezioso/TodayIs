@@ -27,6 +27,11 @@
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */; };
 		553ED5B82623BA99000D5757 /* NationalDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */; };
+		556C965426FBACF600978D09 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965326FBACF600978D09 /* NetworkManager.swift */; };
+		556C965626FBAD3800978D09 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 556C965526FBAD3800978D09 /* SwiftSoup */; };
+		556C965826FBAD8E00978D09 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965726FBAD8E00978D09 /* Holiday.swift */; };
+		556C965A26FBADF500978D09 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965926FBADF500978D09 /* TIError.swift */; };
+		556C965C26FBAE0B00978D09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965B26FBAE0B00978D09 /* Alert.swift */; };
 		557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557AED092628F50E009B6FCD /* RemoteImage.swift */; };
 		5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5583E83026418BE900CD66DC /* TomorrowListView.swift */; };
 		5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5583E83326418EF200CD66DC /* TomorrowListViewModel.swift */; };
@@ -153,6 +158,10 @@
 		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListViewModel.swift; sourceTree = "<group>"; };
 		553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayViewModel.swift; sourceTree = "<group>"; };
+		556C965326FBACF600978D09 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		556C965726FBAD8E00978D09 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
+		556C965926FBADF500978D09 /* TIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIError.swift; sourceTree = "<group>"; };
+		556C965B26FBAE0B00978D09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		557AED092628F50E009B6FCD /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		5583E83026418BE900CD66DC /* TomorrowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowListView.swift; sourceTree = "<group>"; };
 		5583E83326418EF200CD66DC /* TomorrowListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowListViewModel.swift; sourceTree = "<group>"; };
@@ -229,6 +238,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				556C965626FBAD3800978D09 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +291,31 @@
 				557AED092628F50E009B6FCD /* RemoteImage.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		556C965D26FBAE2A00978D09 /* Alert */ = {
+			isa = PBXGroup;
+			children = (
+				556C965926FBADF500978D09 /* TIError.swift */,
+				556C965B26FBAE0B00978D09 /* Alert.swift */,
+			);
+			path = Alert;
+			sourceTree = "<group>";
+		};
+		556C965E26FBAE3D00978D09 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				556C965726FBAD8E00978D09 /* Holiday.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		556C965F26FBAE8200978D09 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				556C965326FBACF600978D09 /* NetworkManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		5583E83226418E9300CD66DC /* TomorrowListView */ = {
@@ -386,6 +421,9 @@
 				55A32EDA26EBE5B800E8B853 /* NotificationController.swift */,
 				55A32EDC26EBE5B800E8B853 /* NotificationView.swift */,
 				55A32EDE26EBE5B800E8B853 /* ComplicationController.swift */,
+				556C965F26FBAE8200978D09 /* Manager */,
+				556C965E26FBAE3D00978D09 /* Model */,
+				556C965D26FBAE2A00978D09 /* Alert */,
 				55A32EE026EBE5B900E8B853 /* Assets.xcassets */,
 				55A32EE526EBE5B900E8B853 /* Info.plist */,
 				55A32EE626EBE5B900E8B853 /* PushNotificationPayload.apns */,
@@ -634,6 +672,9 @@
 			dependencies = (
 			);
 			name = "TodayIsWatchApp WatchKit Extension";
+			packageProductDependencies = (
+				556C965526FBAD3800978D09 /* SwiftSoup */,
+			);
 			productName = "TodayIsWatchApp WatchKit Extension";
 			productReference = 55A32ED126EBE5B800E8B853 /* TodayIsWatchApp WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -800,9 +841,13 @@
 			files = (
 				55A32EDB26EBE5B800E8B853 /* NotificationController.swift in Sources */,
 				55A32ED926EBE5B800E8B853 /* TodayWatchView.swift in Sources */,
+				556C965826FBAD8E00978D09 /* Holiday.swift in Sources */,
 				55A32EF326EBE70800E8B853 /* TabBarWatchView.swift in Sources */,
+				556C965426FBACF600978D09 /* NetworkManager.swift in Sources */,
 				55A32EDF26EBE5B800E8B853 /* ComplicationController.swift in Sources */,
 				55A32ED726EBE5B800E8B853 /* TodayIsApp.swift in Sources */,
+				556C965A26FBADF500978D09 /* TIError.swift in Sources */,
+				556C965C26FBAE0B00978D09 /* Alert.swift in Sources */,
 				55A32EDD26EBE5B800E8B853 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1249,6 +1294,11 @@
 			productName = SwiftSoup;
 		};
 		553ED5A726225A2A000D5757 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+		556C965526FBAD3800978D09 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;

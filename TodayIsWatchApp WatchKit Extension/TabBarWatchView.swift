@@ -10,21 +10,13 @@ import SwiftUI
 struct TabBarWatchView: View {
     var body: some View {
         TabView {
-            Text("First View")
-                        .padding()
-                        .tabItem {
-                            Image(systemName: "1.circle")
-                            Text("First")
-                        }
-                        .tag(1)
-                    Text("Second View")
-                        .padding()
-                        .tabItem {
-                            Image(systemName: "2.circle")
-                            Text("Second")
-                        }
-                        .tag(2)
-                }
+                TodayWatchView()
+                .tag(1)
+            
+            TomorrowWatchView()
+                .tag(2)
+        }
+        .navigationTitle("Today Is....")
     }
 }
 

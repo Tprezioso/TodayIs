@@ -52,7 +52,6 @@ struct HolidayWatchDetailView: View {
                 
             }
             .navigationTitle(holiday.name)
-            //.navigationBarTitleDisplayMode(.inline)
             .padding()
             
             if viewModel.isLoading {

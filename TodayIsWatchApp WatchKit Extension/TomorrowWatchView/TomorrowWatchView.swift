@@ -30,11 +30,11 @@ struct TomorrowWatchView: View {
             viewModel.getTomorrowsHolidays()
         }
 
-        if viewModel.isLoading {
-            ProgressView()
-                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                .scaleEffect(2, anchor: .center)
-        }
+//        if viewModel.isLoading {
+//            ProgressView()
+//                .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+//                .scaleEffect(2, anchor: .center)
+//        }
     }
 }
 

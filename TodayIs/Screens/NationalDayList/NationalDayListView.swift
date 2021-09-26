@@ -9,6 +9,7 @@ import SwiftUI
 
 struct NationalDayListView: View {
     @StateObject var viewModel = NationalDayListViewModel()
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         ZStack {
@@ -39,6 +40,16 @@ struct NationalDayListView: View {
             .onAppear {
                 viewModel.getHolidays()
             }
+            .onChange(of: scenePhase) { newPhase in
+                            if newPhase == .inactive {
+                                print("Inactive")
+                            } else if newPhase == .active {
+                                viewModel.getHolidays()
+                                print("Active")
+                            } else if newPhase == .background {
+                                print("Background")
+                            }
+                        }
             if viewModel.isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .gray))

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TomorrowListView: View {
     @StateObject var viewModel = TomorrowListViewModel()
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         VStack {
@@ -28,7 +29,7 @@ struct TomorrowListView: View {
                     }
                 }
             } else {
-                EmptyState(message: "There was an issue loading Tommorrow's Holidays!\n Try again later")
+                EmptyState(message: "There was an issue loading Tomorrow's Holidays!\n Try again later")
             }
             NationalHolidayLinkLogo()
                 .alert(item: $viewModel.alertItem) { alertItem in
@@ -37,6 +38,16 @@ struct TomorrowListView: View {
                 .onAppear {
                     viewModel.getTomorrowsHolidays()
                 }
+                .onChange(of: scenePhase) { newPhase in
+                                if newPhase == .inactive {
+                                    print("Inactive")
+                                } else if newPhase == .active {
+                                    viewModel.getTomorrowsHolidays()
+                                    print("Active")
+                                } else if newPhase == .background {
+                                    print("Background")
+                                }
+                            }
         }
         if viewModel.isLoading {
             ProgressView()

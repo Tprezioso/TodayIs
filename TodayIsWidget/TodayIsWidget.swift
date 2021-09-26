@@ -14,27 +14,27 @@ struct TodayIsTimelineProvider: TimelineProvider {
     func placeholder(in context: Context) -> TodayIsTimelineEntry {
         TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Placeholder", url:"")])
     }
-
+    
     func getSnapshot(in context: Context, completion: @escaping (TodayIsTimelineEntry) -> ()) {
         let entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Placeholder", url:"")])
         completion(entry)
     }
-
+    
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         WidgetNetworkManager.shared.getHolidayData { result in
             var entries: [TodayIsTimelineEntry] = []
             let policy: TimelineReloadPolicy = .atEnd
             var entry: TodayIsTimelineEntry
-    
-                switch result {
-                case .success(let holidays):
-                    entry = TodayIsTimelineEntry(date: Date(), holidays: holidays)
-                    print(holidays)
-                case .failure(let error):
-                    entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Error", url:"")])
-                    print(error)
-                    
-                }
+            
+            switch result {
+            case .success(let holidays):
+                entry = TodayIsTimelineEntry(date: Date(), holidays: holidays)
+                print(holidays)
+            case .failure(let error):
+                entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Error", url:"")])
+                print(error)
+                
+            }
             entries.append(entry)
             
             let timeline = Timeline(entries: entries, policy: policy)
@@ -51,7 +51,7 @@ struct TodayIsTimelineEntry: TimelineEntry {
 struct TodayIsWidgetEntryView : View {
     var entry: TodayIsTimelineProvider.Entry
     @Environment(\.widgetFamily) var widgetFamily
-
+    
     var body: some View {
         ZStack {
             Color(.secondarySystemBackground)
@@ -68,7 +68,7 @@ struct TodayIsWidgetEntryView : View {
                     Spacer()
                 }
                 .padding(5)
-           
+                
             case .systemMedium:
                 VStack(alignment: .leading, spacing: 4) {
                     Text("Today Is....")
@@ -85,7 +85,7 @@ struct TodayIsWidgetEntryView : View {
                         .bold()
                 }
                 
-
+                
             case .systemLarge:
                 VStack(alignment: .leading) {
                     Text("Today Is....")
@@ -93,12 +93,12 @@ struct TodayIsWidgetEntryView : View {
                         .bold()
                         .padding(.bottom)
                     ForEach(entry.holidays) { holiday in
-                            Text("\(holiday.name)")
-                                .bold()
+                        Text("\(holiday.name)")
+                            .bold()
                     }
                 }
                 .padding(5)
-    
+                
             @unknown default:
                 VStack(alignment: .leading, spacing: 10) {
                     Text("Today Is....")
@@ -118,7 +118,7 @@ struct TodayIsWidgetEntryView : View {
 @main
 struct TodayIsWidget: Widget {
     let kind: String = "TodayIsWidget"
-
+    
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: TodayIsTimelineProvider()) { entry in
             TodayIsWidgetEntryView(entry: entry)
@@ -146,8 +146,8 @@ class WidgetNetworkManager {
     func getHolidayData(completed: @escaping (Result<[Holiday], Error>) -> Void) {
         guard let url = URL(string: baseURL) else {
             completed(.failure(Error.self as! Error))
-                    return
-                }
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
             guard let data = data else {
@@ -172,7 +172,6 @@ class WidgetNetworkManager {
                         if Array(linksHref)[4] != "s" {
                             linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                         }
-
                     }
                     let holiday = Holiday(name: linksText, url: linksHref)
                     holidays.append(holiday)
@@ -186,7 +185,6 @@ class WidgetNetworkManager {
         }
         task.resume()
     }
-
 }
 
 struct Holiday: Identifiable {

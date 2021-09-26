@@ -29,7 +29,7 @@ struct NationalDayView: View {
                     } label: {
                         TIButton(title: "Add to Calendar")
                     }
-
+                    
                     Link(destination: URL(string: "\(holiday.url)")!, label: {
                         TIButton(title: "Learn More")
                     })
@@ -71,5 +71,4 @@ struct NationalDayView: View {
             }
         }
     }
-
 }

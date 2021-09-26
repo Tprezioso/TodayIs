@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchDatePicker: View {
     @State private var searchDate = Date()
     var viewModel: SearchViewModel
-
+    
     var body: some View {
         VStack {
             DatePicker(
@@ -27,6 +27,5 @@ struct SearchDatePicker: View {
                 TIButton(title: "Search")
             }
         }
-
     }
 }

@@ -17,7 +17,7 @@ final class NationalDayListViewModel: ObservableObject {
     @Published var isShowingDetail = false
     @Published var isShowingDetailView = false
     @Published var isHolidaysEmpty = false
-
+    
     func getHolidays() {
         isLoading = true
         NetworkManager.shared.getHolidayData { [self] result in
@@ -37,13 +37,13 @@ final class NationalDayListViewModel: ObservableObject {
                     switch error {
                     case .invalidData:
                         alertItem = AlertContext.invalidData
-                    
+                        
                     case .invalidURL:
                         alertItem = AlertContext.invalidURL
-                    
+                        
                     case .invalidResponse:
                         alertItem = AlertContext.invalidResponse
-                    
+                        
                     case .unableToComplete:
                         alertItem = AlertContext.unableToComplete
                     }
@@ -51,5 +51,4 @@ final class NationalDayListViewModel: ObservableObject {
             }
         }
     }
-
 }

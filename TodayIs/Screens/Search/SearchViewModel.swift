@@ -31,13 +31,13 @@ final class SearchViewModel: ObservableObject {
                     switch error {
                     case .invalidData:
                         alertItem = AlertContext.invalidData
-                    
+                        
                     case .invalidURL:
                         alertItem = AlertContext.invalidURL
-                    
+                        
                     case .invalidResponse:
                         alertItem = AlertContext.invalidResponse
-                    
+                        
                     case .unableToComplete:
                         alertItem = AlertContext.unableToComplete
                     }
@@ -45,5 +45,4 @@ final class SearchViewModel: ObservableObject {
             }
         }
     }
-
 }

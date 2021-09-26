@@ -105,5 +105,4 @@ final class NationalDayViewModel: ObservableObject {
             }
         }
     }
-    
 }

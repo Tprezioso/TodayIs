@@ -42,7 +42,7 @@ struct TodayWatchView: View {
             }
             .onAppear {
                 viewModel.getHolidays()
-        }
+            }
             if viewModel.isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .gray))

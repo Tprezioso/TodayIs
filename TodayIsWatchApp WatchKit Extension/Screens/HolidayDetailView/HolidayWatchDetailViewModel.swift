@@ -56,10 +56,10 @@ final class HolidayWatchDetailViewModel: ObservableObject {
 //    func shareButton(urlString: String) {
 //        let url = URL(string: urlString)
 //        let activityController = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
-//        
+//
 //        UIApplication.shared.windows.first?.rootViewController!.present(activityController, animated: true, completion: nil)
 //    }
-//    
+//
 //    func addToCalendar(holidayName: String) {
 //        switch EKEventStore.authorizationStatus(for: .event) {
 //        case .authorized:
@@ -73,7 +73,7 @@ final class HolidayWatchDetailViewModel: ObservableObject {
 //                if granted {
 //                    self!.insertEvent(store: self!.eventStore,holidayName: holidayName)
 //                    self!.alertItem = AlertContext.savedHoliday
-//                    
+//
 //                } else {
 //                    self!.alertItem = AlertContext.calendarAccessDenied
 //                }
@@ -82,10 +82,10 @@ final class HolidayWatchDetailViewModel: ObservableObject {
 //            print("Case default")
 //        }
 //    }
-//    
+//
 //    func insertEvent(store: EKEventStore, holidayName: String) {
 //        let calendars = store.calendars(for: .event)
-//        
+//
 //        for calendar in calendars {
 //            if calendar.title == "Calendar" {
 //                let startDate = Date()
@@ -105,5 +105,4 @@ final class HolidayWatchDetailViewModel: ObservableObject {
 //            }
 //        }
 //    }
-    
 }

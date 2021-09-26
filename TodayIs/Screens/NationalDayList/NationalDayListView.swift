@@ -41,15 +41,15 @@ struct NationalDayListView: View {
                 viewModel.getHolidays()
             }
             .onChange(of: scenePhase) { newPhase in
-                            if newPhase == .inactive {
-                                print("Inactive")
-                            } else if newPhase == .active {
-                                viewModel.getHolidays()
-                                print("Active")
-                            } else if newPhase == .background {
-                                print("Background")
-                            }
-                        }
+                if newPhase == .inactive {
+                    print("Inactive")
+                } else if newPhase == .active {
+                    viewModel.getHolidays()
+                    print("Active")
+                } else if newPhase == .background {
+                    print("Background")
+                }
+            }
             if viewModel.isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .gray))
@@ -59,10 +59,8 @@ struct NationalDayListView: View {
     }
 }
 
-
 struct NationalDayListView_Previews: PreviewProvider {
     static var previews: some View {
         NationalDayListView()
     }
 }
-

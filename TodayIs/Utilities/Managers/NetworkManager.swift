@@ -14,15 +14,15 @@ final class NetworkManager {
     private init() {}
     private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
     private let tomorrowURL = "https://nationaldaycalendar.com/tomorrow/"
-   
+    
     var holidays = [Holiday]()
     
     // MARK: - Get Todays Holidays
     func getHolidayData(completed: @escaping (Result<[Holiday], TIError>) -> Void) {
         guard let url = URL(string: baseURL) else {
-                    completed(.failure(TIError.invalidURL))
-                    return
-                }
+            completed(.failure(TIError.invalidURL))
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
             guard let data = data else {
@@ -47,7 +47,6 @@ final class NetworkManager {
                         if Array(linksHref)[4] != "s" {
                             linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                         }
-
                     }
                     let holiday = Holiday(name: linksText, url: linksHref)
                     holidays.append(holiday)
@@ -61,13 +60,13 @@ final class NetworkManager {
         }
         task.resume()
     }
-
+    
     // MARK: - Get Detail for Selected Holiday
     func getDetailHoliday(url: String, completed: @escaping (Result<DetailHoliday, TIError>) -> Void) {
         guard let url = URL(string: url) else {
-                    completed(.failure(TIError.invalidURL))
-                    return
-                }
+            completed(.failure(TIError.invalidURL))
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { (data, response, error) in
             guard let data = data else {
@@ -96,14 +95,12 @@ final class NetworkManager {
                 } else {
                     pText = p1 + p2
                 }
-
+                
                 if pText == "" {
                     pText = "No Description Available"
                 }
                 let pLink = try links.attr("src")
-                
                 let detailHoliday = DetailHoliday(imageURL: pLink, description: pText)
-
                 completed(.success(detailHoliday))
             } catch Exception.Error(let type, let message) {
                 print(type, message)
@@ -113,13 +110,13 @@ final class NetworkManager {
         }
         task.resume()
     }
-
+    
     // MARK: - Get Tomorrows Holidays
     func getTomorrowsHolidayData(completed: @escaping (Result<[Holiday], TIError>) -> Void) {
         guard let url = URL(string: tomorrowURL) else {
-                    completed(.failure(TIError.invalidURL))
-                    return
-                }
+            completed(.failure(TIError.invalidURL))
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
             guard let data = data else {
@@ -137,7 +134,7 @@ final class NetworkManager {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "EEEE, MMMM dd"
                 let currentDateString: String = dateFormatter.string(from: date)
-
+                
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let price: Element = try doc.getElementsByClass("ndc-text-tomorrows-celebrations").first()! //eventon_events_list
                 let links: [Element] = try price.select("h3").array() //p
@@ -151,16 +148,14 @@ final class NetworkManager {
                         if linksText.prefix(3) == currentDateString.prefix(3) {
                             break
                         }
-                            if linksHref != "" {
-                                if Array(linksHref)[4] != "s" {
-                                    linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-                                }
-
+                        if linksHref != "" {
+                            if Array(linksHref)[4] != "s" {
+                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                             }
-                            let holiday = Holiday(name: linksText, url: linksHref)
-                            holidays.append(holiday)
-
-                        
+                            
+                        }
+                        let holiday = Holiday(name: linksText, url: linksHref)
+                        holidays.append(holiday)
                     }
                     completed(.success(holidays))
                 } else {
@@ -171,16 +166,13 @@ final class NetworkManager {
                         if linksText.prefix(3) == currentDateString.prefix(3) {
                             break
                         }
-                            if linksHref != "" {
-                                if Array(linksHref)[4] != "s" {
-                                    linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-                                }
-
+                        if linksHref != "" {
+                            if Array(linksHref)[4] != "s" {
+                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                             }
-                            let holiday = Holiday(name: linksText, url: linksHref)
-                            holidays.append(holiday)
-
-                        
+                        }
+                        let holiday = Holiday(name: linksText, url: linksHref)
+                        holidays.append(holiday)
                     }
                     completed(.success(holidays))
                 }
@@ -196,13 +188,12 @@ final class NetworkManager {
     // MARK: - Search for Holidays on a Specific Date
     
     func searchForHoliday(searchTerm: String, completed: @escaping (Result<[Holiday], TIError>) -> Void) {
-        print("\(searchTerm)")
         let searchURL = "https://nationaldaycalendar.com/?s=\(searchTerm)&et_pb_searchform_submit=et_search_proccess&et_pb_include_pages=yes"
-       print("Search result: \(searchURL)")
+        print("Search result: \(searchURL)")
         guard let url = URL(string: searchURL) else {
-                    completed(.failure(TIError.invalidURL))
-                    return
-                }
+            completed(.failure(TIError.invalidURL))
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
             guard let data = data else {
@@ -227,7 +218,6 @@ final class NetworkManager {
                         if Array(linksHref)[4] != "s" {
                             linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                         }
-
                     }
                     let holiday = Holiday(name: linksText, url: linksHref)
                     holidays.append(holiday)
@@ -240,9 +230,7 @@ final class NetworkManager {
             }
         }
         task.resume()
-
     }
-
     
     // MARK: - Download Image
     func downloadImage(fromURLString urlString: String, completed: @escaping (UIImage?) -> Void) {
@@ -270,5 +258,4 @@ final class NetworkManager {
         }
         task.resume()
     }
-    
 }

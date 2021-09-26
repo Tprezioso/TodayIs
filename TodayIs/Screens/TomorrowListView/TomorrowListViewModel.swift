@@ -17,7 +17,7 @@ final class TomorrowListViewModel: ObservableObject {
     @Published var isShowingDetail = false
     @Published var isShowingDetailView = false
     @Published var isHolidaysEmpty = false
-
+    
     func getTomorrowsHolidays() {
         isLoading = true
         NetworkManager.shared.getTomorrowsHolidayData() { [self] result in
@@ -37,13 +37,13 @@ final class TomorrowListViewModel: ObservableObject {
                     switch error {
                     case .invalidData:
                         alertItem = AlertContext.invalidData
-                    
+                        
                     case .invalidURL:
                         alertItem = AlertContext.invalidURL
-                    
+                        
                     case .invalidResponse:
                         alertItem = AlertContext.invalidResponse
-                    
+                        
                     case .unableToComplete:
                         alertItem = AlertContext.unableToComplete
                     }
@@ -51,5 +51,4 @@ final class TomorrowListViewModel: ObservableObject {
             }
         }
     }
-
 }

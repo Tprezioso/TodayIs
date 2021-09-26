@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DeveloperView: View {
     var body: some View {
-        VStack() {
+        VStack {
             Image("Me")
                 .resizable()
                 .frame(width: 200, height: 200)
@@ -40,27 +40,17 @@ struct DeveloperView_Previews: PreviewProvider {
 
 struct LinkButtons: View {
     var url: String
-//    var image: String
     var title: String
     
     var body: some View {
         Link(destination: URL(string: url)!) {
-                HStack() {
-//                    Image(image)
-//                        .resizable()
-//                        .scaledToFit()
-//                        .clipShape(Circle())
-//                        .frame(width: 45, height: 45)
-                    Text(title)
-                        .fontWeight(.semibold)
-
-                }.font(.title3)
-                .frame(width: 260, height: 55)
-                .foregroundColor(.white)
-                .background(Color.red)
-                .cornerRadius(10)
-                .padding(5)
-                
-        }
+            Text(title)
+                .fontWeight(.semibold)
+        }.font(.title3)
+            .frame(width: 260, height: 55)
+            .foregroundColor(.white)
+            .background(Color.red)
+            .cornerRadius(10)
+            .padding(5)
     }
 }

@@ -39,7 +39,7 @@ struct TomorrowWatchView: View {
             .navigationBarTitle("Tomorrow Is....")
             .onAppear {
                 viewModel.getTomorrowsHolidays()
-        }
+            }
             if viewModel.isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .gray))

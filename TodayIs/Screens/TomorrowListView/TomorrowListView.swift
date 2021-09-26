@@ -39,15 +39,15 @@ struct TomorrowListView: View {
                     viewModel.getTomorrowsHolidays()
                 }
                 .onChange(of: scenePhase) { newPhase in
-                                if newPhase == .inactive {
-                                    print("Inactive")
-                                } else if newPhase == .active {
-                                    viewModel.getTomorrowsHolidays()
-                                    print("Active")
-                                } else if newPhase == .background {
-                                    print("Background")
-                                }
-                            }
+                    if newPhase == .inactive {
+                        print("Inactive")
+                    } else if newPhase == .active {
+                        viewModel.getTomorrowsHolidays()
+                        print("Active")
+                    } else if newPhase == .background {
+                        print("Background")
+                    }
+                }
         }
         if viewModel.isLoading {
             ProgressView()

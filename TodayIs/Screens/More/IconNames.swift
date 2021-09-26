@@ -8,24 +8,14 @@
 import SwiftUI
 
 class IconNames: ObservableObject {
-    
     @Published var iconNames: [String?] = [nil]
     @Published var currentIndex = 0
     
     init() {
         getAlternateIconNames()
-        
         if let currentIcon = UIApplication.shared.alternateIconName{
             self.currentIndex = iconNames.firstIndex(of: currentIcon) ?? 0
         }
-    }
-    
-    func getPath() -> String {
-        let plistFileName = "fileName.plist"
-        let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
-        let documentPath = paths[0] as NSString
-        let plistPath = documentPath.appendingPathComponent(plistFileName)
-        return plistPath
     }
     
     func getAlternateIconNames(){
@@ -44,4 +34,3 @@ class IconNames: ObservableObject {
         }
     }
 }
-

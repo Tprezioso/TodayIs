@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Combine
 
 struct TabBarWatchView: View {
     @State var selection = 0

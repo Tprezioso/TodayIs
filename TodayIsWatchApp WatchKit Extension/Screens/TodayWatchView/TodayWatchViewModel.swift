@@ -15,7 +15,7 @@ final class TodayWatchViewModel: ObservableObject {
     @Published var isShowingDetail = false
     @Published var isShowingDetailView = false
     @Published var isHolidaysEmpty = false
-
+    
     func getHolidays() {
         isLoading = true
         NetworkManager.shared.getHolidayData { [self] result in
@@ -35,13 +35,13 @@ final class TodayWatchViewModel: ObservableObject {
                     switch error {
                     case .invalidData:
                         alertItem = AlertContext.invalidData
-                    
+                        
                     case .invalidURL:
                         alertItem = AlertContext.invalidURL
-                    
+                        
                     case .invalidResponse:
                         alertItem = AlertContext.invalidResponse
-                    
+                        
                     case .unableToComplete:
                         alertItem = AlertContext.unableToComplete
                     }
@@ -49,5 +49,4 @@ final class TodayWatchViewModel: ObservableObject {
             }
         }
     }
-
 }

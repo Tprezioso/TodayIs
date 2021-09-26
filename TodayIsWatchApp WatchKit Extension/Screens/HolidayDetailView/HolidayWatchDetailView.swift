@@ -13,8 +13,7 @@ struct HolidayWatchDetailView: View {
     
     var body: some View {
         ZStack {
-            VStack(spacing: 5) {
-                VStack {
+//            VStack(spacing: 5) {
                     ScrollView {
                         RemoteImage(image: viewModel.image)
                             .scaledToFit()
@@ -22,7 +21,6 @@ struct HolidayWatchDetailView: View {
                         Text(viewModel.detailHoliday.description)
                             .lineLimit(nil)
                     }
-                }
 //                VStack(spacing: 20) {
 //                    Button {
 //                        viewModel.addToCalendar(holidayName: holiday.name)
@@ -52,7 +50,6 @@ struct HolidayWatchDetailView: View {
                 
             }
             .navigationTitle(holiday.name)
-            .padding()
             
             if viewModel.isLoading {
                 ProgressView()
@@ -60,7 +57,9 @@ struct HolidayWatchDetailView: View {
                     .scaleEffect(2, anchor: .center)
             }
         }
-        }}
+//        }
+        
+    }
 }
 
 struct HolidayWatchDetailView_Previews: PreviewProvider {

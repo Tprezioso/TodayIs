@@ -11,11 +11,8 @@ import SwiftUI
 struct TodayIsApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
-            NavigationView {
                 TabBarWatchView()
-            }
         }
-
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")
     }
 }

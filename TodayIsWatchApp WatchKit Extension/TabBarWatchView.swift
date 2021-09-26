@@ -6,17 +6,20 @@
 //
 
 import SwiftUI
+import Combine
 
 struct TabBarWatchView: View {
     @State var selection = 0
+    
     var body: some View {
-        TabView(selection: $selection) {
+        NavigationView {
+            TabView(selection: $selection) {
                 TodayWatchView()
-                .tag(0)
+                    .tag(0)
                 TomorrowWatchView()
-                .tag(1)
+                    .tag(1)
+            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
         }
-        .navigationTitle("Today Is....")
     }
 }
 

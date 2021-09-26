@@ -307,6 +307,24 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		5544084926FF704500B9DB4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				556C966326FE59E200978D09 /* EmptyState.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5544084A26FF708500B9DB4E /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				556C966226FE599B00978D09 /* TodayWatchView */,
+				556C967026FE614A00978D09 /* TomorrowWatchView */,
+				556C966B26FE5B2C00978D09 /* HolidayDetailView */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		556C965D26FBAE2A00978D09 /* Alert */ = {
 			isa = PBXGroup;
 			children = (
@@ -320,6 +338,7 @@
 			isa = PBXGroup;
 			children = (
 				556C965726FBAD8E00978D09 /* Holiday.swift */,
+				556C966926FE5B1F00978D09 /* RemoteImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -458,17 +477,14 @@
 			children = (
 				55A32ED626EBE5B800E8B853 /* TodayIsApp.swift */,
 				55A32EF226EBE70800E8B853 /* TabBarWatchView.swift */,
-				556C966326FE59E200978D09 /* EmptyState.swift */,
-				556C966926FE5B1F00978D09 /* RemoteImage.swift */,
-				556C966226FE599B00978D09 /* TodayWatchView */,
-				556C966B26FE5B2C00978D09 /* HolidayDetailView */,
-				556C967026FE614A00978D09 /* TomorrowWatchView */,
-				55A32EDC26EBE5B800E8B853 /* NotificationView.swift */,
-				55A32EDA26EBE5B800E8B853 /* NotificationController.swift */,
-				55A32EDE26EBE5B800E8B853 /* ComplicationController.swift */,
+				5544084A26FF708500B9DB4E /* Screens */,
+				5544084926FF704500B9DB4E /* View */,
 				556C965F26FBAE8200978D09 /* Manager */,
 				556C965E26FBAE3D00978D09 /* Model */,
 				556C965D26FBAE2A00978D09 /* Alert */,
+				55A32EDC26EBE5B800E8B853 /* NotificationView.swift */,
+				55A32EDA26EBE5B800E8B853 /* NotificationController.swift */,
+				55A32EDE26EBE5B800E8B853 /* ComplicationController.swift */,
 				55A32EE026EBE5B900E8B853 /* Assets.xcassets */,
 				55A32EE526EBE5B900E8B853 /* Info.plist */,
 				55A32EE626EBE5B900E8B853 /* PushNotificationPayload.apns */,
@@ -1159,7 +1175,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -1183,7 +1199,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};
@@ -1203,7 +1219,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Debug;
 		};
@@ -1223,7 +1239,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
 			};
 			name = Release;
 		};

@@ -18,8 +18,8 @@ struct TodayWatchView: View {
                     List(viewModel.holidays) { holiday in
                         if holiday.url == "" {
                             Text("\(holiday.name)")
-                                .font(.title)
-                                .fontWeight(.semibold)
+                                .font(.headline)
+                                .bold()
                         } else {
                             NavigationLink(holiday.name, destination: HolidayWatchDetailView(holiday: holiday))
                         }

@@ -6,6 +6,7 @@
 //
 
 import ClockKit
+import SwiftUI
 
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
@@ -42,50 +43,13 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     
     func getCurrentTimelineEntry(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTimelineEntry?) -> Void) {
         // Call the handler with the current timeline entry
-        switch complication.family {
-        case .circularSmall:
-            guard let image = UIImage(named: "Complication/Circular") else { handler(nil); return}
-            let template = CLKComplicationTemplateCircularSmallRingImage(imageProvider: CLKImageProvider(onePieceImage: image), fillFraction: 100, ringStyle: .open)
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(timelineEntry)
-        case .modularSmall:
-            guard let image = UIImage(named: "Complication/Modular") else { handler(nil); return}
-            let template = CLKComplicationTemplateModularSmallRingImage(imageProvider: CLKImageProvider(onePieceImage: image), fillFraction: 100, ringStyle: .open)
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(timelineEntry)
-        case .modularLarge:
-            break
-        case .utilitarianSmall:
-            guard let image = UIImage(named: "Complication/Modular") else { handler(nil); return}
-            let template = CLKComplicationTemplateModularSmallRingImage(imageProvider: CLKImageProvider(onePieceImage: image), fillFraction: 100, ringStyle: .open)
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(timelineEntry)
-        case .utilitarianSmallFlat:
-            break
-        case .utilitarianLarge:
-            break
-        case .extraLarge:
-            break
-        case .graphicCorner:
-            guard let image = UIImage(named: "GraphicCorner") else { handler(nil); return}
-            let template = CLKComplicationTemplateModularSmallRingImage(imageProvider: CLKImageProvider(onePieceImage: image), fillFraction: 100, ringStyle: .open)
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(timelineEntry)
-        case .graphicBezel:
-            break
-        case .graphicCircular:
-            guard let image = UIImage(named: "Complication/GraphicCircular") else { handler(nil); return}
-            let template = CLKComplicationTemplateModularSmallRingImage(imageProvider: CLKImageProvider(onePieceImage: image), fillFraction: 100, ringStyle: .open)
-            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
-            handler(timelineEntry)
-        case .graphicRectangular:
-            break
-        case .graphicExtraLarge:
-            break
-        @unknown default:
-            break
-        }
         
+        if let template = getComplicationTemplate(for: complication, using: Date()) {
+                    let entry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+                    handler(entry)
+                } else {
+                    handler(nil)
+                }
     }
     
     func getTimelineEntries(for complication: CLKComplication, after date: Date, limit: Int, withHandler handler: @escaping ([CLKComplicationTimelineEntry]?) -> Void) {
@@ -99,4 +63,61 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
         // This method will be called once per supported complication, and the results will be cached
         handler(nil)
     }
+    
+    func getComplicationTemplate(for complication: CLKComplication, using date: Date) -> CLKComplicationTemplate? {
+
+            switch complication.family {
+            case .graphicCorner:
+                return CLKComplicationTemplateGraphicCornerCircularImage(imageProvider: CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Corner")!))
+            case .graphicCircular:
+                return CLKComplicationTemplateGraphicCircularImage(imageProvider: CLKFullColorImageProvider(fullColorImage: UIImage(named: "Complication/Graphic Circular")!))
+            case .circularSmall:
+                return CLKComplicationTemplateCircularSmallSimpleText(textProvider: CLKTextProvider(format: "TI"))
+            case .utilitarianSmall:
+                return CLKComplicationTemplateUtilitarianSmallFlat(textProvider: CLKTextProvider(format: "Today Is...."))
+            case .modularSmall:
+                return CLKComplicationTemplateModularSmallSimpleImage(imageProvider: CLKImageProvider(onePieceImage: UIImage(named: "Complication/Modular")!))
+            default:
+                return nil
+            }
+        }
 }
+
+//if complication.family == .circularSmall {
+//            let template = CLKComplicationTemplateCircularSmallRingImage()
+//            guard let image = UIImage(named: "Complication/Circular") else { handler(nil); return}
+//            template.imageProvider = CLKImageProvider(onePieceImage: image)
+//            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+//            handler(timelineEntry)
+//
+//        } else if complication.family == .utilitarianSmall {
+//            let template = CLKComplicationTemplateUtilitarianSmallRingImage()
+//            guard let image = UIImage(named: "Complication/Utilitarian") else { handler(nil); return}
+//            template.imageProvider = CLKImageProvider(onePieceImage: image)
+//            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+//            handler(timelineEntry)
+//
+//        } else if complication.family == .modularSmall {
+//            let template = CLKComplicationTemplateModularSmallRingImage()
+//            guard let image = UIImage(named: "Complication/Modular") else { handler(nil); return}
+//            template.imageProvider = CLKImageProvider(onePieceImage: image)
+//            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+//            handler(timelineEntry)
+//
+//        } else if complication.family == .graphicCircular {
+//            let template = CLKComplicationTemplateGraphicCircularImage()
+//            guard let image = UIImage(named: "Complication/GraphicCircular") else { handler(nil); return}
+//            template.imageProvider = CLKFullColorImageProvider(fullColorImage: image)
+//            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+//            handler(timelineEntry)
+//
+//        } else if complication.family == .graphicCorner {
+//            let template = CLKComplicationTemplateGraphicCornerCircularImage()
+//            guard let image = UIImage(named: "GraphicCorner") else { handler(nil); return}
+//            template.imageProvider = CLKFullColorImageProvider(fullColorImage: image)
+//            let timelineEntry = CLKComplicationTimelineEntry(date: Date(), complicationTemplate: template)
+//            handler(timelineEntry)
+//
+//        } else {
+//            handler(nil)
+//        }

@@ -46,11 +46,12 @@ struct LinkButtons: View {
         Link(destination: URL(string: url)!) {
             Text(title)
                 .fontWeight(.semibold)
-        }.font(.title3)
-            .frame(width: 260, height: 55)
-            .foregroundColor(.white)
-            .background(Color.red)
-            .cornerRadius(10)
-            .padding(5)
+                .font(.title3)
+                    .frame(width: 260, height: 55)
+                    .foregroundColor(.white)
+                    .background(Color.red)
+                    .cornerRadius(10)
+                    .padding(5)
+        }
     }
 }

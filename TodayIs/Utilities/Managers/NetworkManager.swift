@@ -98,20 +98,23 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let links: Element = try doc.select("img")[2] //h3 a img
-                let p: Elements = try doc.select("p")
-                let p1 = try p[0].text()
-                let p2 = try p[1].text()
-                let p3 = try p[2].text()
-                let p4 = try p[3].text()
-                var pText = ""
-                if p1 == "" {
-                    pText = p2 + p3
-                } else if p2 == "" {
-                    pText = p3 + p4
-                } else {
-                    pText = p1 + p2
-                }
+//                let links: Element = try doc.select("img")[4] //h3 a img
+                let p: Element =  try doc.getElementsByClass("single-post").first()!
+//                print(p)
+                let links: Element = try p.select("img").first()!
+                let plinks: String = try p.select("p").text()
+//                let p1 = try p[0].text()
+//                let p2 = try p[1].text()
+//                let p3 = try p[2].text()
+//                let p4 = try p[3].text()
+                var pText = plinks
+//                if p1 == "" {
+//                    pText = p2 + p3
+//                } else if p2 == "" {
+//                    pText = p3 + p4
+//                } else {
+//                    pText = p1 + p2
+//                }
                 
                 if pText == "" {
                     pText = "No Description Available"
@@ -264,7 +267,8 @@ final class NetworkManager {
         }
         
         guard let str = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else { return completed(nil) }
-        guard let urlImage = URL(string: str) else {
+
+        guard let urlImage = URL(string: str.removingPercentEncoding!) else {
             completed(nil)
             return
         }

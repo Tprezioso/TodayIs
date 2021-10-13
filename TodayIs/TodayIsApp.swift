@@ -13,7 +13,7 @@ struct TodayIsApp: App {
    
     var body: some Scene {
         WindowGroup {
-            TabBarView()
+            NavigationStyleView()
                 .environmentObject(IconNames())
         }
     }

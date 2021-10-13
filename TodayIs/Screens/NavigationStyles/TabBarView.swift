@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TabBarView: View {
     var body: some View {
-        TabView {
+        TabView {   
             NavigationView {
                 NationalDayListView()
                     .navigationBarTitle("Today is...", displayMode: .large)

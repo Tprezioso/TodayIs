@@ -27,7 +27,8 @@ struct TodayWatchView: View {
                 } else {
                     EmptyState(message: "There was an issue loading Today's Holidays!\n Try again later")
                 }
-            }.onChange(of: scenePhase) { newPhase in
+            }
+            .onChange(of: scenePhase) { newPhase in
                 if newPhase == .inactive {
                     print("Inactive")
                 } else if newPhase == .active {

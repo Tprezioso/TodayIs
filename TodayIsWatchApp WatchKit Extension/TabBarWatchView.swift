@@ -11,14 +11,16 @@ struct TabBarWatchView: View {
     @State var selection = 0
     
     var body: some View {
-        NavigationView {
-            TabView(selection: $selection) {
+        TabView(selection: $selection) {
+            NavigationView {
                 TodayWatchView()
                     .tag(0)
+            }
+            NavigationView {
                 TomorrowWatchView()
                     .tag(1)
-            }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
-        }
+            }
+        }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))
     }
 }
 

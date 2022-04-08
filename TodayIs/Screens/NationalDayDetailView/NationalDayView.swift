@@ -15,23 +15,23 @@ struct NationalDayView: View {
         ZStack {
             VStack(spacing: 5) {
                 VStack {
-                    RemoteImage(image: viewModel.image)
-                        .scaledToFit()
                     ScrollView {
+                        RemoteImage(image: viewModel.image)
+                            .scaledToFit()
                         Text(viewModel.detailHoliday.description)
                             .lineLimit(nil)
+                        VStack(spacing: 20) {
+                            Button {
+                                viewModel.addToCalendar(holidayName: holiday.name)
+                            } label: {
+                                TIButton(title: "Add to Calendar")
+                            }
+                            
+                            Link(destination: URL(string: "\(holiday.url)")!, label: {
+                                TIButton(title: "Learn More")
+                            })
+                        }
                     }
-                }
-                VStack(spacing: 20) {
-                    Button {
-                        viewModel.addToCalendar(holidayName: holiday.name)
-                    } label: {
-                        TIButton(title: "Add to Calendar")
-                    }
-                    
-                    Link(destination: URL(string: "\(holiday.url)")!, label: {
-                        TIButton(title: "Learn More")
-                    })
                 }
                 Spacer()
             } .toolbar {

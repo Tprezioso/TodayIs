@@ -33,9 +33,9 @@ struct SidebarNavView: View {
             NavigationLink(destination: TomorrowListView()) {
                 Label("Tomorrow", systemImage: "calendar.badge.clock")
             }
-            NavigationLink(destination: SearchView()) {
-                Label("Search", systemImage: "magnifyingglass")
-            }
+//            NavigationLink(destination: SearchView()) {
+//                Label("Search", systemImage: "magnifyingglass")
+//            }
             NavigationLink(destination: MoreView()) {
                 Label("More", systemImage: "ellipsis")
             }

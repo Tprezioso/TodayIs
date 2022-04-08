@@ -32,16 +32,16 @@ struct TabBarView: View {
             }
             .tag(2)
             
-            NavigationView {
-                SearchView()
-                    .listStyle(PlainListStyle())
-                    .navigationBarTitle("Search")
-                
-            }
-            .tabItem {
-                Label("Search", systemImage: "magnifyingglass")
-            }
-            .tag(3)
+//            NavigationView {
+//                SearchView()
+//                    .listStyle(PlainListStyle())
+//                    .navigationBarTitle("Search")
+//                
+//            }
+//            .tabItem {
+//                Label("Search", systemImage: "magnifyingglass")
+//            }
+//            .tag(3)
             
             NavigationView {
                 MoreView()

@@ -51,7 +51,7 @@ struct TabBarView: View {
             .tabItem {
                 Label("More", systemImage: "ellipsis")
             }
-            .tag(4)
+            .tag(3)
         }
         .accentColor(.red)
     }

@@ -63,7 +63,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCalendarsUsageDescription</key>
-	<string>This app would like access to your Calendar</string>
+	<string>This app would like access to your Calendar so you can save Nstional Holidays to your Calendar</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>ConfigurationIntent</string>

@@ -20,8 +20,8 @@ final class NationalDayListViewModel: ObservableObject {
     
     func getHolidays() {
         isLoading = true
-        NetworkManager.shared.getHolidayData { [self] result in
-            DispatchQueue.main.async {
+        NetworkManager.shared.getHolidayData { result in
+            DispatchQueue.main.async { [self] in
                 isLoading = false
                 switch result {
                 case .success(let holidays):

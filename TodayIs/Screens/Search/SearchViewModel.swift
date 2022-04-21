@@ -19,8 +19,8 @@ final class SearchViewModel: ObservableObject {
     
     func getHolidays(searchDate: String) {
         isLoading = true
-        NetworkManager.shared.searchForHoliday(searchTerm: searchDate.condenseWhitespace()) { [self] result in
-            DispatchQueue.main.async {
+        NetworkManager.shared.searchForHoliday(searchTerm: searchDate.condenseWhitespace()) { result in
+            DispatchQueue.main.async { [self] in
                 isLoading = false
                 switch result {
                 case .success(let holidays):

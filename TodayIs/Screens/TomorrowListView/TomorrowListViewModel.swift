@@ -20,8 +20,8 @@ final class TomorrowListViewModel: ObservableObject {
     
     func getTomorrowsHolidays() {
         isLoading = true
-        NetworkManager.shared.getTomorrowsHolidayData() { [self] result in
-            DispatchQueue.main.async {
+        NetworkManager.shared.getTomorrowsHolidayData() { result in
+            DispatchQueue.main.async { [self] in
                 isLoading = false
                 switch result {
                 case .success(let holidays):

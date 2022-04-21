@@ -18,8 +18,8 @@ final class NationalDayViewModel: ObservableObject {
     
     func getHoliday(url: String) {
         isLoading = true
-        NetworkManager.shared.getDetailHoliday(url: url) { [self] result in
-            DispatchQueue.main.async {
+        NetworkManager.shared.getDetailHoliday(url: url) { result in
+            DispatchQueue.main.async { [self] in
                 isLoading = false
                 switch result {
                 case .success(let detailHoliday):
@@ -56,6 +56,10 @@ final class NationalDayViewModel: ObservableObject {
     func shareButton(urlString: String) {
         let url = URL(string: urlString)
         let activityController = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            activityController.popoverPresentationController?.sourceView = activityController.view
+            activityController.popoverPresentationController?.sourceRect = .zero
+        }
         
         UIApplication.shared.windows.first?.rootViewController!.present(activityController, animated: true, completion: nil)
     }

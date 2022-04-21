@@ -14,8 +14,8 @@ struct IconView: View {
         Form {
             Section{
                 Picker(selection: $iconSettings.currentIndex, label: Text("Icons")) {
-                    ForEach(0..<iconSettings.iconNames.count) {
-                        Text(self.iconSettings.iconNames[$0] ?? "Default")
+                    ForEach(iconSettings.iconNames, id:\.self) { icon in
+                        Text(icon ?? "Default")
                     }
                 }.onReceive([self.iconSettings.currentIndex].publisher.first()) { (value) in
                     let index = self.iconSettings.iconNames.firstIndex(of: UIApplication.shared.alternateIconName) ?? 0

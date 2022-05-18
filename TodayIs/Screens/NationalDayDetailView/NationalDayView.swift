@@ -16,6 +16,14 @@ struct NationalDayView: View {
             VStack(spacing: 5) {
                 VStack {
                     ScrollView {
+//                        AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL)) { image in
+//                            image
+//
+//                        } placeholder: {
+//                            Image("PlaceholderImage")
+//                                .scaledToFit()
+//                        }.scaledToFit()
+
                         RemoteImage(image: viewModel.image)
                             .scaledToFit()
                         Text(viewModel.detailHoliday.description)

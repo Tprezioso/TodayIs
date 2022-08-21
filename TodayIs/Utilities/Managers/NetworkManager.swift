@@ -99,14 +99,17 @@ final class NetworkManager {
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let p: Element =  try doc.getElementsByClass("single-post").first()!
-                let links: Element = try p.select("img")[1]
+                var pLink = ""
+                if let links: Element = try p.select("img").first() {
+                    pLink = try links.attr("src")
+                }
                 let plinks: String = try p.select("p").text()
                 var pText = plinks
                 
                 if pText == "" {
                     pText = "No Description Available"
                 }
-                let pLink = try links.attr("src")
+                
                 let detailHoliday = DetailHoliday(imageURL: pLink, description: pText)
                 completed(.success(detailHoliday))
             } catch Exception.Error(let type, let message) {

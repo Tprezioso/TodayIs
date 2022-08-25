@@ -100,9 +100,14 @@ final class NetworkManager {
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let p: Element =  try doc.getElementsByClass("single-post").first()!
                 var pLink = ""
-                if let links: Element = try p.select("img").first() {
-                    pLink = try links.attr("src")
+                let links: Elements = try p.select("img")
+                for link in links {
+                    if try link.attr("src").prefix(5) == "https" {
+                        pLink = try link.attr("src")
+                        break
+                    }
                 }
+                
                 let plinks: String = try p.select("p").text()
                 var pText = plinks
                 

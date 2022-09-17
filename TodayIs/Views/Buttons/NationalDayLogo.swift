@@ -9,12 +9,12 @@ import SwiftUI
 
 struct NationalDayLogo: View {
     var body: some View {
-        VStack {
+        HStack {
             Text("Powered by:")
                 .foregroundColor(.primary)
             Image("NationalDayLogo")
                 .resizable()
-                .frame(width: 75, height: 50)
+                .frame(width: 50, height: 35)
                 .scaledToFit()
         }
     }

@@ -13,18 +13,16 @@ struct TabBarView: View {
             NavigationView {
                 NationalDayListView()
                     .navigationBarTitle("Today is...", displayMode: .large)
-                    .listStyle(PlainListStyle())
+                    .listStyle(.plain)
             }
             .tabItem {
                 Label("Today", systemImage: "calendar")
             }
-            
             .tag(1)
-            
             
             NavigationView {
                 TomorrowListView()
-                    .listStyle(PlainListStyle())
+                    .listStyle(.plain)
                     .navigationBarTitle("Tomorrow is...")
             }
             .tabItem {
@@ -46,7 +44,6 @@ struct TabBarView: View {
             NavigationView {
                 MoreView()
                     .navigationTitle("More")
-                
             }
             .tabItem {
                 Label("More", systemImage: "ellipsis")

@@ -61,7 +61,10 @@ final class NationalDayViewModel: ObservableObject {
             activityController.popoverPresentationController?.sourceRect = .zero
         }
         
-        UIApplication.shared.windows.first?.rootViewController!.present(activityController, animated: true, completion: nil)
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        window?.rootViewController!.present(activityController, animated: true, completion: nil)
     }
     
     func addToCalendar(holidayName: String) {

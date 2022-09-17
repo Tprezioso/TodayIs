@@ -15,19 +15,9 @@ struct TomorrowListView: View {
         ZStack {
             VStack {
                 if !viewModel.isHolidaysEmpty {
-                    List(viewModel.holidays) { holiday in
-                        if holiday.url == "" {
-                            Text("\(holiday.name)")
-                                .font(.title)
-                                .fontWeight(.semibold)
-                        } else {
-                            NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
-                        }
-                    }.pullToRefresh(isShowing: $viewModel.isShowing) {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                            viewModel.getTomorrowsHolidays()
-                            self.viewModel.isShowing = false
-                        }
+                    HolidayListView(holidays: viewModel.holidays)
+                        .refreshable {
+                        viewModel.getTomorrowsHolidays()
                     }
                 } else {
                     EmptyState(message: "There was an issue loading Tomorrow's Holidays!\n Try again later")

@@ -9,6 +9,13 @@ import SwiftUI
 
 struct NationalDayView: View {
     var holiday: Holiday
+    var navigationTitle: String {
+        var title = ""
+        if let range = holiday.name.range(of: "All Day") {
+            title = String(holiday.name[range.upperBound..<holiday.name.endIndex])
+        }
+        return title
+    }
     @StateObject var viewModel = NationalDayViewModel()
     
     var body: some View {
@@ -16,16 +23,15 @@ struct NationalDayView: View {
             VStack(spacing: 5) {
                 VStack {
                     ScrollView {
-//                        AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL)) { image in
-//                            image
-//
-//                        } placeholder: {
-//                            Image("PlaceholderImage")
-//                                .scaledToFit()
-//                        }.scaledToFit()
-
-                        RemoteImage(image: viewModel.image)
-                            .scaledToFit()
+                        AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL)) { image in
+                            image
+                                .resizable()
+                        } placeholder: {
+                            Image("PlaceholderImage")
+                                .resizable()
+                        }
+                        .scaledToFit()
+                        .padding(.bottom)
                         Text(viewModel.detailHoliday.description)
                             .lineLimit(nil)
                         VStack(spacing: 20) {
@@ -63,7 +69,7 @@ struct NationalDayView: View {
                 viewModel.getHoliday(url: holiday.url)
                 
             }
-            .navigationTitle(holiday.name)
+            .navigationTitle(navigationTitle)
             .navigationBarTitleDisplayMode(.inline)
             .padding()
             

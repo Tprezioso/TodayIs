@@ -19,25 +19,25 @@ final class HolidayWatchDetailViewModel: ObservableObject {
     func getHoliday(url: String) {
         isLoading = true
         NetworkManager.shared.getDetailHoliday(url: url) { [self] result in
-            DispatchQueue.main.async {
-                isLoading = false
+            DispatchQueue.main.async { [weak self] in
+                self?.isLoading = false
                 switch result {
                 case .success(let detailHoliday):
-                    self.detailHoliday = detailHoliday
-                    load(fromURLString: detailHoliday.imageURL)
+                    self?.detailHoliday = detailHoliday
+                    self?.load(fromURLString: detailHoliday.imageURL)
                 case .failure(let error):
                     switch error {
                     case .invalidData:
-                        alertItem = AlertContext.invalidData
+                        self?.alertItem = AlertContext.invalidData
                         
                     case .invalidURL:
-                        alertItem = AlertContext.invalidURL
+                        self?.alertItem = AlertContext.invalidURL
                         
                     case .invalidResponse:
-                        alertItem = AlertContext.invalidResponse
+                        self?.alertItem = AlertContext.invalidResponse
                         
                     case .unableToComplete:
-                        alertItem = AlertContext.unableToComplete
+                        self?.alertItem = AlertContext.unableToComplete
                     }
                 }
             }
@@ -53,12 +53,6 @@ final class HolidayWatchDetailViewModel: ObservableObject {
         }
     }
     
-//    func shareButton(urlString: String) {
-//        let url = URL(string: urlString)
-//        let activityController = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
-//
-//        UIApplication.shared.windows.first?.rootViewController!.present(activityController, animated: true, completion: nil)
-//    }
 //
 //    func addToCalendar(holidayName: String) {
 //        switch EKEventStore.authorizationStatus(for: .event) {

@@ -9,21 +9,30 @@ import SwiftUI
 
 struct HolidayWatchDetailView: View {
     var holiday: Holiday
+    var navigationTitle: String {
+        var title = ""
+        if let range = holiday.name.range(of: "All Day") {
+            title = String(holiday.name[range.upperBound..<holiday.name.endIndex])
+        }
+        return title
+    }
     @StateObject var viewModel = HolidayWatchDetailViewModel()
     
     var body: some View {
         VStack {
-            Text(holiday.name)
-                .lineLimit(3)
-                    
             ScrollView {
                 if #available(watchOSApplicationExtension 9.0, *) {
                     ShareLink(item: holiday.url)
                 } else {
                     // Fallback on earlier versions
                 }
-                RemoteImage(image: viewModel.image)
-                    .scaledToFit()
+                AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL)) { image in
+                    image
+                        .resizable()
+                } placeholder: {
+                    Image("PlaceholderImage")
+                        .resizable()
+                }.scaledToFit()
                     .padding(.bottom)
                 Text(viewModel.detailHoliday.description)
                     .lineLimit(nil)
@@ -37,6 +46,7 @@ struct HolidayWatchDetailView: View {
                     .scaleEffect(2, anchor: .center)
             }
         }
+        .navigationTitle(navigationTitle)
     }
 }
 

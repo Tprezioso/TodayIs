@@ -12,8 +12,16 @@ struct HolidayWatchDetailView: View {
     @StateObject var viewModel = HolidayWatchDetailViewModel()
     
     var body: some View {
-        ZStack {
+        VStack {
+            Text(holiday.name)
+                .lineLimit(3)
+                    
             ScrollView {
+                if #available(watchOSApplicationExtension 9.0, *) {
+                    ShareLink(item: holiday.url)
+                } else {
+                    // Fallback on earlier versions
+                }
                 RemoteImage(image: viewModel.image)
                     .scaledToFit()
                     .padding(.bottom)
@@ -23,7 +31,6 @@ struct HolidayWatchDetailView: View {
             .onAppear {
                 viewModel.getHoliday(url: holiday.url)
             }
-            .navigationTitle(holiday.name)
             if viewModel.isLoading {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .gray))

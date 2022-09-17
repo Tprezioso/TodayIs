@@ -43,11 +43,16 @@ struct NationalDayView: View {
                 }
                 Spacer()
             } .toolbar {
-                Button() {
-                    viewModel.shareButton(urlString: holiday.url)
-                } label: {
-                    Image(systemName: "square.and.arrow.up")
-                        .foregroundColor(Color(.systemPink))
+                if #available(iOS 16.0, *) {
+                    ShareLink(item: holiday.url)
+                } else {
+                    // Fallback on earlier versions
+                    Button() {
+                        viewModel.shareButton(urlString: holiday.url)
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                            .foregroundColor(Color(.systemPink))
+                    }
                 }
             }
             .alert(item: $viewModel.alertItem) { alertItem in

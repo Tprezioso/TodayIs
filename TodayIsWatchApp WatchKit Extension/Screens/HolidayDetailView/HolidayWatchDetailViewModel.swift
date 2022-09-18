@@ -18,8 +18,8 @@ final class HolidayWatchDetailViewModel: ObservableObject {
     
     func getHoliday(url: String) {
         isLoading = true
-        NetworkManager.shared.getDetailHoliday(url: url) { [self] result in
-            DispatchQueue.main.async { [weak self] in
+        NetworkManager.shared.getDetailHoliday(url: url) { [weak self] result in
+            DispatchQueue.main.async { 
                 self?.isLoading = false
                 switch result {
                 case .success(let detailHoliday):

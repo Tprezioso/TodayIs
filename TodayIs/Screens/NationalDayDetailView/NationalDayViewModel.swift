@@ -19,25 +19,25 @@ final class NationalDayViewModel: ObservableObject {
     func getHoliday(url: String) {
         isLoading = true
         NetworkManager.shared.getDetailHoliday(url: url) { result in
-            DispatchQueue.main.async { [self] in
-                isLoading = false
+            DispatchQueue.main.async { [weak self] in
+                self?.isLoading = false
                 switch result {
                 case .success(let detailHoliday):
-                    self.detailHoliday = detailHoliday
-                    load(fromURLString: detailHoliday.imageURL)
+                    self?.detailHoliday = detailHoliday
+                    self?.load(fromURLString: detailHoliday.imageURL)
                 case .failure(let error):
                     switch error {
                     case .invalidData:
-                        alertItem = AlertContext.invalidData
+                        self?.alertItem = AlertContext.invalidData
                         
                     case .invalidURL:
-                        alertItem = AlertContext.invalidURL
+                        self?.alertItem = AlertContext.invalidURL
                         
                     case .invalidResponse:
-                        alertItem = AlertContext.invalidResponse
+                        self?.alertItem = AlertContext.invalidResponse
                         
                     case .unableToComplete:
-                        alertItem = AlertContext.unableToComplete
+                        self?.alertItem = AlertContext.unableToComplete
                     }
                 }
             }

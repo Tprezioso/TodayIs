@@ -15,15 +15,7 @@ struct TodayWatchView: View {
         ZStack {
             VStack {
                 if !viewModel.isHolidaysEmpty {
-                    List(viewModel.holidays) { holiday in
-                        if holiday.url == "" {
-                            Text("\(holiday.name)")
-                                .font(.headline)
-                                .bold()
-                        } else {
-                            NavigationLink(holiday.name, destination: HolidayWatchDetailView(holiday: holiday))
-                        }
-                    }
+                    HolidayWatchListView(holidays: viewModel.holidays)
                 } else {
                     EmptyState(message: "There was an issue loading Today's Holidays!\n Try again later")
                 }
@@ -56,5 +48,33 @@ struct TodayWatchView: View {
 struct TodayWatchView_Previews: PreviewProvider {
     static var previews: some View {
         TodayWatchView()
+    }
+}
+
+struct HolidayWatchListView: View {
+    var holidays: [Holiday]
+    
+    var body: some View {
+        List(holidays) { holiday in
+            if holiday.url == "" {
+                Text("\(holiday.name)")
+                    .font(.title)
+                    .fontWeight(.semibold)
+            } else {
+                if let range = holiday.name.range(of: "All Day") {
+                    let firstPart = holiday.name[holiday.name.startIndex..<range.lowerBound]
+                    let secondPart = holiday.name[range.upperBound..<holiday.name.endIndex]
+                    NavigationLink(destination: HolidayWatchDetailView(holiday: holiday)) {
+                        VStack(alignment: .leading) {
+                            Text(firstPart)
+                                .font(.subheadline)
+                            
+                            Text(secondPart)
+                                .font(.headline)
+                        }
+                    }
+                }
+            }
+        }
     }
 }

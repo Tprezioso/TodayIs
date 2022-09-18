@@ -15,15 +15,7 @@ struct TomorrowWatchView: View {
         ZStack {
             VStack {
                 if !viewModel.isHolidaysEmpty {
-                    List(viewModel.holidays) { holiday in
-                        if holiday.url == "" {
-                            Text("\(holiday.name)")
-                                .font(.headline)
-                                .bold()
-                        } else {
-                            NavigationLink(holiday.name, destination: HolidayWatchDetailView(holiday: holiday))
-                        }
-                    }
+                    HolidayWatchListView(holidays: viewModel.holidays)
                 } else {
                     EmptyState(message: "There was an issue loading Tomorrow's Holidays!\n Try again later")
                 }

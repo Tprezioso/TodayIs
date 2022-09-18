@@ -40,6 +40,7 @@
 		556C966D26FE606F00978D09 /* TomorrowWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966C26FE606F00978D09 /* TomorrowWatchView.swift */; };
 		556C966F26FE60A600978D09 /* TomorrowWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966E26FE60A600978D09 /* TomorrowWatchViewModel.swift */; };
 		5574D0C728D63B8A008A8936 /* HolidayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5574D0C628D63B8A008A8936 /* HolidayListView.swift */; };
+		5574D0D228D7E231008A8936 /* Navigation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5574D0D128D7E231008A8936 /* Navigation+Ext.swift */; };
 		557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557AED092628F50E009B6FCD /* RemoteImage.swift */; };
 		5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5583E83026418BE900CD66DC /* TomorrowListView.swift */; };
 		5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5583E83326418EF200CD66DC /* TomorrowListViewModel.swift */; };
@@ -161,6 +162,7 @@
 		556C966C26FE606F00978D09 /* TomorrowWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowWatchView.swift; sourceTree = "<group>"; };
 		556C966E26FE60A600978D09 /* TomorrowWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowWatchViewModel.swift; sourceTree = "<group>"; };
 		5574D0C628D63B8A008A8936 /* HolidayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayListView.swift; sourceTree = "<group>"; };
+		5574D0D128D7E231008A8936 /* Navigation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Ext.swift"; sourceTree = "<group>"; };
 		557AED092628F50E009B6FCD /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		5583E83026418BE900CD66DC /* TomorrowListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowListView.swift; sourceTree = "<group>"; };
 		5583E83326418EF200CD66DC /* TomorrowListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowListViewModel.swift; sourceTree = "<group>"; };
@@ -543,6 +545,7 @@
 			children = (
 				55E5620C26667B27006F77C8 /* String+Ext.swift */,
 				55E5620E2666B2DB006F77C8 /* Date+Ext.swift */,
+				5574D0D128D7E231008A8936 /* Navigation+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -841,6 +844,7 @@
 				557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */,
 				553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */,
 				55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */,
+				5574D0D228D7E231008A8936 /* Navigation+Ext.swift in Sources */,
 				5574D0C728D63B8A008A8936 /* HolidayListView.swift in Sources */,
 				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
 				5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */,

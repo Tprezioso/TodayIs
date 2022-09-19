@@ -12,7 +12,10 @@ struct SearchView: View {
     var body: some View {
         ZStack {
             VStack(alignment: .center) {
-                SearchListView(searchedHoliday: viewModel.holidays)
+//                SearchListView(searchedHoliday: viewModel.holidays)
+                List(viewModel.holidays) { holiday in
+                    NavigationLink(holiday.name, destination: NationalDayView(holiday: holiday))
+                }.listStyle(PlainListStyle())
                 SearchDatePicker(viewModel: viewModel)
                     .padding(.bottom)
                 Spacer()

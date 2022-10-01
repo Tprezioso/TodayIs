@@ -13,11 +13,14 @@ struct SelectedMonthView: View {
     var body: some View {
         List {
             ForEach(viewModel.holidays) { holiday in
-                Text(holiday.name)
+                NavigationLink(destination: NationalDayView(holiday: holiday)) {
+                    Text(holiday.name)
+                }
             }
         }.onAppear {
-            viewModel.getHolidays()
+            viewModel.getHolidays(for: selectedMonth)
         }
+        .navigationTitle(selectedMonth)
     }
 }
 
@@ -37,9 +40,9 @@ class SelectedMonthViewModel: ObservableObject {
     @Published var isShowingDetailView = false
     @Published var isHolidaysEmpty = false
     
-    func getHolidays() {
+    func getHolidays(for selectedMonth: String) {
         isLoading = true
-        NetworkManager.shared.getHolidaysforMonth("January") { result in
+        NetworkManager.shared.getHolidaysforMonth(selectedMonth) { result in
             DispatchQueue.main.async { [weak self] in
                 self?.isLoading = false
                 switch result {

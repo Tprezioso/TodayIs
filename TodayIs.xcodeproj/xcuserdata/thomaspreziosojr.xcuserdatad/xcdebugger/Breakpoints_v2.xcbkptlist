@@ -20,7 +20,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "4C9CA1F0-B01B-4370-BCA9-D1F51347DC0E"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"

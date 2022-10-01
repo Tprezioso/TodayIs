@@ -208,7 +208,7 @@ final class NetworkManager {
     // MARK: - Search for Holidays on a Specific Date
     
     func searchForHoliday(searchTerm: String, completed: @escaping (Result<[Holiday], TIError>) -> Void) {
-        let searchURL = "https://nationaldaycalendar.com/?s=\(searchTerm)&et_pb_searchform_submit=et_search_proccess&et_pb_include_pages=yes"
+        let searchURL = "https://nationaldaycalendar.com/?s=\(searchTerm)"
         print("Search result: \(searchURL)")
         guard let url = URL(string: searchURL) else {
             completed(.failure(TIError.invalidURL))
@@ -228,8 +228,9 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let image: Element = try doc.getElementById("left-area")!
-                let title: [Element] = try image.select("h2").array()
+                let image: Element = try doc.getElementsByClass("generic-archive").first()!
+                let details: Elements = try image.getElementsByClass("article-title")
+                let title: [Element] = try details.select("h3").array()
                 holidays.removeAll()
                 for title: Element in title {
                     let linksText: String = try title.text()

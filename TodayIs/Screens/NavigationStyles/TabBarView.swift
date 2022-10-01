@@ -30,16 +30,16 @@ struct TabBarView: View {
             }
             .tag(2)
             
-//            NavigationView {
-//                SearchView()
-//                    .listStyle(PlainListStyle())
-//                    .navigationBarTitle("Search")
-//                
-//            }
-//            .tabItem {
-//                Label("Search", systemImage: "magnifyingglass")
-//            }
-//            .tag(3)
+            NavigationView {
+                SearchView()
+                    .listStyle(PlainListStyle())
+                    .navigationBarTitle("Search")
+                
+            }
+            .tabItem {
+                Label("Search", systemImage: "magnifyingglass")
+            }
+            .tag(3)
             
             NavigationView {
                 MoreView()
@@ -48,7 +48,7 @@ struct TabBarView: View {
             .tabItem {
                 Label("More", systemImage: "ellipsis")
             }
-            .tag(3)
+            .tag(4)
         }
         .accentColor(.red)
     }

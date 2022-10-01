@@ -305,8 +305,8 @@ final class NetworkManager {
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let price: Element = try doc.getElementsByClass("ndc-column ndc_column_4_4 ").first()!
-                let links: [Element] = try price.select("p").array() //p
-                let day: [Element] = try price.select("a").array()
+//                let links: [Element] = try price.select("a").array() //p
+                let daySection: [Element] = try price.select("ul").array()
                 holidays.removeAll()
 //                if day.isEmpty {
 //                    let price: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
@@ -324,16 +324,19 @@ final class NetworkManager {
 //                    }
 //                    completed(.success(holidays))
 //                } else {
-                    for title: Element in day {
-                        let linksText: String = try title.text()
-                        var linksHref: String = try title.select("a").attr("href")
+                for (index, element) in daySection.enumerated() {
+                        let links: [Element] = try element.select("a").array()
+                   try links.forEach { link in
+                        let linksText: String = try link.text()
+                        var linksHref: String = try link.select("a").attr("href")
                         if linksHref != "" {
                             if Array(linksHref)[4] != "s" {
                                 linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                             }
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref)
+                        let holiday = Holiday(name: linksText, url: linksHref, section: index + 1)
                         holidays.append(holiday)
+                    }
                     }
                     completed(.success(holidays))
 //                }

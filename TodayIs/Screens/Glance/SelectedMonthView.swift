@@ -12,9 +12,15 @@ struct SelectedMonthView: View {
     @StateObject var viewModel = SelectedMonthViewModel()
     var body: some View {
         List {
-            ForEach(viewModel.holidays) { holiday in
-                NavigationLink(destination: NationalDayView(holiday: holiday)) {
-                    Text(holiday.name)
+            ForEach(viewModel.holidayDictionary, id: \.key) {  section in
+                Section {
+                    ForEach(section.value, id: \.self) { holiday in
+                    NavigationLink(destination: NationalDayView(holiday: holiday)) {
+                        Text(holiday.name)
+                    }
+                }
+                } header: {
+                    Text("\(section.key)")
                 }
             }
         }.onAppear {
@@ -32,6 +38,7 @@ struct SelectedMonthView_Previews: PreviewProvider {
 
 class SelectedMonthViewModel: ObservableObject {
     @Published var holidays = [Holiday]()
+    @Published var holidayDictionary = [Dictionary<Int, [Holiday]>.Element]()
     @Published var selectedHoliday: Holiday?
     @Published var alertItem: AlertItem?
     @Published var isShowing = false
@@ -51,7 +58,9 @@ class SelectedMonthViewModel: ObservableObject {
                         self?.isHolidaysEmpty = true
                     } else {
                         self?.holidays.removeAll()
-                        self?.holidays = holidays
+                        self?.holidays = holidays.sorted { $0.section! < $1.section!
+                        }
+                        self?.holidayDictionary = (self?.sortHolidaysIntoSection(holidays: self!.holidays))!
                         self?.holidays.removeFirst()
                         self?.isHolidaysEmpty = false
                     }
@@ -73,4 +82,12 @@ class SelectedMonthViewModel: ObservableObject {
             }
         }
     }
+    
+    func sortHolidaysIntoSection(holidays: [Holiday]) -> [Dictionary<Int, [Holiday]>.Element] {
+        let groupByCategory = Dictionary(grouping: holidays) { (device) -> Int in
+            return device.section!
+        }
+        return groupByCategory.sorted{ $0.key < $1.key }
+        }
+    
 }

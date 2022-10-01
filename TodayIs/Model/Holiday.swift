@@ -7,11 +7,16 @@
 
 import SwiftUI
 
-struct Holiday: Identifiable {
+struct Holiday: Identifiable, Hashable {
     let id = UUID()
     var name: String
     var url: String
-    var section: String?
+    var section: Int?
+}
+
+struct GroupedHoliday: Identifiable {
+    var id: Int
+    var holiday: [Holiday]
 }
 
 struct DetailHoliday: Identifiable {

@@ -14,11 +14,6 @@ struct Holiday: Identifiable, Hashable {
     var section: Int?
 }
 
-struct GroupedHoliday: Identifiable {
-    var id: Int
-    var holiday: [Holiday]
-}
-
 struct DetailHoliday: Identifiable {
     let id = UUID()
     var imageURL: String

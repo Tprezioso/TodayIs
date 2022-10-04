@@ -16,6 +16,7 @@ struct AtAGlanceView: View {
             ForEach(months, id: \.self) { month in
                 NavigationLink(destination: SelectedMonthView(selectedMonth: month)) {
                     Text(month)
+                        .font(.title2)
                 }
             }
         }.navigationTitle("At A Glance")

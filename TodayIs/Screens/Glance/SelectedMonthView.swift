@@ -17,10 +17,12 @@ struct SelectedMonthView: View {
                     ForEach(section.value, id: \.self) { holiday in
                     NavigationLink(destination: NationalDayView(holiday: holiday)) {
                         Text(holiday.name)
+                            .font(.title2)
                     }
                 }
                 } header: {
                     Text("\(section.key)")
+                        .font(.headline)
                 }
             }
         }.onAppear {

@@ -323,7 +323,7 @@ final class NetworkManager {
                                 linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                             }
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref, section: date)
+                        let holiday = Holiday(name: linksText, url: linksHref, section: Int(date.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()))
                         holidays.append(holiday)
                     }
                 }

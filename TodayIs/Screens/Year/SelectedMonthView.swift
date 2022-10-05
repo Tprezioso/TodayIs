@@ -41,7 +41,9 @@ struct SelectedMonthView_Previews: PreviewProvider {
 
 class SelectedMonthViewModel: ObservableObject {
     @Published var holidays = [Holiday]()
-    @Published var holidayDictionary = [Dictionary<String, [Holiday]>.Element]()
+    @Published var holidayDictionary = [Dictionary<Int, [Holiday]>.Element]()
+    @Published var holidayDict = [String : [Holiday]]()
+
     @Published var selectedHoliday: Holiday?
     @Published var alertItem: AlertItem?
     @Published var isShowing = false
@@ -56,7 +58,7 @@ class SelectedMonthViewModel: ObservableObject {
             DispatchQueue.main.async { [weak self] in
                 self?.isLoading = false
                 switch result {
-                case .success(let holidays):
+                case .success(var holidays):
                     if holidays.isEmpty {
                         self?.isHolidaysEmpty = true
                     } else {
@@ -85,11 +87,11 @@ class SelectedMonthViewModel: ObservableObject {
         }
     }
     
-    func sortHolidaysIntoSection(holidays: [Holiday]) -> [Dictionary<String, [Holiday]>.Element] {
-        let groupByCategory = Dictionary(grouping: holidays) { (device) -> String in
+    func sortHolidaysIntoSection(holidays: [Holiday]) -> [Dictionary<Int, [Holiday]>.Element] {
+        let groupByCategory = Dictionary(grouping: holidays) { (device) -> Int in
             return device.section!
         }
-        return groupByCategory.sorted{ Int($0.key.prefix(2))! < Int($1.key.prefix(2))! }
+        return groupByCategory.sorted{ $0.key < $1.key }
         }
     
 }

@@ -41,13 +41,13 @@ struct TabBarView: View {
 //            }
 //            .tag(3)
             NavigationView {
-                AtAGlanceView()
+                YearView()
                     .listStyle(PlainListStyle())
-                    .navigationBarTitle("At A Glance")
+                    .navigationBarTitle("Year")
                 
             }
             .tabItem {
-                Label("Glance", systemImage: "eyeglasses")
+                Label("Year", systemImage: "magnifyingglass")
             }
             .tag(3)
             

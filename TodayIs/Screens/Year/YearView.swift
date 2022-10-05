@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AtAGlanceView: View {
+struct YearView: View {
     
     let months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
     
@@ -19,12 +19,12 @@ struct AtAGlanceView: View {
                         .font(.title2)
                 }
             }
-        }.navigationTitle("At A Glance")
+        }.navigationTitle("Year")
     }
 }
 
 struct AtAGlanceView_Previews: PreviewProvider {
     static var previews: some View {
-        AtAGlanceView()
+        YearView()
     }
 }

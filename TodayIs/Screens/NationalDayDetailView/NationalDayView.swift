@@ -13,6 +13,8 @@ struct NationalDayView: View {
         var title = ""
         if let range = holiday.name.range(of: "All Day") {
             title = String(holiday.name[range.upperBound..<holiday.name.endIndex])
+        } else {
+            title = holiday.name
         }
         return title
     }

@@ -11,7 +11,7 @@ struct Holiday: Identifiable, Hashable {
     let id = UUID()
     var name: String
     var url: String
-    var section: Int?
+    var section: String?
 }
 
 struct DetailHoliday: Identifiable {

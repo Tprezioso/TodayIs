@@ -285,7 +285,7 @@ final class NetworkManager {
         let month = month.lowercased()
         let monthURL = "https://nationaldaycalendar.com/\(month)/"
         print("Search result: \(monthURL)")
-       
+        
         guard let url = URL(string: monthURL) else {
             completed(.failure(TIError.invalidURL))
             return
@@ -304,29 +304,18 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("ndc-column ndc_column_4_4 ").first()!
-//                let links: [Element] = try price.select("a").array() //p
-                let daySection: [Element] = try price.select("ul").array()
+                let section: Element = try doc.getElementsByClass("ndc-column ndc_column_4_4 ").first()!
+                let holidayData: [Element] = try section.select("em, ul").array()
                 holidays.removeAll()
-//                if day.isEmpty {
-//                    let price: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
-//                    let links: [Element] = try price.select("p").array() //p
-//                    for title: Element in links {
-//                        let linksText: String = try title.text()
-//                        var linksHref: String = try title.select("a").attr("href")
-//                        if linksHref != "" {
-//                            if Array(linksHref)[4] != "s" {
-//                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-//                            }
-//                        }
-//                        let holiday = Holiday(name: linksText, url: linksHref)
-//                        holidays.append(holiday)
-//                    }
-//                    completed(.success(holidays))
-//                } else {
-                for (index, element) in daySection.enumerated() {
-                        let links: [Element] = try element.select("a").array()
-                   try links.forEach { link in
+                // TODO: -  use 'em' for section ul for holiday
+                var date = ""
+                for holidayDatum in holidayData {
+                    
+                    if holidayDatum.tagName() == "em" {
+                        date = try holidayDatum.text()
+                    }
+                    let links: [Element] = try holidayDatum.select("a").array()
+                    try links.forEach { link in
                         let linksText: String = try link.text()
                         var linksHref: String = try link.select("a").attr("href")
                         if linksHref != "" {
@@ -334,12 +323,11 @@ final class NetworkManager {
                                 linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                             }
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref, section: index + 1)
+                        let holiday = Holiday(name: linksText, url: linksHref, section: date)
                         holidays.append(holiday)
                     }
-                    }
-                    completed(.success(holidays))
-//                }
+                }
+                completed(.success(holidays))
             } catch Exception.Error(let type, let message) {
                 print(type, message)
             } catch {

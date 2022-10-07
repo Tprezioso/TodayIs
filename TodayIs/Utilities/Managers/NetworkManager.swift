@@ -98,24 +98,21 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let p: Element =  try doc.getElementsByClass("single-post").first()!
-                var pLink = ""
-                let links: Elements = try p.select("img")
-                for link in links {
-                    if try link.attr("src").prefix(5) == "https" {
-                        pLink = try link.attr("src")
+                let holidayData: Element =  try doc.getElementsByClass("single-post").first()!
+                var imageLink = ""
+                let holidayImage: Elements = try holidayData.select("img")
+                for image in holidayImage {
+                    if try image.attr("src").prefix(5) == "https" {
+                        imageLink = try image.attr("src")
                         break
                     }
                 }
-                
-                let plinks: String = try p.select("p").text()
-                var pText = plinks
-                
-                if pText == "" {
-                    pText = "No Description Available"
+                var holidayText: String = try holidayData.select("p").text()
+                if holidayText == "" {
+                    holidayText = "No Description Available"
                 }
                 
-                let detailHoliday = DetailHoliday(imageURL: pLink, description: pText)
+                let detailHoliday = DetailHoliday(imageURL: imageLink, description: holidayText)
                 completed(.success(detailHoliday))
             } catch Exception.Error(let type, let message) {
                 print(type, message)

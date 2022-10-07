@@ -10,6 +10,7 @@ import SwiftUI
 struct SelectedMonthView: View {
     var selectedMonth: String
     @StateObject var viewModel = SelectedMonthViewModel()
+    
     var body: some View {
         ZStack {
             if !viewModel.isHolidaysEmpty {
@@ -22,7 +23,6 @@ struct SelectedMonthView: View {
                                         .font(.title2)
                                 }
                             }
-                            
                         } header: {
                             Text("\(section.key)")
                                 .font(.headline)
@@ -54,21 +54,14 @@ struct SelectedMonthView_Previews: PreviewProvider {
 }
 
 class SelectedMonthViewModel: ObservableObject {
-    @Published var holidays = [Holiday]()
     @Published var holidayDictionary = [Dictionary<Int, [Holiday]>.Element]()
-    @Published var holidayDict = [String : [Holiday]]()
-
-    @Published var selectedHoliday: Holiday?
     @Published var alertItem: AlertItem?
-    @Published var isShowing = false
     @Published var isLoading = false
-    @Published var isShowingDetail = false
-    @Published var isShowingDetailView = false
     @Published var isHolidaysEmpty = false
     
     func getHolidays(for selectedMonth: String) {
         isLoading = true
-        NetworkManager.shared.getHolidaysforMonth(selectedMonth) { result in
+        NetworkManager.shared.getHolidaysForMonth(selectedMonth) { result in
             DispatchQueue.main.async { [weak self] in
                 self?.isLoading = false
                 switch result {
@@ -76,10 +69,7 @@ class SelectedMonthViewModel: ObservableObject {
                     if holidays.isEmpty {
                         self?.isHolidaysEmpty = true
                     } else {
-                        self?.holidays.removeAll()
-                        self?.holidays = holidays.sorted { $0.section! < $1.section! }
-                        self?.holidayDictionary = (self?.sortHolidaysIntoSection(holidays: self!.holidays))!
-                        self?.holidays.removeFirst()
+                        self?.holidayDictionary = (self?.sortHolidaysIntoSection(holidays: holidays))!
                         self?.isHolidaysEmpty = false
                     }
                 case .failure(let error):

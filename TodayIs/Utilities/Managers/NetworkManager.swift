@@ -232,7 +232,7 @@ final class NetworkManager {
     
     // MARK: - Search for Holidays on a Specific Date
     
-    func getHolidaysforMonth(_ month: String,completed: @escaping (Result<[Holiday], TIError>) -> Void) {
+    func getHolidaysForMonth(_ month: String,completed: @escaping (Result<[Holiday], TIError>) -> Void) {
         let month = month.lowercased()
         let monthURL = "https://nationaldaycalendar.com/\(month)/"
         print("Search result: \(monthURL)")

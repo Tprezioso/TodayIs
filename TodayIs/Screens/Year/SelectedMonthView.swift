@@ -11,25 +11,39 @@ struct SelectedMonthView: View {
     var selectedMonth: String
     @StateObject var viewModel = SelectedMonthViewModel()
     var body: some View {
-        List {
-            ForEach(viewModel.holidayDictionary, id: \.key) { section in
-                Section {
-                    ForEach(section.value, id: \.self) { holiday in
-                        NavigationLink(destination: NationalDayView(holiday: holiday)) {
-                            Text(holiday.name)
-                                .font(.title2)
+        ZStack {
+            if !viewModel.isHolidaysEmpty {
+                List {
+                    ForEach(viewModel.holidayDictionary, id: \.key) { section in
+                        Section {
+                            ForEach(section.value, id: \.self) { holiday in
+                                NavigationLink(destination: NationalDayView(holiday: holiday)) {
+                                    Text(holiday.name)
+                                        .font(.title2)
+                                }
+                            }
+                            
+                        } header: {
+                            Text("\(section.key)")
+                                .font(.headline)
                         }
                     }
-                
-                } header: {
-                    Text("\(section.key)")
-                        .font(.headline)
+                }.alert(item: $viewModel.alertItem) { alertItem in
+                    Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
                 }
+                .onAppear {
+                    viewModel.getHolidays(for: selectedMonth)
+                }
+                .navigationTitle(selectedMonth)
+            } else {
+                EmptyState(message: "There was an issue loading Today's Holidays!\n Try again later")
             }
-        }.onAppear {
-            viewModel.getHolidays(for: selectedMonth)
+            if viewModel.isLoading {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .secondary))
+                    .scaleEffect(2, anchor: .center)
+            }
         }
-        .navigationTitle(selectedMonth)
     }
 }
 
@@ -58,7 +72,7 @@ class SelectedMonthViewModel: ObservableObject {
             DispatchQueue.main.async { [weak self] in
                 self?.isLoading = false
                 switch result {
-                case .success(var holidays):
+                case .success(let holidays):
                     if holidays.isEmpty {
                         self?.isHolidaysEmpty = true
                     } else {
@@ -92,6 +106,6 @@ class SelectedMonthViewModel: ObservableObject {
             return device.section!
         }
         return groupByCategory.sorted{ $0.key < $1.key }
-        }
+    }
     
 }

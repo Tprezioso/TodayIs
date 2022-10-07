@@ -37,34 +37,34 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()! //eventon_events_list
-                let links: [Element] = try price.select("h3").array() //p
+                let events: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()! //eventon_events_list
+                let tomorrowHolidayData: [Element] = try events.select("h3").array() //p
                 holidays.removeAll()
-                if links.isEmpty {
-                    let price: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
-                    let links: [Element] = try price.select("p").array() //p
-                    for title: Element in links {
-                        let linksText: String = try title.text()
-                        var linksHref: String = try title.select("a").attr("href")
-                        if linksHref != "" {
-                            if Array(linksHref)[4] != "s" {
-                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                if tomorrowHolidayData.isEmpty {
+                    let todaysData: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
+                    let todaysHolidaysData: [Element] = try todaysData.select("p").array() //p
+                    for holiday: Element in todaysHolidaysData {
+                        let holidayTitle: String = try holiday.text()
+                        var holidayLink: String = try holiday.select("a").attr("href")
+                        if holidayLink != "" {
+                            if Array(holidayLink)[4] != "s" {
+                                holidayLink.insert("s", at: holidayLink.index(holidayLink.startIndex, offsetBy: 4))
                             }
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref)
+                        let holiday = Holiday(name: holidayTitle, url: holidayLink)
                         holidays.append(holiday)
                     }
                     completed(.success(holidays))
                 } else {
-                    for title: Element in links {
-                        let linksText: String = try title.text()
-                        var linksHref: String = try title.select("a").attr("href")
-                        if linksHref != "" {
-                            if Array(linksHref)[4] != "s" {
-                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                    for holiday: Element in tomorrowHolidayData {
+                        let holidayTitle: String = try holiday.text()
+                        var holidayLink: String = try holiday.select("a").attr("href")
+                        if holidayLink != "" {
+                            if Array(holidayLink)[4] != "s" {
+                                holidayLink.insert("s", at: holidayLink.index(holidayLink.startIndex, offsetBy: 4))
                             }
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref)
+                        let holiday = Holiday(name: holidayTitle, url: holidayLink)
                         holidays.append(holiday)
                     }
                     completed(.success(holidays))
@@ -151,26 +151,26 @@ final class NetworkManager {
                 let currentDateString: String = dateFormatter.string(from: date)
                 
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
-                let links: [Element] = try price.select("p").array() //p
+                let events: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
+                let tomorrowHolidayData: [Element] = try events.select("p").array() //p
                 holidays.removeAll()
-                if links.isEmpty {
-                    let price: Element = try doc.getElementsByClass("ndc-text-tomorrows-celebrations").first()! //eventon_events_list
-                    let links: [Element] = try price.select("h3").array() //p
+                if tomorrowHolidayData.isEmpty {
+                    let tomorrowData: Element = try doc.getElementsByClass("ndc-text-tomorrows-celebrations").first()! //eventon_events_list
+                    let holidaysData: [Element] = try tomorrowData.select("h3").array() //p
                     holidays.removeAll()
-                    for title: Element in links {
-                        let linksText: String = try title.text()
-                        var linksHref: String = try title.select("a").attr("href")
-                        if linksText.prefix(3) == currentDateString.prefix(3) {
+                    for holiday: Element in holidaysData {
+                        let holidayTitle: String = try holiday.text()
+                        var holidayLink: String = try holiday.select("a").attr("href")
+                        if holidayTitle.prefix(3) == currentDateString.prefix(3) {
                             break
                         }
-                        if linksHref != "" {
-                            if Array(linksHref)[4] != "s" {
-                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                        if holidayLink != "" {
+                            if Array(holidayLink)[4] != "s" {
+                                holidayLink.insert("s", at: holidayLink.index(holidayLink.startIndex, offsetBy: 4))
                             }
                             
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref)
+                        let holiday = Holiday(name: holidayTitle, url: holidayLink)
                         if holiday.url.isEmpty {
                             break
                         } else {
@@ -180,70 +180,22 @@ final class NetworkManager {
                     completed(.success(holidays))
                 } else {
                     holidays.removeAll()
-                    for title: Element in links {
-                        let linksText: String = try title.text()
-                        var linksHref: String = try title.select("a").attr("href")
-                        if linksText.prefix(3) == currentDateString.prefix(3) {
+                    for holiday: Element in tomorrowHolidayData {
+                        let holidayTitle: String = try holiday.text()
+                        var holidayLink: String = try holiday.select("a").attr("href")
+                        if holidayTitle.prefix(3) == currentDateString.prefix(3) {
                             break
                         }
-                        if linksHref != "" {
-                            if Array(linksHref)[4] != "s" {
-                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                        if holidayLink != "" {
+                            if Array(holidayLink)[4] != "s" {
+                                holidayLink.insert("s", at: holidayLink.index(holidayLink.startIndex, offsetBy: 4))
                             }
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref)
+                        let holiday = Holiday(name: holidayTitle, url: holidayLink)
                         holidays.append(holiday)
                     }
                     completed(.success(holidays))
                 }
-            } catch Exception.Error(let type, let message) {
-                print(type, message)
-            } catch {
-                completed(.failure(TIError.invalidData))
-            }
-        }
-        task.resume()
-    }
-    
-    // MARK: - Search for Holidays on a Specific Date
-    
-    func searchForHoliday(searchTerm: String, completed: @escaping (Result<[Holiday], TIError>) -> Void) {
-        let searchURL = "https://nationaldaycalendar.com/?s=\(searchTerm)"
-        print("Search result: \(searchURL)")
-        guard let url = URL(string: searchURL) else {
-            completed(.failure(TIError.invalidURL))
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
-            guard let data = data else {
-                completed(.failure(TIError.invalidData))
-                return
-            }
-            
-            guard let htmlString = String(data: data, encoding: .utf8) else {
-                completed(.failure(TIError.invalidData))
-                return
-            }
-            
-            do {
-                let doc: Document = try SwiftSoup.parse(htmlString)
-                let image: Element = try doc.getElementsByClass("generic-archive").first()!
-                let details: Elements = try image.getElementsByClass("article-title")
-                let title: [Element] = try details.select("h3").array()
-                holidays.removeAll()
-                for title: Element in title {
-                    let linksText: String = try title.text()
-                    var linksHref: String = try title.select("a").attr("href")
-                    if linksHref != "" {
-                        if Array(linksHref)[4] != "s" {
-                            linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-                        }
-                    }
-                    let holiday = Holiday(name: linksText, url: linksHref)
-                    holidays.append(holiday)
-                }
-                completed(.success(holidays))
             } catch Exception.Error(let type, let message) {
                 print(type, message)
             } catch {
@@ -281,6 +233,8 @@ final class NetworkManager {
         task.resume()
     }
     
+    // MARK: - Search for Holidays on a Specific Date
+    
     func getHolidaysforMonth(_ month: String,completed: @escaping (Result<[Holiday], TIError>) -> Void) {
         let month = month.lowercased()
         let monthURL = "https://nationaldaycalendar.com/\(month)/"
@@ -305,15 +259,17 @@ final class NetworkManager {
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let section: Element = try doc.getElementsByClass("ndc-column ndc_column_4_4 ").first()!
-                let holidayData: [Element] = try section.select("em, ul").array()
+                let holidayData: [Element] = try section.select("strong, ul").array()
                 holidays.removeAll()
-                // TODO: -  use 'em' for section ul for holiday
                 var date = ""
                 for holidayDatum in holidayData {
-                    
-                    if holidayDatum.tagName() == "em" {
-                        date = try holidayDatum.text()
+                    if holidayDatum.tagName() == "strong" {
+                        let holidaySection = try holidayDatum.text().components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+                        if !holidaySection.isEmpty {
+                            date = holidaySection
+                        }
                     }
+                    
                     let links: [Element] = try holidayDatum.select("a").array()
                     try links.forEach { link in
                         let linksText: String = try link.text()
@@ -323,7 +279,7 @@ final class NetworkManager {
                                 linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                             }
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref, section: Int(date.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()))
+                        let holiday = Holiday(name: linksText, url: linksHref, section: Int(date))
                         holidays.append(holiday)
                     }
                 }

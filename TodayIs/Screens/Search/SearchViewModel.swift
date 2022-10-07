@@ -19,30 +19,30 @@ final class SearchViewModel: ObservableObject {
     
     func getHolidays(searchDate: String) {
         isLoading = true
-        NetworkManager.shared.searchForHoliday(searchTerm: searchDate.condenseWhitespace()) { result in
-            DispatchQueue.main.async { [self] in
-                isLoading = false
-                switch result {
-                case .success(let holidays):
-                    self.holidays.removeAll()
-                    self.holidays = holidays
-                    print(self.holidays)
-                case .failure(let error):
-                    switch error {
-                    case .invalidData:
-                        alertItem = AlertContext.invalidData
-                        
-                    case .invalidURL:
-                        alertItem = AlertContext.invalidURL
-                        
-                    case .invalidResponse:
-                        alertItem = AlertContext.invalidResponse
-                        
-                    case .unableToComplete:
-                        alertItem = AlertContext.unableToComplete
-                    }
-                }
-            }
-        }
+//        NetworkManager.shared.searchForHoliday(searchTerm: searchDate.condenseWhitespace()) { result in
+//            DispatchQueue.main.async { [self] in
+//                isLoading = false
+//                switch result {
+//                case .success(let holidays):
+//                    self.holidays.removeAll()
+//                    self.holidays = holidays
+//                    print(self.holidays)
+//                case .failure(let error):
+//                    switch error {
+//                    case .invalidData:
+//                        alertItem = AlertContext.invalidData
+//                        
+//                    case .invalidURL:
+//                        alertItem = AlertContext.invalidURL
+//                        
+//                    case .invalidResponse:
+//                        alertItem = AlertContext.invalidResponse
+//                        
+//                    case .unableToComplete:
+//                        alertItem = AlertContext.unableToComplete
+//                    }
+//                }
+//            }
+//        }
     }
 }

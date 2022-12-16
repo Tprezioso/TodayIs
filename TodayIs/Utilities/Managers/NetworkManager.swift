@@ -260,8 +260,8 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let section: Element = try doc.getElementsByClass("ndc-column ndc_column_4_4 ").first()!
-                let holidayData: [Element] = try section.select("strong, ul").array()
+                let holidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
+//                let holidayData: [Element] = try section.select("strong, ul").array()
                 holidays.removeAll()
                 var date = ""
                 for holidayDatum in holidayData {
@@ -281,7 +281,7 @@ final class NetworkManager {
                                 linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
                             }
                         }
-                        let holiday = Holiday(name: linksText, url: linksHref, section: Int(date))
+                        let holiday = Holiday(name: linksText, url: linksHref)
                         holidays.append(holiday)
                     }
                 }

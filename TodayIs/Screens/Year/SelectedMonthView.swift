@@ -15,19 +15,19 @@ struct SelectedMonthView: View {
         ZStack {
             if !viewModel.isHolidaysEmpty {
                 List {
-                    ForEach(viewModel.holidayDictionary, id: \.key) { section in
-                        Section {
-                            ForEach(section.value, id: \.self) { holiday in
+//                    ForEach(viewModel.holidayDictionary, id: \.key) { section in
+//                        Section {
+                    ForEach(viewModel.holiday, id: \.self) { holiday in
                                 NavigationLink(destination: NationalDayView(holiday: holiday)) {
                                     Text(holiday.name)
                                         .font(.title2)
                                 }
                             }
-                        } header: {
-                            Text("\(section.key)")
-                                .font(.headline)
-                        }
-                    }
+//                        } header: {
+//                            Text("\(section.key)")
+//                                .font(.headline)
+//                        }
+//                    }
                 }.alert(item: $viewModel.alertItem) { alertItem in
                     Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
                 }
@@ -55,6 +55,7 @@ struct SelectedMonthView_Previews: PreviewProvider {
 
 class SelectedMonthViewModel: ObservableObject {
     @Published var holidayDictionary = [Dictionary<Int, [Holiday]>.Element]()
+    @Published var holiday = [Holiday]()
     @Published var alertItem: AlertItem?
     @Published var isLoading = false
     @Published var isHolidaysEmpty = false
@@ -69,7 +70,9 @@ class SelectedMonthViewModel: ObservableObject {
                     if holidays.isEmpty {
                         self?.isHolidaysEmpty = true
                     } else {
-                        self?.holidayDictionary = (self?.sortHolidaysIntoSection(holidays: holidays))!
+                        self?.holiday = holidays
+//                        self?.holidayDictionary = (self?.sortHolidaysIntoSection(holidays: holidays))!
+                        
                         self?.isHolidaysEmpty = false
                     }
                 case .failure(let error):

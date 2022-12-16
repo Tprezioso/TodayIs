@@ -28,7 +28,7 @@ final class TodayWatchViewModel: ObservableObject {
                     } else {
                         self?.holidays.removeAll()
                         self?.holidays = holidays
-                        self?.holidays.removeFirst()
+//                        self?.holidays.removeFirst()
                         self?.isHolidaysEmpty = false
                     }
                 case .failure(let error):

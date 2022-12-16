@@ -61,18 +61,19 @@ struct HolidayWatchListView: View {
                     .font(.title)
                     .fontWeight(.semibold)
             } else {
-                if let range = holiday.name.range(of: "All Day") {
-                    let firstPart = holiday.name[holiday.name.startIndex..<range.lowerBound]
-                    let secondPart = holiday.name[range.upperBound..<holiday.name.endIndex]
+//                if let range = holiday.name.range(of: "All Day") {
+//                    let firstPart = holiday.name[holiday.name.startIndex..<range.lowerBound]
+//                    let secondPart = holiday.name[range.upperBound..<holiday.name.endIndex]
                     NavigationLink(destination: HolidayWatchDetailView(holiday: holiday)) {
-                        VStack(alignment: .leading) {
-                            Text(firstPart)
-                                .font(.subheadline)
-                            
-                            Text(secondPart)
-                                .font(.headline)
-                        }
-                    }
+//                        VStack(alignment: .leading) {
+//                            Text(firstPart)
+//                                .font(.subheadline)
+//
+//                            Text(secondPart)
+//                                .font(.headline)
+//                        }
+//                    }
+                        Text(holiday.name)
                 }
             }
         }

@@ -13,6 +13,8 @@ final class NetworkManager {
     private let cache = NSCache<NSString, UIImage>()
     private init() {}
     private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
+//    private let currentDateURL = "https://nationaldaycalendar.com/?s="
+    private let currentDateURL = "https://nationaldaycalendar.com/?s=december+12"
     private let tomorrowURL = "https://nationaldaycalendar.com/tomorrow/"
     
     var holidays = [Holiday]()
@@ -37,8 +39,8 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let events: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()! //eventon_events_list
-                let tomorrowHolidayData: [Element] = try events.select("h3").array() //p
+                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
+//                let tomorrowHolidayData: [Element] = try events.select("a").array() //p
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
                     let todaysData: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
@@ -98,9 +100,11 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let holidayData: Element =  try doc.getElementsByClass("single-post").first()!
+                let holidayData: Element =  try doc.getElementsByClass("site-content").first()!
                 var imageLink = ""
+                
                 let holidayImage: Elements = try holidayData.select("img")
+//                let holidayImageURL:
                 for image in holidayImage {
                     if try image.attr("src").prefix(5) == "https" {
                         imageLink = try image.attr("src")
@@ -148,8 +152,9 @@ final class NetworkManager {
                 let currentDateString: String = dateFormatter.string(from: date)
                 
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let events: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
-                let tomorrowHolidayData: [Element] = try events.select("p").array() //p
+//                let events: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
+//                let tomorrowHolidayData: [Element] = try events.select("p").array() //p
+                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
                     let tomorrowData: Element = try doc.getElementsByClass("ndc-text-tomorrows-celebrations").first()! //eventon_events_list

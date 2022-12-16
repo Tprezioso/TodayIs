@@ -18,9 +18,9 @@ class WidgetNetworkManager {
     // MARK: - Get Todays Holidays
     func getHolidayData(completed: @escaping (Result<[Holiday], TIError>) -> Void) {
         guard let url = URL(string: baseURL) else {
-                    completed(.failure(TIError.invalidURL))
-                    return
-                }
+            completed(.failure(TIError.invalidURL))
+            return
+        }
         
         let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
             guard let data = data else {
@@ -35,22 +35,38 @@ class WidgetNetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()! // eventon_events_list
-                let links: [Element] = try price.select("h3").array() //p
+                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
+//                let tomorrowHolidayData: [Element] = try events.select("a").array() //p
                 holidays.removeAll()
-                for title: Element in links {
-                    let linksText: String = try title.text()
-                    var linksHref: String = try title.select("a").attr("href")
-                    if linksHref != "" {
-                        if Array(linksHref)[4] != "s" {
-                            linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+                if tomorrowHolidayData.isEmpty {
+                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
+//                    let todaysHolidaysData: [Element] = try todaysData.select("p").array() //p
+                    for holiday: Element in todaysData {
+                        let holidayTitle: String = try holiday.text()
+                        var holidayLink: String = try holiday.select("a").attr("href")
+                        if holidayLink != "" {
+                            if Array(holidayLink)[4] != "s" {
+                                holidayLink.insert("s", at: holidayLink.index(holidayLink.startIndex, offsetBy: 4))
+                            }
                         }
-
+                        let holiday = Holiday(name: holidayTitle, url: holidayLink)
+                        holidays.append(holiday)
                     }
-                    let holiday = Holiday(name: linksText, url: linksHref)
-                    holidays.append(holiday)
+                    completed(.success(holidays))
+                } else {
+                    for holiday: Element in tomorrowHolidayData {
+                        let holidayTitle: String = try holiday.text()
+                        var holidayLink: String = try holiday.select("a").attr("href")
+                        if holidayLink != "" {
+                            if Array(holidayLink)[4] != "s" {
+                                holidayLink.insert("s", at: holidayLink.index(holidayLink.startIndex, offsetBy: 4))
+                            }
+                        }
+                        let holiday = Holiday(name: holidayTitle, url: holidayLink)
+                        holidays.append(holiday)
+                    }
+                    completed(.success(holidays))
                 }
-                completed(.success(holidays))
             } catch Exception.Error(let type, let message) {
                 print(type, message)
             } catch {

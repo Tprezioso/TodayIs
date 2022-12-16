@@ -43,9 +43,9 @@ final class NetworkManager {
 //                let tomorrowHolidayData: [Element] = try events.select("a").array() //p
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
-                    let todaysData: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
-                    let todaysHolidaysData: [Element] = try todaysData.select("p").array() //p
-                    for holiday: Element in todaysHolidaysData {
+                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
+//                    let todaysHolidaysData: [Element] = try todaysData.select("p").array() //p
+                    for holiday: Element in todaysData {
                         let holidayTitle: String = try holiday.text()
                         var holidayLink: String = try holiday.select("a").attr("href")
                         if holidayLink != "" {
@@ -157,10 +157,9 @@ final class NetworkManager {
                 let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
-                    let tomorrowData: Element = try doc.getElementsByClass("ndc-text-tomorrows-celebrations").first()! //eventon_events_list
-                    let holidaysData: [Element] = try tomorrowData.select("h3").array() //p
-                    holidays.removeAll()
-                    for holiday: Element in holidaysData {
+                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
+//                    let todaysHolidaysData: [Element] = try todaysData.select("p").array() //p
+                    for holiday: Element in todaysData {
                         let holidayTitle: String = try holiday.text()
                         var holidayLink: String = try holiday.select("a").attr("href")
                         if holidayTitle.prefix(3) == currentDateString.prefix(3) {

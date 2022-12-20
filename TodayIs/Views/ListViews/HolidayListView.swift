@@ -18,21 +18,17 @@ struct HolidayListView: View {
                     .fontWeight(.semibold)
             } else {
                 
-//                var split = holiday.name.split(separator: " ")
-//                if let range = holiday.name.range(of: "All Day") {
-//                    let firstPart = holiday.name[holiday.name.startIndex..<range.lowerBound]
-//                    let secondPart = holiday.name[range.upperBound..<holiday.name.endIndex]
-//                var date = split.suffix(2).joined(separator: " ")
-//               let day = split.dropLast(3)
+                var split = holiday.name.components(separatedBy: "–" )
+                let firstPart = split.last//holiday.name[holiday.name.startIndex..<range.lowerBound]
+                let secondPart = split.first//holiday.name[range.upperBound..<holiday.name.endIndex]
                     NavigationLink(destination: NationalDayView(holiday: holiday)) {
-//                        VStack(alignment: .leading) {
-//                            Text(date ?? "")
-//                                .font(.headline)
-//
-//                            Text(day.joined(separator: " "))
-//                                .font(.title2)
-//                        }
-                        Text(holiday.name)
+                        VStack(alignment: .leading) {
+                            Text(firstPart ?? "")
+                                .font(.headline)
+
+                            Text(secondPart ?? "")
+                                .font(.title2)
+                        }
                     }
             }
         }

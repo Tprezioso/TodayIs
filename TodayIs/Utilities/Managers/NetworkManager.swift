@@ -262,6 +262,7 @@ final class NetworkManager {
                 let holidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
 //                let holidayData: [Element] = try section.select("strong, ul").array()
                 holidays.removeAll()
+                var date = ""
                 for holidayDatum in holidayData {
                     if holidayDatum.tagName() == "strong" {
                         let holidaySection = try holidayDatum.text().components(separatedBy: CharacterSet.decimalDigits.inverted).joined()

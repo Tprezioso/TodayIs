@@ -11,14 +11,15 @@ struct IconView: View {
     @EnvironmentObject var iconSettings : IconNames
     
     var body: some View {
-        Form {
-            Section{
+        NavigationView {
+            Form {
                 Picker(selection: $iconSettings.currentIndex, label: Text("Icons")) {
-                    ForEach(iconSettings.iconNames, id:\.self) { icon in
-                        Text(icon ?? "Default")
+                    ForEach(0..<iconSettings.iconNames.count) {
+                        Text(self.iconSettings.iconNames[$0] ?? "Default")
                     }
                 }.onReceive([self.iconSettings.currentIndex].publisher.first()) { (value) in
                     let index = self.iconSettings.iconNames.firstIndex(of: UIApplication.shared.alternateIconName) ?? 0
+                    
                     if index != value{
                         UIApplication.shared.setAlternateIconName(self.iconSettings.iconNames[value]){ error in
                             if let error = error {
@@ -30,7 +31,7 @@ struct IconView: View {
                     }
                 }
             }
-        } .navigationBarTitle("Alternate Icons", displayMode: .inline)
+        }.navigationBarTitle("Alternate Icons", displayMode: .large)
     }
 }
 

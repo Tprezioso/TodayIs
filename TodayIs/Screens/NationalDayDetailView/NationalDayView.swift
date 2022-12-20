@@ -28,9 +28,11 @@ struct NationalDayView: View {
                         AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL)) { image in
                             image
                                 .resizable()
+                                .cornerRadius(10)
                         } placeholder: {
                             Image("PlaceholderImage")
                                 .resizable()
+                                .cornerRadius(10)
                         }
                         .scaledToFit()
                         .padding(.bottom)

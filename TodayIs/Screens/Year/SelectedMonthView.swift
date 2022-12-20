@@ -18,10 +18,22 @@ struct SelectedMonthView: View {
 //                    ForEach(viewModel.holidayDictionary, id: \.key) { section in
 //                        Section {
                     ForEach(viewModel.holiday, id: \.self) { holiday in
-                                NavigationLink(destination: NationalDayView(holiday: holiday)) {
-                                    Text(holiday.name)
-                                        .font(.title2)
-                                }
+                        let split = holiday.name.components(separatedBy: "–")
+                        let firstPart = split.last//holiday.name[holiday.name.startIndex..<range.lowerBound]
+                        let secondPart = split.first//holiday.name[range.upperBound..<holiday.name.endIndex]
+                        NavigationLink(destination: NationalDayView(holiday: holiday)) {
+                            VStack(alignment: .leading) {
+                                Text(firstPart ?? "")
+                                    .font(.headline)
+                                
+                                Text(secondPart ?? "")
+                                    .font(.title2)
+                            }
+                        }
+//                                NavigationLink(destination: NationalDayView(holiday: holiday)) {
+//                                    Text(holiday.name)
+//                                        .font(.title2)
+//                                }
                             }
 //                        } header: {
 //                            Text("\(section.key)")

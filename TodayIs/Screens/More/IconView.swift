@@ -14,7 +14,7 @@ struct IconView: View {
         NavigationView {
             Form {
                 Picker(selection: $iconSettings.currentIndex, label: Text("Icons")) {
-                    ForEach(0..<iconSettings.iconNames.count) {
+                    ForEach(0..<iconSettings.iconNames.count, id: \.self) {
                         Text(self.iconSettings.iconNames[$0] ?? "Default")
                     }
                 }.onReceive([self.iconSettings.currentIndex].publisher.first()) { (value) in

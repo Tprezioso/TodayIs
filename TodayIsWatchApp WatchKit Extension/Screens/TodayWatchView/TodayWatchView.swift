@@ -60,14 +60,14 @@ struct HolidayWatchListView: View {
                 Text("\(holiday.name)")
                     .font(.title)
                     .fontWeight(.semibold)
-            } else {                
+            } else {
                 let split = holiday.name.components(separatedBy: "–")
                 let firstPart = split.last
                 let secondPart = split.first
                 NavigationLink(destination: HolidayWatchDetailView(holiday: holiday)) {
                     VStack(alignment: .leading) {
                         Text(firstPart ?? "")
-                            .font(.subheadline)
+                            .font(.body)
                         
                         Text(secondPart ?? "")
                             .font(.headline)

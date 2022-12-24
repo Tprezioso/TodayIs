@@ -24,8 +24,6 @@
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */; };
 		553ED5B82623BA99000D5757 /* NationalDayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */; };
-		556B9E2929528C46007F0162 /* Green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 556B9E2729528C46007F0162 /* Green@3x.png */; };
-		556B9E2A29528C46007F0162 /* Green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 556B9E2829528C46007F0162 /* Green@2x.png */; };
 		556C965426FBACF600978D09 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965326FBACF600978D09 /* NetworkManager.swift */; };
 		556C965626FBAD3800978D09 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 556C965526FBAD3800978D09 /* SwiftSoup */; };
 		556C965826FBAD8E00978D09 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965726FBAD8E00978D09 /* Holiday.swift */; };
@@ -70,6 +68,8 @@
 		55CF6044271654EF00C2CA8D /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55CF6043271654EF00C2CA8D /* SidebarNavigationView.swift */; };
 		55D06501294637FA00F46842 /* Pink@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D06500294637FA00F46842 /* Pink@2x.png */; };
 		55D065032946380000F46842 /* Pink@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D065022946380000F46842 /* Pink@3x.png */; };
+		55D43EEC29569DD400D6B976 /* Green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D43EEB29569DD400D6B976 /* Green@2x.png */; };
+		55D43EF029569ECF00D6B976 /* Green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 55D43EEF29569ECF00D6B976 /* Green@3x.png */; };
 		55E1FF6F26350576007FA5CB /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = 55E1FF6E26350576007FA5CB /* SwiftUIRefresh */; };
 		55E5620A266674AF006F77C8 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56209266674AF006F77C8 /* SearchViewModel.swift */; };
 		55E5620D26667B27006F77C8 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E5620C26667B27006F77C8 /* String+Ext.swift */; };
@@ -149,8 +149,6 @@
 		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListViewModel.swift; sourceTree = "<group>"; };
 		553ED5B72623BA99000D5757 /* NationalDayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayViewModel.swift; sourceTree = "<group>"; };
-		556B9E2729528C46007F0162 /* Green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green@3x.png"; path = "../../../../../../../../.Trash/Green@3x.png"; sourceTree = "<group>"; };
-		556B9E2829528C46007F0162 /* Green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green@2x.png"; path = "../../../../../../../../.Trash/Green@2x.png"; sourceTree = "<group>"; };
 		556C965326FBACF600978D09 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		556C965726FBAD8E00978D09 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		556C965926FBADF500978D09 /* TIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIError.swift; sourceTree = "<group>"; };
@@ -200,6 +198,8 @@
 		55CF6043271654EF00C2CA8D /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
 		55D06500294637FA00F46842 /* Pink@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink@2x.png"; sourceTree = "<group>"; };
 		55D065022946380000F46842 /* Pink@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pink@3x.png"; sourceTree = "<group>"; };
+		55D43EEB29569DD400D6B976 /* Green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green@2x.png"; path = "../../../../../../App Icons/GreenCalandarIcon/Assets.xcassets/AppIcon.appiconset/Green@2x.png"; sourceTree = "<group>"; };
+		55D43EEF29569ECF00D6B976 /* Green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Green@3x.png"; path = "../../../../../../App Icons/GreenCalandarIcon/Assets.xcassets/AppIcon.appiconset/Green@3x.png"; sourceTree = "<group>"; };
 		55E56209266674AF006F77C8 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		55E5620C26667B27006F77C8 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		55E5620E2666B2DB006F77C8 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
@@ -595,8 +595,8 @@
 			isa = PBXGroup;
 			children = (
 				55E5622526698361006F77C8 /* Green.png */,
-				556B9E2829528C46007F0162 /* Green@2x.png */,
-				556B9E2729528C46007F0162 /* Green@3x.png */,
+				55D43EEB29569DD400D6B976 /* Green@2x.png */,
+				55D43EEF29569ECF00D6B976 /* Green@3x.png */,
 				55E562232669833C006F77C8 /* Blue.png */,
 				550FDB6A267AA596000A211C /* Blue@2x.png */,
 				550FDB6C267AA59D000A211C /* Blue@3x.png */,
@@ -802,11 +802,11 @@
 			files = (
 				558A54F325F6A4CA003E1072 /* Preview Assets.xcassets in Resources */,
 				558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */,
-				556B9E2A29528C46007F0162 /* Green@2x.png in Resources */,
+				55D43EEC29569DD400D6B976 /* Green@2x.png in Resources */,
 				55D06501294637FA00F46842 /* Pink@2x.png in Resources */,
+				55D43EF029569ECF00D6B976 /* Green@3x.png in Resources */,
 				55D065032946380000F46842 /* Pink@3x.png in Resources */,
 				550FDB6D267AA59D000A211C /* Blue@3x.png in Resources */,
-				556B9E2929528C46007F0162 /* Green@3x.png in Resources */,
 				55E562242669833C006F77C8 /* Blue.png in Resources */,
 				550FDB6B267AA596000A211C /* Blue@2x.png in Resources */,
 				55E5622626698361006F77C8 /* Green.png in Resources */,

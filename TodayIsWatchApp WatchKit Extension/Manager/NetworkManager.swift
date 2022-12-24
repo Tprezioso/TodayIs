@@ -40,7 +40,8 @@ final class NetworkManager {
                 let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
-                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array()                    for holiday: Element in todaysData {
+                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
+                    for holiday: Element in todaysData {
                         let holidayTitle: String = try holiday.text()
                         var holidayLink: String = try holiday.select("a").attr("href")
                         if holidayLink != "" {
@@ -149,7 +150,8 @@ final class NetworkManager {
                 let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
-                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array()                     for holiday: Element in todaysData {
+                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
+                    for holiday: Element in todaysData {
                         let holidayTitle: String = try holiday.text()
                         var holidayLink: String = try holiday.select("a").attr("href")
                         if holidayTitle.prefix(3) == currentDateString.prefix(3) {

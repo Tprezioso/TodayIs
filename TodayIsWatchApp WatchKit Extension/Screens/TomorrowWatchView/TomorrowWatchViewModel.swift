@@ -29,7 +29,6 @@ final class TomorrowWatchViewModel: ObservableObject {
                     } else {
                         self?.holidays.removeAll()
                         self?.holidays = holidays
-//                        self?.holidays.removeFirst()
                         self?.isHolidaysEmpty = false
                     }
                 case .failure(let error):

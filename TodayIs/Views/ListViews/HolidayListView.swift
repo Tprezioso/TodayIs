@@ -19,8 +19,8 @@ struct HolidayListView: View {
             } else {
                 
                 let split = holiday.name.components(separatedBy: "–")
-                let firstPart = split.last//holiday.name[holiday.name.startIndex..<range.lowerBound]
-                let secondPart = split.first//holiday.name[range.upperBound..<holiday.name.endIndex]
+                let firstPart = split.last
+                let secondPart = split.first
                 NavigationLink(destination: NationalDayView(holiday: holiday)) {
                     VStack(alignment: .leading) {
                         Text(firstPart ?? "")

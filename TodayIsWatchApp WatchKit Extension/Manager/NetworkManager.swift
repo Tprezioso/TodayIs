@@ -37,13 +37,10 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
-//                let tomorrowHolidayData: [Element] = try events.select("a").array() //p
+                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
-                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
-//                    let todaysHolidaysData: [Element] = try todaysData.select("p").array() //p
-                    for holiday: Element in todaysData {
+                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array()                    for holiday: Element in todaysData {
                         let holidayTitle: String = try holiday.text()
                         var holidayLink: String = try holiday.select("a").attr("href")
                         if holidayLink != "" {
@@ -102,7 +99,6 @@ final class NetworkManager {
                 var imageLink = ""
                 
                 let holidayImage: Elements = try holidayData.select("img")
-//                let holidayImageURL:
                 for image in holidayImage {
                     if try image.attr("src").prefix(5) == "https" {
                         imageLink = try image.attr("src")
@@ -150,14 +146,10 @@ final class NetworkManager {
                 let currentDateString: String = dateFormatter.string(from: date)
                 
                 let doc: Document = try SwiftSoup.parse(htmlString)
-//                let events: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
-//                let tomorrowHolidayData: [Element] = try events.select("p").array() //p
                 let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
-                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
-//                    let todaysHolidaysData: [Element] = try todaysData.select("p").array() //p
-                    for holiday: Element in todaysData {
+                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array()                     for holiday: Element in todaysData {
                         let holidayTitle: String = try holiday.text()
                         var holidayLink: String = try holiday.select("a").attr("href")
                         if holidayTitle.prefix(3) == currentDateString.prefix(3) {

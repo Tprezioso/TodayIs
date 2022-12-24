@@ -35,12 +35,10 @@ class WidgetNetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
-//                let tomorrowHolidayData: [Element] = try events.select("a").array() //p
+                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
-                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array() //eventon_events_list
-//                    let todaysHolidaysData: [Element] = try todaysData.select("p").array() //p
+                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                     for holiday: Element in todaysData {
                         let holidayTitle: String = try holiday.text()
                         var holidayLink: String = try holiday.select("a").attr("href")

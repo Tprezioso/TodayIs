@@ -15,8 +15,6 @@ struct SelectedMonthView: View {
         ZStack {
             if !viewModel.isHolidaysEmpty {
                 List {
-//                    ForEach(viewModel.holidayDictionary, id: \.key) { section in
-//                        Section {
                     ForEach(viewModel.holiday, id: \.self) { holiday in
                         let split = holiday.name.components(separatedBy: "–")
                         let firstPart = split.last//holiday.name[holiday.name.startIndex..<range.lowerBound]
@@ -30,16 +28,7 @@ struct SelectedMonthView: View {
                                     .font(.title2)
                             }
                         }
-//                                NavigationLink(destination: NationalDayView(holiday: holiday)) {
-//                                    Text(holiday.name)
-//                                        .font(.title2)
-//                                }
-                            }
-//                        } header: {
-//                            Text("\(section.key)")
-//                                .font(.headline)
-//                        }
-//                    }
+                    }
                 }.alert(item: $viewModel.alertItem) { alertItem in
                     Alert.init(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
                 }
@@ -83,8 +72,6 @@ class SelectedMonthViewModel: ObservableObject {
                         self?.isHolidaysEmpty = true
                     } else {
                         self?.holiday = holidays
-//                        self?.holidayDictionary = (self?.sortHolidaysIntoSection(holidays: holidays))!
-                        
                         self?.isHolidaysEmpty = false
                     }
                 case .failure(let error):

@@ -32,5 +32,370 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "780CFA19-0092-43C6-A569-56B8873C88F5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "getHolidayData(completed:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E30A2B62-B4DE-4C6D-A782-6859D54431C8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "61"
+            endingLineNumber = "61"
+            landmarkName = "getHolidayData(completed:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E5153FE-C607-4559-B8C5-C75067DECAB3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "getDetailHoliday(url:completed:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C5941C5-5420-4162-8DB6-B14EA843DA49"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "getDetailHoliday(url:completed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0C5941C5-5420-4162-8DB6-B14EA843DA49 - 57c885ac7a8dd01e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "85"
+                  endingLineNumber = "85"
+                  offsetFromSymbolStart = "1024">
+               </Location>
+               <Location
+                  uuid = "0C5941C5-5420-4162-8DB6-B14EA843DA49 - 57c885ac7a8dd03f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "84"
+                  endingLineNumber = "84"
+                  offsetFromSymbolStart = "964">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AF65ABD6-9751-40C6-9928-5A95741A1A9C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "getDetailHoliday(url:completed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "AF65ABD6-9751-40C6-9928-5A95741A1A9C - 57c885ac7a8dd083"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "512">
+               </Location>
+               <Location
+                  uuid = "AF65ABD6-9751-40C6-9928-5A95741A1A9C - c976ca000af7b5b7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "89"
+                  endingLineNumber = "89"
+                  offsetFromSymbolStart = "452">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6458285A-BFD0-4DDE-B834-6DBB83A0BF1D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "getDetailHoliday(url:completed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6458285A-BFD0-4DDE-B834-6DBB83A0BF1D - c976ca000af789b6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "2932">
+               </Location>
+               <Location
+                  uuid = "6458285A-BFD0-4DDE-B834-6DBB83A0BF1D - c976ca000af789d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "2152">
+               </Location>
+               <Location
+                  uuid = "6458285A-BFD0-4DDE-B834-6DBB83A0BF1D - c976ca000af789d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "2924">
+               </Location>
+               <Location
+                  uuid = "6458285A-BFD0-4DDE-B834-6DBB83A0BF1D - c976ca000af789d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "2380">
+               </Location>
+               <Location
+                  uuid = "6458285A-BFD0-4DDE-B834-6DBB83A0BF1D - c976ca000af789d5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TodayIs.NetworkManager.getDetailHoliday(url: Swift.String, completed: (Swift.Result&lt;TodayIs.DetailHoliday, TodayIs.TIError&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "119"
+                  endingLineNumber = "119"
+                  offsetFromSymbolStart = "2420">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C462E681-D193-4478-A2DD-21B9FCFFE1E9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Screens/NationalDayDetailView/NationalDayViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "getHoliday(url:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C411A1C2-6C37-4ED8-B273-3199D95A9FE7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "getDetailHoliday(url:completed:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70FD3792-370A-4F7B-9C6A-D535AEE0D42B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Screens/NationalDayDetailView/NationalDayViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "load(fromURLString:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "64ED37E4-91F1-4AEB-A8CC-FB2470DF159B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "downloadImage(fromURLString:completed:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "64ED37E4-91F1-4AEB-A8CC-FB2470DF159B - d2cd8e409480eb5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TodayIs.NetworkManager.downloadImage(fromURLString: Swift.String, completed: (Swift.Optional&lt;__C.UIImage&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "223"
+                  endingLineNumber = "223"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  uuid = "64ED37E4-91F1-4AEB-A8CC-FB2470DF159B - d2cd8e409480eb5e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in TodayIs.NetworkManager.downloadImage(fromURLString: Swift.String, completed: (Swift.Optional&lt;__C.UIImage&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "223"
+                  endingLineNumber = "223"
+                  offsetFromSymbolStart = "200">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C167BFB7-2374-4466-BE30-0F0AF187833B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "downloadImage(fromURLString:completed:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6C08117-8E40-4496-88D1-5B49AB28C63F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TodayIs/Utilities/Managers/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
+            landmarkName = "downloadImage(fromURLString:completed:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

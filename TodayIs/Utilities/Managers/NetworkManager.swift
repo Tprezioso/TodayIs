@@ -12,6 +12,7 @@ final class NetworkManager {
     static let shared = NetworkManager()
     private let cache = NSCache<NSString, UIImage>()
     private init() {}
+    private let basicURL = "https://www.nationaldaycalendar.com"
     private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
     private let currentDateURL = "https://nationaldaycalendar.com/?s=december+12"
     private let tomorrowURL = "https://nationaldaycalendar.com/tomorrow/"
@@ -38,12 +39,12 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
+                let tomorrowHolidayData: [Element] = try doc.getElementsByClass("l-grid--item").array()
                 holidays.removeAll()
                 if tomorrowHolidayData.isEmpty {
-                    let todaysData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
+                    let todaysData: [Element] = try doc.getElementsByClass("l-grid--item").array()
                     for holiday: Element in todaysData {
-                        let holidayTitle: String = try holiday.text()
+                        let holidayTitle: String = try holiday.select("a").attr("title")
                         var holidayLink: String = try holiday.select("a").attr("href")
                         if holidayLink != "" {
                             if Array(holidayLink)[4] != "s" {
@@ -56,7 +57,7 @@ final class NetworkManager {
                     completed(.success(holidays))
                 } else {
                     for holiday: Element in tomorrowHolidayData {
-                        let holidayTitle: String = try holiday.text()
+                        let holidayTitle: String = try holiday.select("a").attr("title")
                         var holidayLink: String = try holiday.select("a").attr("href")
                         if holidayLink != "" {
                             if Array(holidayLink)[4] != "s" {
@@ -79,7 +80,7 @@ final class NetworkManager {
     
     // MARK: - Get Detail for Selected Holiday
     func getDetailHoliday(url: String, completed: @escaping (Result<DetailHoliday, TIError>) -> Void) {
-        guard let url = URL(string: url) else {
+        guard let url = URL(string: basicURL + url) else {
             completed(.failure(TIError.invalidURL))
             return
         }
@@ -97,22 +98,25 @@ final class NetworkManager {
             
             do {
                 let doc: Document = try SwiftSoup.parse(htmlString)
-                let holidayData: Element =  try doc.getElementsByClass("site-content").first()!
+                let holidayData: Element =  try doc.getElementsByClass("m-detail--body").first()!
                 var imageLink = ""
                 
-                let holidayImage: Elements = try holidayData.select("img")
-                for image in holidayImage {
-                    if try image.attr("src").prefix(5) == "https" {
-                        imageLink = try image.attr("src")
-                        break
-                    }
-                }
+                let holidayImage: Element = try doc.getElementsByClass("m-detail-header--feature-image").first()!
+
+                imageLink = try holidayImage.attr("src")
+//                for image in holidayImage {
+//                    if try image.attr("src").prefix(5) == "https" {
+//                        imageLink = try image.attr("src")
+//                        break
+//                    }
+//                }
                 var holidayText: String = try holidayData.select("p").text()
                 if holidayText == "" {
                     holidayText = "No Description Available"
                 }
+//                let image = URL(string: " https://www.nationaldaycalendar.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cg_faces:center%2Cq_auto:eco%2Cw_640/MjAxMTE5OTg3NDMwMTM5NzY5/fried-scallops-day--october-2.svg")!
                 
-                let detailHoliday = DetailHoliday(imageURL: imageLink, description: holidayText)
+                let detailHoliday = DetailHoliday(imageURL: imageLink.removingPercentEncoding!, description: holidayText)
                 completed(.success(detailHoliday))
             } catch Exception.Error(let type, let message) {
                 print(type, message)

@@ -774,6 +774,7 @@
 				553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 				55E1FF6D26350576007FA5CB /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 				55E5621926684839006F77C8 /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				5593A0152ADF6CD1008FCE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			productRefGroup = 558A54E925F6A4C9003E1072 /* Products */;
 			projectDirPath = "";
@@ -1288,6 +1289,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.3.2;
+			};
+		};
+		5593A0152ADF6CD1008FCE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
 			};
 		};
 		55E1FF6D26350576007FA5CB /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */ = {

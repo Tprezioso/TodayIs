@@ -45,6 +45,8 @@
 		558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* NationalDayView.swift */; };
 		558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54EF25F6A4CA003E1072 /* Assets.xcassets */; };
 		558A54F325F6A4CA003E1072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */; };
+		5593A0172AE0B0F0008FCE1A /* NationalDayListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593A0162AE0B0F0008FCE1A /* NationalDayListFeature.swift */; };
+		5593A0192AE0B1B7008FCE1A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5593A0182AE0B1B7008FCE1A /* ComposableArchitecture */; };
 		5598E1772662F7890047B02B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598E1762662F7890047B02B /* TabBarView.swift */; };
 		5598E17A2662FA910047B02B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598E1792662FA910047B02B /* SearchView.swift */; };
 		5598E17D2662FAAA0047B02B /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598E17C2662FAAA0047B02B /* MoreView.swift */; };
@@ -171,6 +173,7 @@
 		558A54EF25F6A4CA003E1072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		558A54F425F6A4CA003E1072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5593A0162AE0B0F0008FCE1A /* NationalDayListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListFeature.swift; sourceTree = "<group>"; };
 		5598E1762662F7890047B02B /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		5598E1792662FA910047B02B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		5598E17C2662FAAA0047B02B /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
@@ -237,6 +240,7 @@
 			files = (
 				55E1FF6F26350576007FA5CB /* SwiftUIRefresh in Frameworks */,
 				553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */,
+				5593A0192AE0B1B7008FCE1A /* ComposableArchitecture in Frameworks */,
 				55E5621B26684839006F77C8 /* Purchases in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +291,7 @@
 			isa = PBXGroup;
 			children = (
 				55C04753261FA653000DCD90 /* NationalDayListView.swift */,
+				5593A0162AE0B0F0008FCE1A /* NationalDayListFeature.swift */,
 				553ED5AE26234AC5000D5757 /* NationalDayListViewModel.swift */,
 			);
 			path = NationalDayList;
@@ -696,6 +701,7 @@
 				553ED5A726225A2A000D5757 /* SwiftSoup */,
 				55E1FF6E26350576007FA5CB /* SwiftUIRefresh */,
 				55E5621A26684839006F77C8 /* Purchases */,
+				5593A0182AE0B1B7008FCE1A /* ComposableArchitecture */,
 			);
 			productName = TodayIs;
 			productReference = 558A54E825F6A4C9003E1072 /* TodayIs.app */;
@@ -875,6 +881,7 @@
 				55E5622A266985EE006F77C8 /* IconNames.swift in Sources */,
 				55E56233266C4F03006F77C8 /* SearchDatePicker.swift in Sources */,
 				553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */,
+				5593A0172AE0B0F0008FCE1A /* NationalDayListFeature.swift in Sources */,
 				5583E83426418EF200CD66DC /* TomorrowListViewModel.swift in Sources */,
 				55CB530628E8C4F4007F545C /* YearView.swift in Sources */,
 				55E56238266C5109006F77C8 /* NationalHolidayLinkLogo.swift in Sources */,
@@ -1337,6 +1344,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
+		};
+		5593A0182AE0B1B7008FCE1A /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5593A0152ADF6CD1008FCE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 		55E1FF6E26350576007FA5CB /* SwiftUIRefresh */ = {
 			isa = XCSwiftPackageProductDependency;

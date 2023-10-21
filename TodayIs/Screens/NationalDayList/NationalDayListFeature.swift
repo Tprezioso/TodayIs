@@ -29,11 +29,50 @@ struct NationalDayListDomain: Reducer {
 }
 
 struct NationalDayListFeature: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+    let store: StoreOf<NationalDayListDomain>
+        @Environment(\.scenePhase) private var scenePhase
+        let columns = [
+            GridItem(.flexible()),
+            GridItem(.flexible())
+        ]
+
+        var body: some View {
+            WithViewStore(store, observe: { $0 }) { viewStore in
+                NavigationStack {
+                    VStack {
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 20) {
+                                ForEach(viewStore.holidays, id: \.self) { holiday in
+                                    Text(holiday.name)
+                                }
+                            }
+                        }
+                        Spacer()
+                    }
+                    .navigationTitle("")
+                    .onAppear { viewStore.send(.onAppear) }
+                    .foregroundColor(.white)
+                    .padding()
+                }
+//                .alert(store: self.store.scope(state: \.$alert, action: {.alert($0)}))
+                .onChange(of: scenePhase) {
+                    switch scenePhase {
+                    case .background:
+                        break
+                    case .inactive:
+                        break
+                    case .active:
+                        viewStore.send(.onAppear)
+                    @unknown default:
+                        break
+                    }
+                }
+            }
+        }
 }
 
 #Preview {
-    NationalDayListFeature()
+    NationalDayListFeature(store: .init(initialState: .init()) {
+        NationalDayListDomain()
+    })
 }

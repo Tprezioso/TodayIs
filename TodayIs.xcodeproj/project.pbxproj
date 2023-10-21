@@ -47,6 +47,7 @@
 		558A54F325F6A4CA003E1072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */; };
 		5593A0172AE0B0F0008FCE1A /* NationalDayListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593A0162AE0B0F0008FCE1A /* NationalDayListFeature.swift */; };
 		5593A0192AE0B1B7008FCE1A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5593A0182AE0B1B7008FCE1A /* ComposableArchitecture */; };
+		5593A01B2AE1D761008FCE1A /* HolidayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593A01A2AE1D761008FCE1A /* HolidayClient.swift */; };
 		5598E1772662F7890047B02B /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598E1762662F7890047B02B /* TabBarView.swift */; };
 		5598E17A2662FA910047B02B /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598E1792662FA910047B02B /* SearchView.swift */; };
 		5598E17D2662FAAA0047B02B /* MoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598E17C2662FAAA0047B02B /* MoreView.swift */; };
@@ -174,6 +175,7 @@
 		558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		558A54F425F6A4CA003E1072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5593A0162AE0B0F0008FCE1A /* NationalDayListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListFeature.swift; sourceTree = "<group>"; };
+		5593A01A2AE1D761008FCE1A /* HolidayClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayClient.swift; sourceTree = "<group>"; };
 		5598E1762662F7890047B02B /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		5598E1792662FA910047B02B /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		5598E17C2662FAAA0047B02B /* MoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreView.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 			children = (
 				55E5621C2668488F006F77C8 /* IAPManager.swift */,
 				55C04758261FA94D000DCD90 /* NetworkManager.swift */,
+				5593A01A2AE1D761008FCE1A /* HolidayClient.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -878,6 +881,7 @@
 				558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */,
 				55E56230266C4EAB006F77C8 /* EmptyState.swift in Sources */,
 				55E5620F2666B2DB006F77C8 /* Date+Ext.swift in Sources */,
+				5593A01B2AE1D761008FCE1A /* HolidayClient.swift in Sources */,
 				55E5622A266985EE006F77C8 /* IconNames.swift in Sources */,
 				55E56233266C4F03006F77C8 /* SearchDatePicker.swift in Sources */,
 				553ED5AF26234AC5000D5757 /* NationalDayListViewModel.swift in Sources */,
@@ -946,7 +950,7 @@
 				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = TodayIsWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -970,7 +974,7 @@
 				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = TodayIsWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1036,13 +1040,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -1091,13 +1096,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -1113,7 +1119,7 @@
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TodayIs/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1138,7 +1144,7 @@
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = TodayIs/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1173,7 +1179,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -1199,7 +1205,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -1209,7 +1215,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIsWatchApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1227,7 +1233,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.5.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIsWatchApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -11,55 +11,43 @@ import ComposableArchitecture
 //import Models
 
 public struct HolidayClient {
-    public var getCurrentHoliday:() async throws -> [Holiday]?
+    public var getCurrentHoliday:() async throws -> Result<[Holiday], Error>
 }
 
 extension HolidayClient: DependencyKey {
-    public static let baseURL = "https://www.esbnyc.com"
-    public static let calendarEndPoint = "/about/tower-lights"
+    public static let baseURL = "https://www.holidaycalendar.io"
+    public static let TodaysHoliday = "/what-holiday-is-today"
 
     public static var liveValue = HolidayClient(
         getCurrentHoliday: {
-            guard let url = URL(string: baseURL + calendarEndPoint) else { throw NetworkError.invalidURL }
+            guard let url = URL(string: baseURL + TodaysHoliday) else { throw NetworkError.invalidURL }
 
             let (data, response) = try await URLSession.shared.data(from: url)
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
                 print(" ❌ Invalid Response")
                 throw NetworkError.invalidResponse
             }
-            guard let htmlString = String(data: data, encoding: .utf8) else { return [] }
+            guard let htmlString = String(data: data, encoding: .utf8) else { throw NetworkError.invalidURL }
 
             var holidays = [Holiday]()
 
             do {
                 let html: String = htmlString
                 let doc: Document = try SwiftSoup.parse(html)
-                let notToday: [Element] = try doc.getElementsByClass("not-today").array()
-                var todayImage: String = try doc.getElementsByClass("background-image-wrapper").attr("style")
-                todayImage = todayImage.slice(from: "(", to: ")") ?? ""
-                let today: [Element]? = try doc.getElementsByClass("is-today").array()
-                var dayLight: String? = try today?.first?.select("h3").text()
-                let dayDate: String? = try today?.first?.select("h2").text()
-                let dayDescription: String? = try today?.first?.select("p").text()
-
-                for today in notToday {
-                    let img: String? = try today.select("img").attr("src")
-                    var light: String = try today.select("h3").text()
-                    let day: String = try today.select("h2").text()
-                    let content: String = try today.select("p").text()
-
-                    holidays.append(Holiday(name: "", url: ""))
+                let todaysHolidays: Elements = try doc.getElementsByClass("card") // w-dyn-item w-inline-block
+                for holiday in try todaysHolidays.select("a.card-link-image---image-wrapper").array() {
+                    print(try holiday.select("img").attr("alt"))
+                    //.select("img").attr("alt") title
+                    //.select("a").attr("href") link
                 }
 
-                if dayLight?.byWords.last?.lowercased() == "color" {
-                    dayLight = dayLight?.components(separatedBy: " ").dropLast().joined(separator: " ")
-                }
-                holidays.insert(Holiday(name: "", url: ""), at: 1)
 
-                return holidays
+//                holidays.insert(Holiday(name: "", url: ""), at: 1)
+
+                return .success(holidays)
             } catch {
                 print(error.localizedDescription)
-                return nil
+                return .failure(error.localizedDescription as! Error)
             }
         }
     )
@@ -67,25 +55,25 @@ extension HolidayClient: DependencyKey {
 
 extension HolidayClient: TestDependencyKey {
     public static var previewValue = HolidayClient(getCurrentHoliday: {
-        return [
+        .success([
            Holiday(name: "Holiday 1", url: ""),
            Holiday(name: "Holiday 2", url: ""),
            Holiday(name: "Holiday 3", url: "")
-        ]
+        ])
     })
 
     public static var testValue = HolidayClient(getCurrentHoliday: {
-        return [
+        .success([
             Holiday(name: "Holiday 1", url: ""),
             Holiday(name: "Holiday 2", url: ""),
             Holiday(name: "Holiday 3", url: "")
-        ]
+        ])
     })
 
 }
 
 extension DependencyValues {
-    public var currentTowerClient: HolidayClient {
+    public var currentHolidayClient: HolidayClient {
         get { self[HolidayClient.self] }
         set { self[HolidayClient.self] = newValue }
     }

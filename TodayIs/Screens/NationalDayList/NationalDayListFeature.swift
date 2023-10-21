@@ -16,13 +16,27 @@ struct NationalDayListDomain: Reducer {
 
     enum Action: Equatable {
         case onAppear
+        case didRecieveHolidays(TaskResult<[Holiday]>)
     }
 
+    @Dependency(\.currentHolidayClient) var currentHolidayClient
     var body: some ReducerOf<Self> {
         Reduce<State, Action> { state, action in
             switch action {
             case .onAppear:
-                return .none
+                return .run { send in
+                    let response = try await currentHolidayClient.getCurrentHoliday()
+                    return await send(.didRecieveHolidays(TaskResult(response)))
+                }
+            case let .didRecieveHolidays(holidays):
+                switch holidays {
+                case .success(_):
+                    return .none
+
+                case .failure(_):
+                    return .none
+
+                }
             }
         }
     }

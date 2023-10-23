@@ -407,8 +407,8 @@
             filePath = "TodayIs/Utilities/Managers/HolidayClient.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "liveValue"
             landmarkType = "24">
          </BreakpointContent>

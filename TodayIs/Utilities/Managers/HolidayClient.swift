@@ -35,10 +35,13 @@ extension HolidayClient: DependencyKey {
                 let html: String = htmlString
                 let doc: Document = try SwiftSoup.parse(html)
                 let todaysHolidays: Elements = try doc.getElementsByClass("card") // w-dyn-item w-inline-block
-                for holiday in try todaysHolidays.select("a.card-link-image---image-wrapper").array() {
-                    print(try holiday.select("img").attr("alt"))
-                    //.select("img").attr("alt") title
-                    //.select("a").attr("href") link
+                for holiday in todaysHolidays {
+                    print(try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src"))
+                    print(try holiday.select("p").text())
+                    //try holiday.select("a.card-link-image---image-wrapper").select("img").attr("alt") //title
+                    // try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") link
+                    // try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") image
+                    //try holiday.select("p").text() description
                 }
 
 

@@ -38,10 +38,11 @@ extension HolidayClient: DependencyKey {
                 for holiday in todaysHolidays {
                     print(try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src"))
                     print(try holiday.select("p").text())
-                    //try holiday.select("a.card-link-image---image-wrapper").select("img").attr("alt") //title
-                    // try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") link
-                    // try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") image
-                    //try holiday.select("p").text() description
+                    let title = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("alt") //title
+                    let link = try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") //link
+                    let image = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") //image
+                    let description = try holiday.select("p").text() //description
+                    holidays.append(Holiday(name: title, url: link, imageURL: image, description: description))
                 }
 
 

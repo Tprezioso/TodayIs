@@ -30,7 +30,8 @@ struct NationalDayListDomain: Reducer {
                 }
             case let .didRecieveHolidays(holidays):
                 switch holidays {
-                case .success(_):
+                case let .success(holidays):
+                    state.holidays = holidays
                     return .none
 
                 case .failure(_):

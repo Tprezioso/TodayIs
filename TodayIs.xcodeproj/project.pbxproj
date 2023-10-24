@@ -45,6 +45,7 @@
 		558A54EE25F6A4C9003E1072 /* NationalDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54ED25F6A4C9003E1072 /* NationalDayView.swift */; };
 		558A54F025F6A4CA003E1072 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54EF25F6A4CA003E1072 /* Assets.xcassets */; };
 		558A54F325F6A4CA003E1072 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */; };
+		5591651D2AE7331400965D39 /* HolidayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5591651C2AE7331400965D39 /* HolidayView.swift */; };
 		5593A0172AE0B0F0008FCE1A /* NationalDayListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593A0162AE0B0F0008FCE1A /* NationalDayListFeature.swift */; };
 		5593A0192AE0B1B7008FCE1A /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 5593A0182AE0B1B7008FCE1A /* ComposableArchitecture */; };
 		5593A01B2AE1D761008FCE1A /* HolidayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593A01A2AE1D761008FCE1A /* HolidayClient.swift */; };
@@ -174,6 +175,7 @@
 		558A54EF25F6A4CA003E1072 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		558A54F225F6A4CA003E1072 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		558A54F425F6A4CA003E1072 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5591651C2AE7331400965D39 /* HolidayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayView.swift; sourceTree = "<group>"; };
 		5593A0162AE0B0F0008FCE1A /* NationalDayListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListFeature.swift; sourceTree = "<group>"; };
 		5593A01A2AE1D761008FCE1A /* HolidayClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayClient.swift; sourceTree = "<group>"; };
 		5598E1762662F7890047B02B /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -636,6 +638,7 @@
 			children = (
 				55E56235266C4F5F006F77C8 /* SearchListView.swift */,
 				5574D0C628D63B8A008A8936 /* HolidayListView.swift */,
+				5591651C2AE7331400965D39 /* HolidayView.swift */,
 			);
 			path = ListViews;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */,
 				55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */,
 				5574D0D228D7E231008A8936 /* Navigation+Ext.swift in Sources */,
+				5591651D2AE7331400965D39 /* HolidayView.swift in Sources */,
 				5574D0C728D63B8A008A8936 /* HolidayListView.swift in Sources */,
 				55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */,
 				5583E83126418BE900CD66DC /* TomorrowListView.swift in Sources */,

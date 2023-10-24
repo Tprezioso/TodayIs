@@ -16,7 +16,7 @@ struct NationalDayListDomain: Reducer {
 
     enum Action: Equatable {
         case onAppear
-        case didRecieveHolidays(TaskResult<[Holiday]>)
+        case didReceiveHolidays(TaskResult<[Holiday]>)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
@@ -26,9 +26,9 @@ struct NationalDayListDomain: Reducer {
             case .onAppear:
                 return .run { send in
                     let response = try await currentHolidayClient.getCurrentHoliday()
-                    return await send(.didRecieveHolidays(TaskResult(response)))
+                    return await send(.didReceiveHolidays(TaskResult(response)))
                 }
-            case let .didRecieveHolidays(holidays):
+            case let .didReceiveHolidays(holidays):
                 switch holidays {
                 case let .success(holidays):
                     state.holidays = holidays
@@ -46,22 +46,22 @@ struct NationalDayListDomain: Reducer {
 struct NationalDayListFeature: View {
     let store: StoreOf<NationalDayListDomain>
         @Environment(\.scenePhase) private var scenePhase
-        let columns = [
-            GridItem(.flexible()),
-            GridItem(.flexible())
-        ]
 
         var body: some View {
             WithViewStore(store, observe: { $0 }) { viewStore in
                 NavigationStack {
                     VStack {
                         ScrollView {
-                            LazyVGrid(columns: columns, spacing: 20) {
+                            LazyVStack(spacing: 20) {
                                 ForEach(viewStore.holidays, id: \.self) { holiday in
-                                    Text(holiday.name)
+                                    HolidayView(holiday: holiday)
+                                        .scrollTransition(.interactive, axis: .vertical) { view, phase in
+                                            view.opacity(phase.value > 0 ? 0.1 : 1)
+                                                .blur(radius: phase.value > 0 ? 5 : 0)
+                                        }
                                 }
-                            }
-                        }
+                            }.scrollTargetLayout()
+                        }.scrollTargetBehavior(.viewAligned)
                         Spacer()
                     }
                     .navigationTitle("")
@@ -91,3 +91,4 @@ struct NationalDayListFeature: View {
         NationalDayListDomain()
     })
 }
+

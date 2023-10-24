@@ -32,6 +32,7 @@ final class NationalDayListViewModel: ObservableObject {
                         self?.holidays = holidays
                         self?.isHolidaysEmpty = false
                     }
+               
                 case .failure(let error):
                     switch error {
                     case .invalidData:

@@ -411,6 +411,53 @@
             endingLineNumber = "46"
             landmarkName = "liveValue"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "1E6FE51E-FDC1-499F-B995-AD314BD02D50 - 33e7bcdbc703dbec"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; Swift.Result&lt;Swift.Array&lt;TodayIs.Holiday&gt;, Swift.Error&gt; in variable initialization expression of static TodayIs.HolidayClient.liveValue : TodayIs.HolidayClient"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/HolidayClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50"
+                  offsetFromSymbolStart = "1392">
+               </Location>
+               <Location
+                  uuid = "1E6FE51E-FDC1-499F-B995-AD314BD02D50 - 33e7bcdbc703db60"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; Swift.Result&lt;Swift.Array&lt;TodayIs.Holiday&gt;, Swift.Error&gt; in variable initialization expression of static TodayIs.HolidayClient.liveValue : TodayIs.HolidayClient"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/HolidayClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "4008">
+               </Location>
+               <Location
+                  uuid = "1E6FE51E-FDC1-499F-B995-AD314BD02D50 - 33e7bcdbc703db60"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 () async throws -&gt; Swift.Result&lt;Swift.Array&lt;TodayIs.Holiday&gt;, Swift.Error&gt; in variable initialization expression of static TodayIs.HolidayClient.liveValue : TodayIs.HolidayClient"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/HolidayClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "3952">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

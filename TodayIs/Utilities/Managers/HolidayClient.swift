@@ -42,7 +42,7 @@ extension HolidayClient: DependencyKey {
                     let link = try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") //link
                     let image = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") //image
                     let description = try holiday.select("p").text() //description
-                    holidays.append(Holiday(name: title, url: link, imageURL: image, description: description))
+                    holidays.append(Holiday(name: title, url: baseURL + link, imageURL: image, description: description))
                 }
 
 

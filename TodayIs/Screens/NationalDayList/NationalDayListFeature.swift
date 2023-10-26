@@ -10,13 +10,17 @@ import ComposableArchitecture
 
 struct NationalDayListDomain: Reducer {
     struct State: Equatable {
+        // TODO: - Need to add loading
         var holidays = [Holiday]()
         var isLoading = false
+        @PresentationState var nationalDayDetailState: NationalDayDomain.State?
     }
 
     enum Action: Equatable {
         case onAppear
         case didReceiveHolidays(TaskResult<[Holiday]>)
+        case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
+        case didTapHoliday(Holiday)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
@@ -38,7 +42,16 @@ struct NationalDayListDomain: Reducer {
                     return .none
 
                 }
+            case .nationalDayDetail:
+                return .none
+            
+            case let .didTapHoliday(holiday):
+                state.nationalDayDetailState = .init(holiday: holiday)
+                return .none
             }
+        }
+        .ifLet(\.$nationalDayDetailState , action: /Action.nationalDayDetail) {
+            NationalDayDomain()
         }
     }
 }
@@ -54,11 +67,15 @@ struct NationalDayListFeature: View {
                         ScrollView {
                             LazyVStack(spacing: 20) {
                                 ForEach(viewStore.holidays, id: \.self) { holiday in
-                                    HolidayView(holiday: holiday)
-                                        .scrollTransition(.interactive, axis: .vertical) { view, phase in
-                                            view.opacity(phase.value > 0 ? 0.1 : 1)
-                                                .blur(radius: phase.value > 0 ? 5 : 0)
-                                        }
+                                    Button {
+                                        viewStore.send(.didTapHoliday(holiday))
+                                    } label: {
+                                        HolidayView(holiday: holiday)
+                                    }
+                                    .scrollTransition(.interactive, axis: .vertical) { view, phase in
+                                        view.opacity(phase.value > 0 ? 0.1 : 1)
+                                            .blur(radius: phase.value > 0 ? 5 : 0)
+                                    }
                                 }
                             }.scrollTargetLayout()
                         }.scrollTargetBehavior(.viewAligned)
@@ -68,6 +85,9 @@ struct NationalDayListFeature: View {
                     .onAppear { viewStore.send(.onAppear) }
                     .foregroundColor(.white)
                     .padding()
+                }
+                .navigationDestination(store: self.store.scope(state: \.$nationalDayDetailState, action: { .nationalDayDetail($0) })) { store in
+                    NationalDayDetailFeature(store: store)
                 }
 //                .alert(store: self.store.scope(state: \.$alert, action: {.alert($0)}))
                 .onChange(of: scenePhase) {

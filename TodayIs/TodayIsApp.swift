@@ -13,9 +13,11 @@ struct TodayIsApp: App {
    
     var body: some Scene {
         WindowGroup {
-            NationalDayListFeature(store: .init(initialState: .init()) {
-                NationalDayListDomain()
-            })
+            NavigationStack {
+                NationalDayListFeature(store: .init(initialState: .init()) {
+                    NationalDayListDomain()
+                })
+            }
 
 //            NavigationStyleView()
 //                .environmentObject(IconNames())

@@ -12,6 +12,7 @@ import ComposableArchitecture
 
 public struct HolidayClient {
     public var getCurrentHoliday:() async throws -> Result<[Holiday], Error>
+    public var getCurrentHolidayDetail:(_ url: String) async throws -> Result<String, Error>
 }
 
 extension HolidayClient: DependencyKey {
@@ -44,11 +45,28 @@ extension HolidayClient: DependencyKey {
                     let description = try holiday.select("p").text() //description
                     holidays.append(Holiday(name: title, url: baseURL + link, imageURL: image, description: description))
                 }
-
-
-//                holidays.insert(Holiday(name: "", url: ""), at: 1)
-
                 return .success(holidays)
+            } catch {
+                print(error.localizedDescription)
+                return .failure(error.localizedDescription as! Error)
+            }
+        }, 
+        getCurrentHolidayDetail: { url in
+            guard let url = URL(string: url) else { throw NetworkError.invalidURL }
+
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                print(" ❌ Invalid Response")
+                throw NetworkError.invalidResponse
+            }
+            guard let htmlString = String(data: data, encoding: .utf8) else { throw NetworkError.invalidURL }
+            do {
+                let html: String = htmlString
+                let doc: Document = try SwiftSoup.parse(html)
+                let selectedHolidayDetails: Elements = try doc.getElementsByClass("t_holiday_intro_text") // description
+                print(selectedHolidayDetails)
+
+                return .success("holidays")
             } catch {
                 print(error.localizedDescription)
                 return .failure(error.localizedDescription as! Error)
@@ -58,22 +76,32 @@ extension HolidayClient: DependencyKey {
 }
 
 extension HolidayClient: TestDependencyKey {
-    public static var previewValue = HolidayClient(getCurrentHoliday: {
-        .success([
-           Holiday(name: "Holiday 1", url: ""),
-           Holiday(name: "Holiday 2", url: ""),
-           Holiday(name: "Holiday 3", url: "")
-        ])
-    })
+    public static var previewValue = HolidayClient(
+        getCurrentHoliday: {
+            .success([
+                Holiday(name: "Holiday 1", url: ""),
+                Holiday(name: "Holiday 2", url: ""),
+                Holiday(name: "Holiday 3", url: "")
+            ])
+        },
+                                                   
+        getCurrentHolidayDetail: { _ in
+            .success("")
+        }
+    )
 
-    public static var testValue = HolidayClient(getCurrentHoliday: {
-        .success([
-            Holiday(name: "Holiday 1", url: ""),
-            Holiday(name: "Holiday 2", url: ""),
-            Holiday(name: "Holiday 3", url: "")
-        ])
-    })
-
+    public static var testValue = HolidayClient(
+        getCurrentHoliday: {
+            .success([
+                Holiday(name: "Holiday 1", url: ""),
+                Holiday(name: "Holiday 2", url: ""),
+                Holiday(name: "Holiday 3", url: "")
+            ])
+        }, 
+        getCurrentHolidayDetail: { _ in
+            .success("")
+        }
+    )
 }
 
 extension DependencyValues {

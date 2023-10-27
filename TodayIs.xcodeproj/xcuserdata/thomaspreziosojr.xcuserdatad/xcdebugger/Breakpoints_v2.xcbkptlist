@@ -559,7 +559,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "0641F604-7211-450D-BAFF-772FAFD2DD62"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TodayIs/Utilities/Managers/HolidayClient.swift"
@@ -569,6 +569,38 @@
             endingLineNumber = "69"
             landmarkName = "liveValue"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0641F604-7211-450D-BAFF-772FAFD2DD62 - 833dacf52b079419"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #2 (Swift.String) async throws -&gt; Swift.Result&lt;TodayIs.DetailHoliday, Swift.Error&gt; in variable initialization expression of static TodayIs.HolidayClient.liveValue : TodayIs.HolidayClient"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/HolidayClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1424">
+               </Location>
+               <Location
+                  uuid = "0641F604-7211-450D-BAFF-772FAFD2DD62 - 833dacf52b079419"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #2 (Swift.String) async throws -&gt; Swift.Result&lt;TodayIs.DetailHoliday, Swift.Error&gt; in variable initialization expression of static TodayIs.HolidayClient.liveValue : TodayIs.HolidayClient"
+                  moduleName = "TodayIs"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/thomaspreziosojr/Desktop/Develop/iOS/Projects/TodayIs/TodayIs/Utilities/Managers/HolidayClient.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "1512">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -25,7 +25,7 @@ struct NationalDayView: View {
             VStack(spacing: 5) {
                 VStack {
                     ScrollView {
-                        AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL)) { image in
+                        AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL ?? "")) { image in
                             image
                                 .resizable()
                                 .cornerRadius(10)

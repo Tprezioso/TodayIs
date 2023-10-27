@@ -12,7 +12,7 @@ import ComposableArchitecture
 
 public struct HolidayClient {
     public var getCurrentHoliday:() async throws -> Result<[Holiday], Error>
-    public var getCurrentHolidayDetail:(_ url: String) async throws -> Result<String, Error>
+    public var getCurrentHolidayDetail:(_ url: String) async throws -> Result<DetailHoliday, Error>
 }
 
 extension HolidayClient: DependencyKey {
@@ -35,10 +35,10 @@ extension HolidayClient: DependencyKey {
             do {
                 let html: String = htmlString
                 let doc: Document = try SwiftSoup.parse(html)
-                let todaysHolidays: Elements = try doc.getElementsByClass("card") // w-dyn-item w-inline-block
+                let todaysHolidays: Elements = try doc.getElementsByClass("card")
                 for holiday in todaysHolidays {
-                    print(try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src"))
-                    print(try holiday.select("p").text())
+//                    print(try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src"))
+//                    print(try holiday.select("p").text())
                     let title = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("alt") //title
                     let link = try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") //link
                     let image = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") //image
@@ -63,10 +63,11 @@ extension HolidayClient: DependencyKey {
             do {
                 let html: String = htmlString
                 let doc: Document = try SwiftSoup.parse(html)
-                let selectedHolidayDetails: Elements = try doc.getElementsByClass("t_holiday_intro_text") // description
+                let selectedHolidayDescription: String = try doc.getElementsByClass("t_holiday_intro_text").text() // description
+                let selectedHolidayDetails: Elements = try doc.getElementsByClass(".facts-title")
                 print(selectedHolidayDetails)
 
-                return .success("holidays")
+                return .success(DetailHoliday(description: selectedHolidayDescription))
             } catch {
                 print(error.localizedDescription)
                 return .failure(error.localizedDescription as! Error)
@@ -86,7 +87,7 @@ extension HolidayClient: TestDependencyKey {
         },
                                                    
         getCurrentHolidayDetail: { _ in
-            .success("")
+            .success(DetailHoliday(description: ""))
         }
     )
 
@@ -99,7 +100,7 @@ extension HolidayClient: TestDependencyKey {
             ])
         }, 
         getCurrentHolidayDetail: { _ in
-            .success("")
+            .success(DetailHoliday(description: ""))
         }
     )
 }

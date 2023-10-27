@@ -24,7 +24,7 @@ final class NationalDayViewModel: ObservableObject {
                 switch result {
                 case .success(let detailHoliday):
                     self?.detailHoliday = detailHoliday
-                    self?.load(fromURLString: detailHoliday.imageURL)
+                    self?.load(fromURLString: detailHoliday.imageURL ?? "")
                 case .failure(let error):
                     switch error {
                     case .invalidData:

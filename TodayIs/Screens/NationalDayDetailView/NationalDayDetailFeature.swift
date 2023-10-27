@@ -10,14 +10,16 @@ import ComposableArchitecture
 
 struct NationalDayDomain: Reducer {
     struct State: Equatable {
-        var holiday: Holiday
         init(holiday: Holiday) {
             self.holiday = holiday
         }
+        var holiday: Holiday
+        var detailHoliday: DetailHoliday?
     }
 
     enum Action: Equatable {
         case onAppear
+        case receivedDetailHoliday(TaskResult<DetailHoliday>)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
@@ -27,7 +29,16 @@ struct NationalDayDomain: Reducer {
             case .onAppear:
                 return .run { [url = state.holiday.url] send in
                     let response = try await currentHolidayClient.getCurrentHolidayDetail(url)
+                    await send(.receivedDetailHoliday(TaskResult(response)))
                 }
+            case let .receivedDetailHoliday(response):
+                switch response {
+                case let .success(detailHoliday):
+                    print(detailHoliday)
+                case .failure:
+                    return .none
+                }
+                return .none
             }
         }
     }

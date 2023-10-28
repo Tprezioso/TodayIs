@@ -34,7 +34,7 @@ struct NationalDayDomain: Reducer {
             case let .receivedDetailHoliday(response):
                 switch response {
                 case let .success(detailHoliday):
-                    print(detailHoliday)
+                    state.detailHoliday = detailHoliday
                 case .failure:
                     return .none
                 }
@@ -65,6 +65,10 @@ struct NationalDayDetailFeature: View {
                     }
                 }
                 Text(viewStore.holiday.description ?? "")
+                Text(viewStore.detailHoliday?.description ?? "")
+                Link(destination: URL(string: viewStore.holiday.url)!) {
+                    TIButton(title: "Learn More")
+                }
             }
             .onAppear {
                 viewStore.send(.onAppear)

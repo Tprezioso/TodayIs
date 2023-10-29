@@ -32,14 +32,18 @@ public struct HolidayView: View {
                 }
             }
 
-            VStack(alignment: .leading) {
+            VStack() {
                 Spacer()
                 VStack(alignment: .leading, spacing: 12) {
                     Text(holiday.name)
                         .font(.title)
+                        .bold()
+                        .multilineTextAlignment(.leading)
 
                     Text(holiday.description ?? "")
                         .font(.subheadline)
+                        .bold()
+                        .multilineTextAlignment(.leading)
                 }
                 .padding()
                 .clipShape(RoundedRectangle(cornerRadius: 10))
@@ -47,6 +51,7 @@ public struct HolidayView: View {
                 .frame(maxWidth: .infinity)
                 .background(
                     Color.black.opacity(0.3)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
                 )
         }
     }

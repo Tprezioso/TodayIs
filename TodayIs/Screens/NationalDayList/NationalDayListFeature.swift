@@ -81,7 +81,7 @@ struct NationalDayListFeature: View {
                         }.scrollTargetBehavior(.viewAligned)
                         Spacer()
                     }
-                    .navigationTitle("")
+                    .navigationTitle("Today's Holidays")
                     .onAppear { viewStore.send(.onAppear) }
                     .foregroundColor(.white)
                     .padding()

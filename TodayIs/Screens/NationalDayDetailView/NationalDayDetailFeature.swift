@@ -64,12 +64,23 @@ struct NationalDayDetailFeature: View {
                             .controlSize(.large)
                     }
                 }
-                Text(viewStore.holiday.description ?? "")
-                Text(viewStore.detailHoliday?.description ?? "")
-                Link(destination: URL(string: viewStore.holiday.url)!) {
-                    TIButton(title: "Learn More")
+                VStack(spacing: 20) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(viewStore.holiday.description ?? "")
+                            .font(.title3)
+                            .bold()
+                            .multilineTextAlignment(.leading)
+                        Text(viewStore.detailHoliday?.description ?? "")
+                            .font(.headline)
+                            .bold()
+                    }
+                    Link(destination: URL(string: viewStore.holiday.url)!) {
+                        TIButton(title: "Learn More")
+                    }
                 }
             }
+            .padding(.horizontal)
+            .navigationTitle(viewStore.holiday.name)
             .onAppear {
                 viewStore.send(.onAppear)
             }

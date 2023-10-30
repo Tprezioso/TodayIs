@@ -65,6 +65,7 @@
 		55A32EE126EBE5B900E8B853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55A32EE026EBE5B900E8B853 /* Assets.xcassets */; };
 		55A32EE426EBE5B900E8B853 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55A32EE326EBE5B900E8B853 /* Preview Assets.xcassets */; };
 		55A32EF326EBE70800E8B853 /* TabBarWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A32EF226EBE70800E8B853 /* TabBarWatchView.swift */; };
+		55AAE39B2AF0719500B06E1D /* TomorrowListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55AAE39A2AF0719500B06E1D /* TomorrowListFeature.swift */; };
 		55C04754261FA653000DCD90 /* NationalDayListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C04753261FA653000DCD90 /* NationalDayListView.swift */; };
 		55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C04758261FA94D000DCD90 /* NetworkManager.swift */; };
 		55C0475C261FAA2A000DCD90 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C0475B261FAA2A000DCD90 /* TIError.swift */; };
@@ -199,6 +200,7 @@
 		55A32EE526EBE5B900E8B853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55A32EE626EBE5B900E8B853 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		55A32EF226EBE70800E8B853 /* TabBarWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarWatchView.swift; sourceTree = "<group>"; };
+		55AAE39A2AF0719500B06E1D /* TomorrowListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowListFeature.swift; sourceTree = "<group>"; };
 		55C04753261FA653000DCD90 /* NationalDayListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayListView.swift; sourceTree = "<group>"; };
 		55C04758261FA94D000DCD90 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		55C0475B261FAA2A000DCD90 /* TIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIError.swift; sourceTree = "<group>"; };
@@ -388,6 +390,7 @@
 			isa = PBXGroup;
 			children = (
 				5583E83026418BE900CD66DC /* TomorrowListView.swift */,
+				55AAE39A2AF0719500B06E1D /* TomorrowListFeature.swift */,
 				5583E83326418EF200CD66DC /* TomorrowListViewModel.swift */,
 			);
 			path = TomorrowListView;
@@ -868,6 +871,7 @@
 				55CB530828E8CA15007F545C /* SelectedMonthView.swift in Sources */,
 				550714E72630E2FD0036DE22 /* NationalDayLogo.swift in Sources */,
 				55E5622126697E4A006F77C8 /* IconView.swift in Sources */,
+				55AAE39B2AF0719500B06E1D /* TomorrowListFeature.swift in Sources */,
 				55C04760261FAA5A000DCD90 /* Alert.swift in Sources */,
 				55C04759261FA94D000DCD90 /* NetworkManager.swift in Sources */,
 				55E5621326683428006F77C8 /* TipJarView.swift in Sources */,

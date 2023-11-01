@@ -10,14 +10,14 @@ import ComposableArchitecture
 
 struct TabBarFeature: Reducer {
     struct State: Equatable {
-        var currentTowerTab = NationalDayListDomain.State()
-//        var monthlyTowerTab = MonthlyTowerLightsFeature.State()
+        var todayViewTab = NationalDayListDomain.State()
+        var tomorrowViewTab = NationalDayListDomain.State(isTodayView: false)
         var selectedTab: Tab = .current
     }
 
     enum Action: Equatable {
-        case currentTowerTab(NationalDayListDomain.Action)
-//        case monthlyTowerTab(MonthlyTowerLightsFeature.Action)
+        case todayViewTab(NationalDayListDomain.Action)
+        case tomorrowViewTab(NationalDayListDomain.Action)
         case selectedTabChanged(Tab)
     }
 
@@ -28,17 +28,17 @@ struct TabBarFeature: Reducer {
                 state.selectedTab = tab
                 return .none
 
-            case .currentTowerTab://, .monthlyTowerTab:
+            case .todayViewTab, .tomorrowViewTab:
                 return .none
             }
         }
 
-        Scope(state: \.currentTowerTab, action: /Action.currentTowerTab) {
+        Scope(state: \.todayViewTab, action: /Action.todayViewTab) {
             NationalDayListDomain()
         }
-//        Scope(state: \.monthlyTowerTab, action: /Action.monthlyTowerTab) {
-//            MonthlyTowerLightsFeature()
-//        }
+        Scope(state: \.tomorrowViewTab, action: /Action.tomorrowViewTab) {
+            NationalDayListDomain()
+        }
     }
 }
 
@@ -52,23 +52,27 @@ struct TabBarFeatureView: View {
     var body: some View {
         WithViewStore(self.store, observe: \.selectedTab) { viewStore in
             TabView(selection: viewStore.binding(send: TabBarFeature.Action.selectedTabChanged)) {
-                NationalDayListFeature(
-                    store: self.store.scope(
-                        state: \.currentTowerTab,
-                        action: TabBarFeature.Action.currentTowerTab
+                NavigationStack {
+                    NationalDayListFeature(
+                        store: self.store.scope(
+                            state: \.todayViewTab,
+                            action: TabBarFeature.Action.todayViewTab
+                        )
                     )
-                )
+                }
                 .tabItem { Label("Today", systemImage: "calendar") }
                 .tag(Tab.current)
 
-//                MonthlyTowerLightsView(
-//                    store: self.store.scope(
-//                        state: \.monthlyTowerTab,
-//                        action: TabBarFeature.Action.monthlyTowerTab
-//                    )
-//                )
-//                .tabItem { Label("Monthly", systemImage: "calendar") }
-//                .tag(Tab.monthly)
+                NavigationStack {
+                    NationalDayListFeature(
+                        store: self.store.scope(
+                            state: \.tomorrowViewTab,
+                            action: TabBarFeature.Action.tomorrowViewTab
+                        )
+                    )
+                }
+                .tabItem { Label("Tomorrow", systemImage: "calendar.badge.clock") }
+                .tag(Tab.monthly)
             }.tint(.red)
         }
     }

@@ -11,17 +11,18 @@ import ComposableArchitecture
 //import Models
 
 public struct HolidayClient {
-    public var getCurrentHoliday:() async throws -> Result<[Holiday], Error>
+    public var getCurrentHoliday:(_ isToday: Bool) async throws -> Result<[Holiday], Error>
     public var getCurrentHolidayDetail:(_ url: String) async throws -> Result<DetailHoliday, Error>
 }
 
 extension HolidayClient: DependencyKey {
     public static let baseURL = "https://www.holidaycalendar.io"
-    public static let TodaysHoliday = "/what-holiday-is-today"
+    public static let todaysHoliday = "/what-holiday-is-today"
+    public static let tomorrowsHoliday = "/what-holiday-is-tomorrow"
 
     public static var liveValue = HolidayClient(
-        getCurrentHoliday: {
-            guard let url = URL(string: baseURL + TodaysHoliday) else { throw NetworkError.invalidURL }
+        getCurrentHoliday: { isToday in
+            guard let url = URL(string: isToday ? baseURL + todaysHoliday : baseURL + tomorrowsHoliday) else { throw NetworkError.invalidURL }
 
             let (data, response) = try await URLSession.shared.data(from: url)
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
@@ -78,7 +79,7 @@ extension HolidayClient: DependencyKey {
 
 extension HolidayClient: TestDependencyKey {
     public static var previewValue = HolidayClient(
-        getCurrentHoliday: {
+        getCurrentHoliday: { _ in
             .success([
                 Holiday(name: "Holiday 1", url: ""),
                 Holiday(name: "Holiday 2", url: ""),
@@ -92,7 +93,7 @@ extension HolidayClient: TestDependencyKey {
     )
 
     public static var testValue = HolidayClient(
-        getCurrentHoliday: {
+        getCurrentHoliday: { _ in
             .success([
                 Holiday(name: "Holiday 1", url: ""),
                 Holiday(name: "Holiday 2", url: ""),

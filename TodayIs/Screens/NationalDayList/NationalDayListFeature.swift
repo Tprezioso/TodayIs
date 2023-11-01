@@ -10,7 +10,11 @@ import ComposableArchitecture
 
 struct NationalDayListDomain: Reducer {
     struct State: Equatable {
+        init(isTodayView: Bool = true) {
+            self.isTodayView = isTodayView
+        }
         // TODO: - Need to add loading
+        var isTodayView: Bool
         var holidays = [Holiday]()
         var isLoading = false
         @PresentationState var nationalDayDetailState: NationalDayDomain.State?
@@ -28,8 +32,8 @@ struct NationalDayListDomain: Reducer {
         Reduce<State, Action> { state, action in
             switch action {
             case .onAppear:
-                return .run { send in
-                    let response = try await currentHolidayClient.getCurrentHoliday()
+                return .run { [isToday = state.isTodayView] send in
+                    let response = try await currentHolidayClient.getCurrentHoliday(isToday)
                     return await send(.didReceiveHolidays(TaskResult(response)))
                 }
             case let .didReceiveHolidays(holidays):
@@ -62,7 +66,7 @@ struct NationalDayListFeature: View {
 
         var body: some View {
             WithViewStore(store, observe: { $0 }) { viewStore in
-                NavigationStack {
+//                NavigationStack {
                     VStack {
                         ScrollView {
                             LazyVStack(spacing: 20) {
@@ -81,11 +85,11 @@ struct NationalDayListFeature: View {
                         }.scrollTargetBehavior(.viewAligned)
                         Spacer()
                     }
-                    .navigationTitle("Today's Holidays")
+                    .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")
                     .onAppear { viewStore.send(.onAppear) }
                     .foregroundColor(.white)
                     .padding()
-                }
+//                }
                 .navigationDestination(store: self.store.scope(state: \.$nationalDayDetailState, action: { .nationalDayDetail($0) })) { store in
                     NationalDayDetailFeature(store: store)
                 }

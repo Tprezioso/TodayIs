@@ -66,30 +66,28 @@ struct NationalDayListFeature: View {
 
         var body: some View {
             WithViewStore(store, observe: { $0 }) { viewStore in
-//                NavigationStack {
-                    VStack {
-                        ScrollView {
-                            LazyVStack(spacing: 20) {
-                                ForEach(viewStore.holidays, id: \.self) { holiday in
-                                    Button {
-                                        viewStore.send(.didTapHoliday(holiday))
-                                    } label: {
-                                        HolidayView(holiday: holiday)
-                                    }
-                                    .scrollTransition(.interactive, axis: .vertical) { view, phase in
-                                        view.opacity(phase.value > 0 ? 0.1 : 1)
-                                            .blur(radius: phase.value > 0 ? 5 : 0)
-                                    }
+                VStack {
+                    ScrollView {
+                        LazyVStack(spacing: 20) {
+                            ForEach(viewStore.holidays, id: \.self) { holiday in
+                                Button {
+                                    viewStore.send(.didTapHoliday(holiday))
+                                } label: {
+                                    HolidayView(holiday: holiday)
                                 }
-                            }.scrollTargetLayout()
-                        }.scrollTargetBehavior(.viewAligned)
-                        Spacer()
-                    }
-                    .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")
-                    .onAppear { viewStore.send(.onAppear) }
-                    .foregroundColor(.white)
-                    .padding()
-//                }
+                                .scrollTransition(.interactive, axis: .vertical) { view, phase in
+                                    view.opacity(phase.value > 0 ? 0.1 : 1)
+                                        .blur(radius: phase.value > 0 ? 5 : 0)
+                                }
+                            }
+                        }.scrollTargetLayout()
+                    }.scrollTargetBehavior(.viewAligned)
+                    Spacer()
+                }
+                .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")
+                .onAppear { viewStore.send(.onAppear) }
+                .foregroundColor(.white)
+                .padding()
                 .navigationDestination(store: self.store.scope(state: \.$nationalDayDetailState, action: { .nationalDayDetail($0) })) { store in
                     NationalDayDetailFeature(store: store)
                 }

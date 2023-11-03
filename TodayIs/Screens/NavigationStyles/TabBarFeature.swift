@@ -12,12 +12,14 @@ struct TabBarFeature: Reducer {
     struct State: Equatable {
         var todayViewTab = NationalDayListDomain.State()
         var tomorrowViewTab = NationalDayListDomain.State(isTodayView: false)
-        var selectedTab: Tab = .current
+        var monthViewTab = MonthDomain.State()
+        var selectedTab: Tab = .today
     }
 
     enum Action: Equatable {
         case todayViewTab(NationalDayListDomain.Action)
         case tomorrowViewTab(NationalDayListDomain.Action)
+        case monthViewTab(MonthDomain.Action)
         case selectedTabChanged(Tab)
     }
 
@@ -28,7 +30,7 @@ struct TabBarFeature: Reducer {
                 state.selectedTab = tab
                 return .none
 
-            case .todayViewTab, .tomorrowViewTab:
+            case .todayViewTab, .tomorrowViewTab, .monthViewTab:
                 return .none
             }
         }
@@ -36,14 +38,19 @@ struct TabBarFeature: Reducer {
         Scope(state: \.todayViewTab, action: /Action.todayViewTab) {
             NationalDayListDomain()
         }
+        
         Scope(state: \.tomorrowViewTab, action: /Action.tomorrowViewTab) {
             NationalDayListDomain()
+        }
+
+        Scope(state: \.monthViewTab, action: /Action.monthViewTab) {
+            MonthDomain()
         }
     }
 }
 
 enum Tab {
-    case current, monthly
+    case today, tomorrow, monthly
 }
 
 struct TabBarFeatureView: View {
@@ -61,7 +68,7 @@ struct TabBarFeatureView: View {
                     )
                 }
                 .tabItem { Label("Today", systemImage: "calendar") }
-                .tag(Tab.current)
+                .tag(Tab.today)
 
                 NavigationStack {
                     NationalDayListFeature(
@@ -71,7 +78,18 @@ struct TabBarFeatureView: View {
                         )
                     )
                 }
-                .tabItem { Label("Tomorrow", systemImage: "calendar.badge.clock") }
+                .tabItem { Label("Tomorrow", systemImage: "calendar.badge.plus") }
+                .tag(Tab.tomorrow)
+
+                NavigationStack {
+                    MonthFeature(
+                        store: self.store.scope(
+                            state: \.monthViewTab,
+                            action: TabBarFeature.Action.monthViewTab
+                        )
+                    )
+                }
+                .tabItem { Label("Month", systemImage: "calendar.badge.clock") }
                 .tag(Tab.monthly)
             }.tint(.red)
         }

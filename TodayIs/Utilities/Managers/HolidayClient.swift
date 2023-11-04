@@ -13,6 +13,7 @@ import ComposableArchitecture
 public struct HolidayClient {
     public var getCurrentHoliday:(_ isToday: Bool) async throws -> Result<[Holiday], Error>
     public var getCurrentHolidayDetail:(_ url: String) async throws -> Result<DetailHoliday, Error>
+    public var getMonthsHolidays:(_ month: String) async throws -> Result<[Holiday], Error>
 }
 
 extension HolidayClient: DependencyKey {
@@ -38,8 +39,6 @@ extension HolidayClient: DependencyKey {
                 let doc: Document = try SwiftSoup.parse(html)
                 let todaysHolidays: Elements = try doc.getElementsByClass("card")
                 for holiday in todaysHolidays {
-//                    print(try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src"))
-//                    print(try holiday.select("p").text())
                     let title = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("alt") //title
                     let link = try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") //link
                     let image = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") //image
@@ -73,6 +72,36 @@ extension HolidayClient: DependencyKey {
                 print(error.localizedDescription)
                 return .failure(error.localizedDescription as! Error)
             }
+        }, 
+        getMonthsHolidays: { month in
+            guard let url = URL(string: baseURL + "/month/\(month)-holidays") else { throw NetworkError.invalidURL }
+
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                print(" ❌ Invalid Response")
+                throw NetworkError.invalidResponse
+            }
+            guard let htmlString = String(data: data, encoding: .utf8) else { throw NetworkError.invalidURL }
+
+            var holidays = [Holiday]()
+
+            do {
+                let html: String = htmlString
+                let doc: Document = try SwiftSoup.parse(html)
+                let todaysHolidays: Elements = try doc.getElementsByClass("date_holiday_container")
+                for holiday in todaysHolidays {
+
+                    let title = try holiday.select("a").select("p").text() //title
+                    let link = try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") //link
+                    let image = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") //image
+                    let description = try holiday.select("p").text() //description
+//                    holidays.append(Holiday(name: title, url: baseURL + link, imageURL: image, description: description))
+                }
+                return .success(holidays)
+            } catch {
+                print(error.localizedDescription)
+                return .failure(error.localizedDescription as! Error)
+            }
         }
     )
 }
@@ -89,6 +118,13 @@ extension HolidayClient: TestDependencyKey {
                                                    
         getCurrentHolidayDetail: { _ in
             .success(DetailHoliday(description: ""))
+        }, 
+        getMonthsHolidays: { _ in
+                .success([
+                    Holiday(name: "Holiday 1", url: ""),
+                    Holiday(name: "Holiday 2", url: ""),
+                    Holiday(name: "Holiday 3", url: "")
+                ])
         }
     )
 
@@ -102,6 +138,13 @@ extension HolidayClient: TestDependencyKey {
         }, 
         getCurrentHolidayDetail: { _ in
             .success(DetailHoliday(description: ""))
+        }, 
+        getMonthsHolidays: { _ in
+            .success([
+                Holiday(name: "Holiday 1", url: ""),
+                Holiday(name: "Holiday 2", url: ""),
+                Holiday(name: "Holiday 3", url: "")
+            ])
         }
     )
 }

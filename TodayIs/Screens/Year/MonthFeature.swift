@@ -88,6 +88,7 @@ struct MonthFeature: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             DatePicker("Picker", selection: $date)
                 .datePickerStyle(.wheel)
+//                .navigationDestination(isPresented: <#T##Binding<Bool>#>, destination: <#T##() -> View#>)
 //            ScrollView {
 //                LazyVGrid(columns: columns, spacing: 20) {
 //                    ForEach(MonthDomain.State.Months.allCases, id: \.self) { month in

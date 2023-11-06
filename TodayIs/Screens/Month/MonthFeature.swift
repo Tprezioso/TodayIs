@@ -86,16 +86,26 @@ struct MonthFeature: View {
     @State var date = Date()
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
-            DatePicker("Picker", selection: $date)
-                .datePickerStyle(.wheel)
-//                .navigationDestination(isPresented: <#T##Binding<Bool>#>, destination: <#T##() -> View#>)
-//            ScrollView {
-//                LazyVGrid(columns: columns, spacing: 20) {
-//                    ForEach(MonthDomain.State.Months.allCases, id: \.self) { month in
-//                        Text(month.description)
-//                    }
-//                }
-//            }
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(MonthDomain.State.Months.allCases, id: \.self) { month in
+                        Button {
+
+                        } label: {
+                            Text(month.description)
+                                .frame(maxWidth: .infinity)
+                                    .foregroundColor(.accentColor)
+                                    .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(Color.accentColor)
+                                    }
+                        }
+                        .padding(.horizontal)
+
+                    }
+                }.navigationTitle("Months")
+            }
             .onAppear {
                 viewStore.send(.onAppear)
             }

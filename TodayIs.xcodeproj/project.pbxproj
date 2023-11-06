@@ -547,21 +547,21 @@
 				553ED5B2262355DE000D5757 /* NationalDayList */,
 				550714E9263104120036DE22 /* NationalDayDetailView */,
 				5583E83226418E9300CD66DC /* TomorrowListView */,
-				55CB530428E8C4C9007F545C /* Year */,
+				55CB530428E8C4C9007F545C /* Month */,
 				5598E1782662FA800047B02B /* Search */,
 				5598E17B2662FA970047B02B /* More */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
 		};
-		55CB530428E8C4C9007F545C /* Year */ = {
+		55CB530428E8C4C9007F545C /* Month */ = {
 			isa = PBXGroup;
 			children = (
 				55CB530528E8C4F4007F545C /* YearView.swift */,
 				55CB530728E8CA15007F545C /* SelectedMonthView.swift */,
 				5596ABF72AF4791900DB6378 /* MonthFeature.swift */,
 			);
-			path = Year;
+			path = Month;
 			sourceTree = "<group>";
 		};
 		55CF60452716613900C2CA8D /* NavigationStyles */ = {

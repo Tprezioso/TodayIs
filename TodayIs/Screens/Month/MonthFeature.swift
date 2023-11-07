@@ -12,65 +12,68 @@ struct MonthDomain: Reducer {
     struct State: Equatable {
         var holidays = [Holiday]()
         var isLoading = false
+        var monthDay: Months?
+        @BindingState var isShowingDays = false
+        @BindingState var selectedDay = "1"
         @PresentationState var nationalDayDetailState: NationalDayDomain.State?
 
-        enum Months: String, CaseIterable, CustomStringConvertible, Equatable {
-            case january, february, march, april, may, june, july, august, september, october, november, december
-            var description: String {
+
+       public enum Months: String, Equatable, CaseIterable {
+//            var description: (str)
+
+           case january, february, march, april, may, june, july, august, september, october, november, december
+           public var description: (month: String, days: Int) {
                 switch self {
                 case .january:
-                    return "January"
+                    return ("January", 31)
                 case .february:
-                    return "February"
+                    return ("February", 28)
                 case .march:
-                    return "March"
+                    return ("March", 31)
                 case .april:
-                    return "April"
+                    return ("April", 30)
                 case .may:
-                    return "May"
+                    return ("May", 31)
                 case .june:
-                    return "June"
+                    return ("June", 30)
                 case .july:
-                    return "July"
+                    return ("July", 31)
                 case .august:
-                    return "August"
+                    return ("August", 31)
                 case .september:
-                    return "September"
+                    return ("September", 30)
                 case .october:
-                    return "October"
+                    return ("October", 31)
                 case .november:
-                    return "November"
+                    return ("November", 30)
                 case .december:
-                    return "December"
+                    return ("December", 31)
                 }
             }
         }
     }
 
     enum Action: Equatable {
-        case onAppear
-        case didReceiveHolidays(TaskResult<[Holiday]>)
+//        case binding(BindingAction<State>)
         case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
-        case didTapHoliday(Holiday)
+        case didTapHoliday(MonthDomain.State.Months)
+        case didTapDay(String)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     var body: some ReducerOf<Self> {
         Reduce<State, Action> { state, action in
             switch action {
-            case .onAppear:
-                return .run { send in
-                    let _ = try await currentHolidayClient.getMonthsHolidays("january")
-                }
-//                return .none
-
-            case let .didReceiveHolidays(response):
-                return .none
-
             case .nationalDayDetail:
                 return .none
 
             case let .didTapHoliday(holiday):
+                state.monthDay = holiday
+                return .none
+            
+            case let .didTapDay(day):
+                state.selectedDay = day
+                print(day)
                 return .none
             }
         }
@@ -79,9 +82,9 @@ struct MonthDomain: Reducer {
 
 struct MonthFeature: View {
     let columns = [
-            GridItem(.flexible()),
-            GridItem(.flexible())
-        ]
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
     let store: StoreOf<MonthDomain>
     @State var date = Date()
     var body: some View {
@@ -89,32 +92,76 @@ struct MonthFeature: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(MonthDomain.State.Months.allCases, id: \.self) { month in
+                        
                         Button {
-
+                            viewStore.send(.didTapHoliday(month))
                         } label: {
-                            Text(month.description)
+                            Text(month.description.month)
+                                .bold()
                                 .frame(maxWidth: .infinity)
-                                    .foregroundColor(.accentColor)
-                                    .padding()
-                                    .background {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .stroke(Color.accentColor)
-                                    }
+                                .foregroundColor(.accentColor)
+                                .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(.white)
+                                        .stroke(Color.accentColor, lineWidth: 3)
+                                }
                         }
-                        .padding(.horizontal)
-
+                        .padding()
                     }
                 }.navigationTitle("Months")
             }
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
+//            .navigationDestination(store: .init(initialState: .init(), reducer: {
+//                MonthDomain()
+//            }), destination: MonthDayFeature(store: viewStore))
         }
     }
 }
 
 #Preview {
     MonthFeature(store: .init(initialState: .init()) {
+        MonthDomain()
+    })
+}
+
+
+//TODO: Make mini Domain
+
+struct MonthDayFeature: View {
+    let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    let store: StoreOf<MonthDomain>
+    @State var date = Date()
+    var body: some View {
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: 20) {
+                    ForEach(1..<(viewStore.monthDay?.description.days ?? 30) + 1) { day in
+                            Button {
+                                viewStore.send(.didTapDay("\(day)"))
+                            } label: {
+                                Text("\(day)")
+                                    .bold()
+                                    .frame(maxWidth: .infinity)
+                                    .foregroundColor(.accentColor)
+                                    .padding()
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(.white)
+                                            .stroke(Color.accentColor, lineWidth: 3)
+                                    }
+                            }
+                        }
+                }.navigationTitle("Months")
+            }
+        }
+    }
+}
+
+#Preview {
+    MonthDayFeature(store: .init(initialState: .init()) {
         MonthDomain()
     })
 }

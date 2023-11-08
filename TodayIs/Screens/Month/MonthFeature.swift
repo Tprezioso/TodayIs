@@ -10,17 +10,12 @@ import ComposableArchitecture
 
 struct MonthDomain: Reducer {
     struct State: Equatable {
-        var holidays = [Holiday]()
         var isLoading = false
-        var monthDay: Months?
         @BindingState var isShowingDays = false
-        @BindingState var selectedDay = "1"
-        @PresentationState var nationalDayDetailState: NationalDayDomain.State?
+        @PresentationState var monthDayFeature: DayDomain.State?
 
 
        public enum Months: String, Equatable, CaseIterable {
-//            var description: (str)
-
            case january, february, march, april, may, june, july, august, september, october, november, december
            public var description: (month: String, days: Int) {
                 switch self {
@@ -54,28 +49,24 @@ struct MonthDomain: Reducer {
     }
 
     enum Action: Equatable {
-//        case binding(BindingAction<State>)
-        case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
+        case monthDayFeature(PresentationAction<DayDomain.Action>)
         case didTapHoliday(MonthDomain.State.Months)
-        case didTapDay(String)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     var body: some ReducerOf<Self> {
         Reduce<State, Action> { state, action in
             switch action {
-            case .nationalDayDetail:
-                return .none
-
             case let .didTapHoliday(holiday):
-                state.monthDay = holiday
+                state.monthDayFeature = .init(day: holiday)
                 return .none
             
-            case let .didTapDay(day):
-                state.selectedDay = day
-                print(day)
+            case .monthDayFeature:
                 return .none
             }
+        }
+        .ifLet(\.$monthDayFeature, action: /Action.monthDayFeature) {
+            DayDomain()
         }
     }
 }
@@ -83,16 +74,17 @@ struct MonthDomain: Reducer {
 struct MonthFeature: View {
     let columns = [
         GridItem(.flexible()),
+        GridItem(.flexible()),
         GridItem(.flexible())
     ]
+
     let store: StoreOf<MonthDomain>
     @State var date = Date()
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
+                LazyVGrid(columns: columns, spacing: 50) {
                     ForEach(MonthDomain.State.Months.allCases, id: \.self) { month in
-                        
                         Button {
                             viewStore.send(.didTapHoliday(month))
                         } label: {
@@ -107,13 +99,14 @@ struct MonthFeature: View {
                                         .stroke(Color.accentColor, lineWidth: 3)
                                 }
                         }
-                        .padding()
+
                     }
-                }.navigationTitle("Months")
+                }.padding(.vertical)
+                .navigationTitle("Months")
             }
-//            .navigationDestination(store: .init(initialState: .init(), reducer: {
-//                MonthDomain()
-//            }), destination: MonthDayFeature(store: viewStore))
+            .navigationDestination(store:  self.store.scope(state: \.$monthDayFeature, action: { .monthDayFeature($0) })) { store in
+                DayFeature(store: store)
+            }
         }
     }
 }
@@ -127,20 +120,49 @@ struct MonthFeature: View {
 
 //TODO: Make mini Domain
 
-struct MonthDayFeature: View {
+
+struct DayDomain: Reducer {
+    struct State: Equatable {
+        init(day: MonthDomain.State.Months) {
+            self.day = day
+        }
+        var day: MonthDomain.State.Months
+        @BindingState var selectedDay = "1"
+        @PresentationState var nationalDayDetailState: NationalDayDomain.State?
+    }
+
+    enum Action: Equatable {
+        case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
+    }
+
+    var body: some ReducerOf<Self> {
+        Reduce<State, Action> { state, action in
+            switch action {
+            
+            case .nationalDayDetail:
+                return .none
+
+            }
+        }
+    }
+}
+
+struct DayFeature: View {
     let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    let store: StoreOf<MonthDomain>
+    let store: StoreOf<DayDomain>
     @State var date = Date()
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(1..<(viewStore.monthDay?.description.days ?? 30) + 1) { day in
+                    ForEach(1..<(viewStore.day.description.days) + 1) { day in
                             Button {
-                                viewStore.send(.didTapDay("\(day)"))
+//                                viewStore.send(.didTapDay("\(day)"))
                             } label: {
                                 Text("\(day)")
                                     .bold()
@@ -161,7 +183,7 @@ struct MonthDayFeature: View {
 }
 
 #Preview {
-    MonthDayFeature(store: .init(initialState: .init()) {
-        MonthDomain()
+    DayFeature(store: .init(initialState: .init(day: MonthDomain.State.Months.january)) {
+        DayDomain()
     })
 }

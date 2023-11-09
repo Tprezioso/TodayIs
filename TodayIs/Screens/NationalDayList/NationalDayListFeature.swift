@@ -9,55 +9,55 @@ import SwiftUI
 import ComposableArchitecture
 
 struct NationalDayListDomain: Reducer {
-    struct State: Equatable {
-        init(isTodayView: Bool = true) {
-            self.isTodayView = isTodayView
+        struct State: Equatable {
+            init(isTodayView: Bool = true) {
+                self.isTodayView = isTodayView
+            }
+            // TODO: - Need to add loading
+            var isTodayView: Bool
+            var holidays = [Holiday]()
+            var isLoading = false
+            @PresentationState var nationalDayDetailState: NationalDayDomain.State?
         }
-        // TODO: - Need to add loading
-        var isTodayView: Bool
-        var holidays = [Holiday]()
-        var isLoading = false
-        @PresentationState var nationalDayDetailState: NationalDayDomain.State?
-    }
 
-    enum Action: Equatable {
-        case onAppear
-        case didReceiveHolidays(TaskResult<[Holiday]>)
-        case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
-        case didTapHoliday(Holiday)
-    }
+        enum Action: Equatable {
+            case onAppear
+            case didReceiveHolidays(TaskResult<[Holiday]>)
+            case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
+            case didTapHoliday(Holiday)
+        }
 
-    @Dependency(\.currentHolidayClient) var currentHolidayClient
-    var body: some ReducerOf<Self> {
-        Reduce<State, Action> { state, action in
-            switch action {
-            case .onAppear:
-                return .run { [isToday = state.isTodayView] send in
-                    let response = try await currentHolidayClient.getCurrentHoliday(isToday)
-                    return await send(.didReceiveHolidays(TaskResult(response)))
-                }
-            case let .didReceiveHolidays(holidays):
-                switch holidays {
-                case let .success(holidays):
-                    state.holidays = holidays
+        @Dependency(\.currentHolidayClient) var currentHolidayClient
+        var body: some ReducerOf<Self> {
+            Reduce<State, Action> { state, action in
+                switch action {
+                case .onAppear:
+                    return .run { [isToday = state.isTodayView] send in
+                        let response = try await currentHolidayClient.getCurrentHoliday(isToday)
+                        return await send(.didReceiveHolidays(TaskResult(response)))
+                    }
+                case let .didReceiveHolidays(holidays):
+                    switch holidays {
+                    case let .success(holidays):
+                        state.holidays = holidays
+                        return .none
+
+                    case .failure(_):
+                        return .none
+
+                    }
+                case .nationalDayDetail:
                     return .none
-
-                case .failure(_):
+                
+                case let .didTapHoliday(holiday):
+                    state.nationalDayDetailState = .init(holiday: holiday)
                     return .none
-
                 }
-            case .nationalDayDetail:
-                return .none
-            
-            case let .didTapHoliday(holiday):
-                state.nationalDayDetailState = .init(holiday: holiday)
-                return .none
+            }
+            .ifLet(\.$nationalDayDetailState , action: /Action.nationalDayDetail) {
+                NationalDayDomain()
             }
         }
-        .ifLet(\.$nationalDayDetailState , action: /Action.nationalDayDetail) {
-            NationalDayDomain()
-        }
-    }
 }
 
 struct NationalDayListFeature: View {

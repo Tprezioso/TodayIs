@@ -128,21 +128,29 @@ struct DayDomain: Reducer {
         }
         var day: MonthDomain.State.Months
         @BindingState var selectedDay = "1"
-        @PresentationState var nationalDayDetailState: NationalDayDomain.State?
+        @PresentationState var selectedMonthState: SelectedMonthDomain.State?
     }
 
     enum Action: Equatable {
-        case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
+        case selectedMonth(PresentationAction<SelectedMonthDomain.Action>)
+        case didTapDay(Int)
     }
 
     var body: some ReducerOf<Self> {
         Reduce<State, Action> { state, action in
             switch action {
             
-            case .nationalDayDetail:
+            case .selectedMonth:
+                return .none
+
+            case let .didTapDay(number):
+                state.selectedMonthState = .init(dayNumber: number, month: state.day)
                 return .none
 
             }
+        }
+        .ifLet(\.$selectedMonthState, action: /Action.selectedMonth) {
+            SelectedMonthDomain()
         }
     }
 }
@@ -162,7 +170,7 @@ struct DayFeature: View {
                 LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(1..<(viewStore.day.description.days) + 1) { day in
                             Button {
-//                                viewStore.send(.didTapDay("\(day)"))
+                                viewStore.send(.didTapDay(day))
                             } label: {
                                 Text("\(day)")
                                     .bold()
@@ -177,6 +185,9 @@ struct DayFeature: View {
                             }
                         }
                 }.navigationTitle("Months")
+            }
+            .navigationDestination(store:  self.store.scope(state: \.$selectedMonthState, action: { .selectedMonth($0) })) { store in
+                SelectedMonthView(store: store)
             }
         }
     }

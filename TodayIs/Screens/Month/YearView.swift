@@ -14,7 +14,7 @@ struct YearView: View {
     var body: some View {
         List {
             ForEach(months, id: \.self) { month in
-                NavigationLink(destination: SelectedMonthView(selectedMonth: month)) {
+                NavigationLink(destination: Text(month)) {
                     Text(month)
                         .font(.title2)
                 }

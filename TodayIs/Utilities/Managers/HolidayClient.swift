@@ -13,7 +13,7 @@ import ComposableArchitecture
 public struct HolidayClient {
     public var getCurrentHoliday:(_ isToday: Bool) async throws -> Result<[Holiday], Error>
     public var getCurrentHolidayDetail:(_ url: String) async throws -> Result<DetailHoliday, Error>
-    public var getMonthsHolidays:(_ month: String) async throws -> Result<[Holiday], Error>
+    public var getMonthsHolidays:(_ month: String, _ day: Int) async throws -> Result<[Holiday], Error>
 }
 
 extension HolidayClient: DependencyKey {
@@ -73,8 +73,8 @@ extension HolidayClient: DependencyKey {
                 return .failure(error.localizedDescription as! Error)
             }
         }, 
-        getMonthsHolidays: { month in
-            guard let url = URL(string: baseURL + "/month/\(month)-holidays") else { throw NetworkError.invalidURL }
+        getMonthsHolidays: { month, day in
+            guard let url = URL(string: baseURL + "/day/\(month)-\(day)-holidays") else { throw NetworkError.invalidURL }
 
             let (data, response) = try await URLSession.shared.data(from: url)
             guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
@@ -84,18 +84,17 @@ extension HolidayClient: DependencyKey {
             guard let htmlString = String(data: data, encoding: .utf8) else { throw NetworkError.invalidURL }
 
             var holidays = [Holiday]()
-
             do {
                 let html: String = htmlString
                 let doc: Document = try SwiftSoup.parse(html)
-                let todaysHolidays: Elements = try doc.getElementsByClass("date_holiday_container")
+                let todaysHolidays: Elements = try doc.getElementsByClass("card")
                 for holiday in todaysHolidays {
 
-                    let title = try holiday.select("a").select("p").text() //title
+                    let title = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("alt") //title
                     let link = try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") //link
                     let image = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") //image
                     let description = try holiday.select("p").text() //description
-//                    holidays.append(Holiday(name: title, url: baseURL + link, imageURL: image, description: description))
+                    holidays.append(Holiday(name: title, url: baseURL + link, imageURL: image, description: description))
                 }
                 return .success(holidays)
             } catch {
@@ -119,7 +118,7 @@ extension HolidayClient: TestDependencyKey {
         getCurrentHolidayDetail: { _ in
             .success(DetailHoliday(description: ""))
         }, 
-        getMonthsHolidays: { _ in
+        getMonthsHolidays: { _,_ in
                 .success([
                     Holiday(name: "Holiday 1", url: ""),
                     Holiday(name: "Holiday 2", url: ""),
@@ -139,7 +138,7 @@ extension HolidayClient: TestDependencyKey {
         getCurrentHolidayDetail: { _ in
             .success(DetailHoliday(description: ""))
         }, 
-        getMonthsHolidays: { _ in
+        getMonthsHolidays: { _,_ in
             .success([
                 Holiday(name: "Holiday 1", url: ""),
                 Holiday(name: "Holiday 2", url: ""),

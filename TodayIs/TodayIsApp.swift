@@ -13,14 +13,10 @@ struct TodayIsApp: App {
    
     var body: some Scene {
         WindowGroup {
-//            NavigationStack {
-                TabBarFeatureView(store: .init(initialState: .init()) {
-                    TabBarFeature()
-                })
-//            }
-
-//            NavigationStyleView()
-//                .environmentObject(IconNames())
+            TabBarFeatureView(store: .init(initialState: .init()) {
+                TabBarFeature()
+            })
+            .environmentObject(IconNames())
         }
     }
 }

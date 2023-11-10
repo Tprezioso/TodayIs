@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct IconView: View {
-    @EnvironmentObject var iconSettings : IconNames
+    @EnvironmentObject var iconSettings: IconNames
     
     var body: some View {
         NavigationView {

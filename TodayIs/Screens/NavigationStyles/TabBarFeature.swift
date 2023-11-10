@@ -50,7 +50,7 @@ struct TabBarFeature: Reducer {
 }
 
 enum Tab {
-    case today, tomorrow, monthly
+    case today, tomorrow, monthly, more
 }
 
 struct TabBarFeatureView: View {
@@ -91,6 +91,15 @@ struct TabBarFeatureView: View {
                 }
                 .tabItem { Label("Month", systemImage: "calendar.badge.clock") }
                 .tag(Tab.monthly)
+
+                NavigationView {
+                    MoreView()
+                        .navigationTitle("More")
+                }
+                .tabItem {
+                    Label("More", systemImage: "ellipsis")
+                }
+                .tag(Tab.more)
             }.tint(.red)
         }
     }

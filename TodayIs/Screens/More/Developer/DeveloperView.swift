@@ -19,7 +19,8 @@ struct DeveloperView: View {
                 .font(.title)
                 .bold()
             VStack() {
-                LinkButtons(url: "https://www.twitter.com/tommyprezioso", title: "Twitter")
+                LinkButtons(url: "https://www.twitter.com/tommyprezioso", title: "X")
+                LinkButtons(url: "https://iosdev.space/@tommyprezioso",  title: "Mastodon")
                 LinkButtons(url: "https://www.github.com/tprezioso",  title: "Github")
                 LinkButtons(url: "https://www.swifttom.com/",  title: "Blog")
             }

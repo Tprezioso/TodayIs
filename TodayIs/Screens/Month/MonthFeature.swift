@@ -93,11 +93,11 @@ struct MonthFeature: View {
                                 .frame(maxWidth: .infinity)
                                 .foregroundColor(.accentColor)
                                 .padding()
-                                .background {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(.white)
-                                        .stroke(Color.accentColor, lineWidth: 3)
-                                }
+//                                .background {
+//                                    RoundedRectangle(cornerRadius: 10)
+//                                        .fill(.white)
+//                                        .stroke(Color.accentColor, lineWidth: 3)
+//                                }
                         }
 
                     }

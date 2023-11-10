@@ -29,7 +29,7 @@ struct NationalDayListDomain: Reducer {
 
         @Dependency(\.currentHolidayClient) var currentHolidayClient
         var body: some ReducerOf<Self> {
-            Reduce<State, Action> { state, action in
+            Reduce { state, action in
                 switch action {
                 case .onAppear:
                     return .run { [isToday = state.isTodayView] send in

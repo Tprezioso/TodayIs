@@ -93,11 +93,11 @@ struct MonthFeature: View {
                                 .frame(maxWidth: .infinity)
                                 .foregroundColor(.accentColor)
                                 .padding()
-//                                .background {
-//                                    RoundedRectangle(cornerRadius: 10)
-//                                        .fill(.white)
-//                                        .stroke(Color.accentColor, lineWidth: 3)
-//                                }
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(.white)
+                                        .stroke(Color.accentColor, lineWidth: 3)
+                                }
                         }
 
                     }
@@ -168,7 +168,7 @@ struct DayFeature: View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(1..<(viewStore.day.description.days) + 1) { day in
+                    ForEach(1..<(viewStore.day.description.days) + 1, id: \.self) { day in
                             Button {
                                 viewStore.send(.didTapDay(day))
                             } label: {

@@ -18,6 +18,7 @@ struct TabBarFeature: Reducer {
 
     enum Action: Equatable {
         case todayViewTab(NationalDayListDomain.Action)
+        case reloadTodayView
         case tomorrowViewTab(NationalDayListDomain.Action)
         case monthViewTab(MonthDomain.Action)
         case selectedTabChanged(Tab)
@@ -32,6 +33,9 @@ struct TabBarFeature: Reducer {
 
             case .todayViewTab, .tomorrowViewTab, .monthViewTab:
                 return .none
+            case .reloadTodayView:
+
+                return .send(.todayViewTab(.onAppear))
             }
         }
 
@@ -100,7 +104,11 @@ struct TabBarFeatureView: View {
                     Label("More", systemImage: "ellipsis")
                 }
                 .tag(Tab.more)
-            }.tint(.red)
+            }
+            .onTapGesture(count: 2) {
+                viewStore.send(.reloadTodayView)
+            }
+            .tint(.red)
         }
     }
 }

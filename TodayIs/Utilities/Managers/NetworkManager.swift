@@ -258,13 +258,12 @@ final class NetworkManager {
                 let doc: Document = try SwiftSoup.parse(htmlString)
                 let holidayData: [Element] = try doc.getElementsByClass("ultp-block-title").array()
                 holidays.removeAll()
-                var date = ""
                 for holidayDatum in holidayData {
                     if holidayDatum.tagName() == "strong" {
-                        let holidaySection = try holidayDatum.text().components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
-                        if !holidaySection.isEmpty {
-                            date = holidaySection
-                        }
+                        _ = try holidayDatum.text().components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+//                        if !holidaySection.isEmpty {
+//                            date = holidaySection
+//                        }
                     }
                     
                     let links: [Element] = try holidayDatum.select("a").array()

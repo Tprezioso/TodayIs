@@ -67,21 +67,29 @@ struct NationalDayListFeature: View {
         var body: some View {
             WithViewStore(store, observe: { $0 }) { viewStore in
                 VStack {
-                    ScrollView {
-                        LazyVStack(spacing: 20) {
-                            ForEach(viewStore.holidays, id: \.self) { holiday in
-                                Button {
-                                    viewStore.send(.didTapHoliday(holiday))
-                                } label: {
-                                    HolidayView(holiday: holiday)
+                    ScrollViewReader { value in
+                        ScrollView {
+                            LazyVStack(spacing: 20) {
+                                ForEach(viewStore.holidays, id: \.self) { holiday in
+                                    Button {
+                                        viewStore.send(.didTapHoliday(holiday))
+                                    } label: {
+                                        HolidayView(holiday: holiday)
+                                    }
+                                    .id(holiday)
+                                    .scrollTransition(.interactive, axis: .vertical) { view, phase in
+                                        view.opacity(phase.value > 0 ? 0.1 : 1)
+                                            .blur(radius: phase.value > 0 ? 5 : 0)
+                                    }
                                 }
-                                .scrollTransition(.interactive, axis: .vertical) { view, phase in
-                                    view.opacity(phase.value > 0 ? 0.1 : 1)
-                                        .blur(radius: phase.value > 0 ? 5 : 0)
-                                }
+                            }.scrollTargetLayout()
+                        }.scrollTargetBehavior(.viewAligned)
+                        .onChange(of: viewStore.holidays) {
+                            withAnimation {
+                                value.scrollTo(viewStore.holidays.first, anchor: .top)
                             }
-                        }.scrollTargetLayout()
-                    }.scrollTargetBehavior(.viewAligned)
+                        }
+                    }
                     Spacer()
                 }
                 .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")

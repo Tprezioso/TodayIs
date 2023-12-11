@@ -34,8 +34,12 @@ struct TabBarFeature: Reducer {
             case .todayViewTab, .tomorrowViewTab, .monthViewTab:
                 return .none
             case .reloadTodayView:
+                if state.selectedTab == .today {
+                    return .send(.todayViewTab(.onAppear))
 
-                return .send(.todayViewTab(.onAppear))
+                } else {
+                    return .send(.tomorrowViewTab(.onAppear))
+                }
             }
         }
 

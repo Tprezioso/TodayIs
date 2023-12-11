@@ -32,6 +32,7 @@ struct NationalDayListDomain: Reducer {
             Reduce { state, action in
                 switch action {
                 case .onAppear:
+                    state.isLoading = true
                     return .run { [isToday = state.isTodayView] send in
                         let response = try await currentHolidayClient.getCurrentHoliday(isToday)
                         return await send(.didReceiveHolidays(TaskResult(response)))
@@ -39,10 +40,12 @@ struct NationalDayListDomain: Reducer {
                 case let .didReceiveHolidays(holidays):
                     switch holidays {
                     case let .success(holidays):
+                        state.isLoading = false
                         state.holidays = holidays
                         return .none
 
                     case .failure(_):
+                        state.isLoading = false
                         return .none
 
                     }
@@ -62,11 +65,15 @@ struct NationalDayListDomain: Reducer {
 
 struct NationalDayListFeature: View {
     let store: StoreOf<NationalDayListDomain>
-        @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.scenePhase) private var scenePhase
 
-        var body: some View {
-            WithViewStore(store, observe: { $0 }) { viewStore in
-                VStack {
+    var body: some View {
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            VStack {
+                if viewStore.isLoading {
+                    ProgressView()
+                        .progressViewStyle(.automatic)
+                } else {
                     ScrollViewReader { value in
                         ScrollView {
                             LazyVStack(spacing: 20) {
@@ -84,36 +91,36 @@ struct NationalDayListFeature: View {
                                 }
                             }.scrollTargetLayout()
                         }.scrollTargetBehavior(.viewAligned)
-                        .onChange(of: viewStore.holidays) {
+                        .onChange(of: viewStore.isLoading) {
                             withAnimation {
                                 value.scrollTo(viewStore.holidays.first, anchor: .top)
                             }
                         }
                     }
-                    Spacer()
                 }
-                .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")
-                .onAppear { viewStore.send(.onAppear) }
-                .foregroundColor(.white)
-                .padding()
-                .navigationDestination(store: self.store.scope(state: \.$nationalDayDetailState, action: { .nationalDayDetail($0) })) { store in
-                    NationalDayDetailFeature(store: store)
-                }
-//                .alert(store: self.store.scope(state: \.$alert, action: {.alert($0)}))
-                .onChange(of: scenePhase) {
-                    switch scenePhase {
-                    case .background:
-                        break
-                    case .inactive:
-                        break
-                    case .active:
-                        viewStore.send(.onAppear)
-                    @unknown default:
-                        break
-                    }
+            }
+            .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")
+            .onAppear { viewStore.send(.onAppear) }
+            .foregroundColor(.white)
+            .padding()
+            .navigationDestination(store: self.store.scope(state: \.$nationalDayDetailState, action: { .nationalDayDetail($0) })) { store in
+                NationalDayDetailFeature(store: store)
+            }
+            //                .alert(store: self.store.scope(state: \.$alert, action: {.alert($0)}))
+            .onChange(of: scenePhase) {
+                switch scenePhase {
+                case .background:
+                    break
+                case .inactive:
+                    break
+                case .active:
+                    viewStore.send(.onAppear)
+                @unknown default:
+                    break
                 }
             }
         }
+    }
 }
 
 #Preview {

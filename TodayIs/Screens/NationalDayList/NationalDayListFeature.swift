@@ -9,58 +9,58 @@ import SwiftUI
 import ComposableArchitecture
 
 struct NationalDayListDomain: Reducer {
-        struct State: Equatable {
-            init(isTodayView: Bool = true) {
-                self.isTodayView = isTodayView
-            }
-            // TODO: - Need to add loading
-            var isTodayView: Bool
-            var holidays = [Holiday]()
-            var isLoading = false
-            @PresentationState var nationalDayDetailState: NationalDayDomain.State?
+    struct State: Equatable {
+        init(isTodayView: Bool = true) {
+            self.isTodayView = isTodayView
         }
 
-        enum Action: Equatable {
-            case onAppear
-            case didReceiveHolidays(TaskResult<[Holiday]>)
-            case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
-            case didTapHoliday(Holiday)
-        }
+        var isTodayView: Bool
+        var holidays = [Holiday]()
+        var isLoading = false
+        @PresentationState var nationalDayDetailState: NationalDayDomain.State?
+    }
 
-        @Dependency(\.currentHolidayClient) var currentHolidayClient
-        var body: some ReducerOf<Self> {
-            Reduce { state, action in
-                switch action {
-                case .onAppear:
-                    state.isLoading = true
-                    return .run { [isToday = state.isTodayView] send in
-                        let response = try await currentHolidayClient.getCurrentHoliday(isToday)
-                        return await send(.didReceiveHolidays(TaskResult(response)))
-                    }
-                case let .didReceiveHolidays(holidays):
-                    switch holidays {
-                    case let .success(holidays):
-                        state.isLoading = false
-                        state.holidays = holidays
-                        return .none
+    enum Action: Equatable {
+        case onAppear
+        case didReceiveHolidays(TaskResult<[Holiday]>)
+        case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
+        case didTapHoliday(Holiday)
+    }
 
-                    case .failure(_):
-                        state.isLoading = false
-                        return .none
-
-                    }
-                case .nationalDayDetail:
-                    return .none
-                
-                case let .didTapHoliday(holiday):
-                    state.nationalDayDetailState = .init(holiday: holiday)
-                    return .none
+    @Dependency(\.currentHolidayClient) var currentHolidayClient
+    var body: some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case .onAppear:
+                state.isLoading = true
+                return .run { [isToday = state.isTodayView] send in
+                    let response = try await currentHolidayClient.getCurrentHoliday(isToday)
+                    return await send(.didReceiveHolidays(TaskResult(response)))
                 }
-            }
-            .ifLet(\.$nationalDayDetailState , action: /Action.nationalDayDetail) {
-                NationalDayDomain()
+            case let .didReceiveHolidays(holidays):
+                switch holidays {
+                case let .success(holidays):
+                    state.isLoading = false
+                    state.holidays = holidays
+                    return .none
+
+                case .failure(_):
+                    state.isLoading = false
+                    return .none
+
+                }
+            case .nationalDayDetail:
+                return .none
+
+            case let .didTapHoliday(holiday):
+                state.nationalDayDetailState = .init(holiday: holiday)
+                return .none
             }
         }
+        .ifLet(\.$nationalDayDetailState , action: /Action.nationalDayDetail) {
+            NationalDayDomain()
+        }
+    }
 }
 
 struct NationalDayListFeature: View {
@@ -70,33 +70,30 @@ struct NationalDayListFeature: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             VStack {
-                if viewStore.isLoading {
-                    ProgressView()
-                        .progressViewStyle(.automatic)
-                } else {
-                    ScrollViewReader { value in
-                        ScrollView {
-                            LazyVStack(spacing: 20) {
-                                ForEach(viewStore.holidays, id: \.self) { holiday in
-                                    Button {
-                                        viewStore.send(.didTapHoliday(holiday))
-                                    } label: {
-                                        HolidayView(holiday: holiday)
-                                    }
-                                    .id(holiday)
-                                    .scrollTransition(.interactive, axis: .vertical) { view, phase in
-                                        view.opacity(phase.value > 0 ? 0.1 : 1)
-                                            .blur(radius: phase.value > 0 ? 5 : 0)
-                                    }
+                ScrollViewReader { value in
+                    ScrollView {
+                        LazyVStack(spacing: 20) {
+                            ForEach(viewStore.holidays, id: \.self) { holiday in
+                                Button {
+                                    viewStore.send(.didTapHoliday(holiday))
+                                } label: {
+                                    HolidayView(holiday: holiday)
                                 }
-                            }.scrollTargetLayout()
-                        }.scrollTargetBehavior(.viewAligned)
-                        .onChange(of: viewStore.isLoading) {
+                                .id(holiday)
+                                .scrollTransition(.interactive, axis: .vertical) { view, phase in
+                                    view.opacity(phase.value > 0 ? 0.1 : 1)
+                                        .blur(radius: phase.value > 0 ? 5 : 0)
+                                }
+                            }
+                        }.scrollTargetLayout()
+                    }.scrollTargetBehavior(.viewAligned)
+                        .onChange(of: viewStore.holidays) {
                             withAnimation {
                                 value.scrollTo(viewStore.holidays.first, anchor: .top)
                             }
                         }
-                    }
+                }.refreshable {
+                    viewStore.send(.onAppear)
                 }
             }
             .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")
@@ -106,7 +103,8 @@ struct NationalDayListFeature: View {
             .navigationDestination(store: self.store.scope(state: \.$nationalDayDetailState, action: { .nationalDayDetail($0) })) { store in
                 NationalDayDetailFeature(store: store)
             }
-            //                .alert(store: self.store.scope(state: \.$alert, action: {.alert($0)}))
+            // TODO: - Need to add alerts on error with reloading
+            // .alert(store: self.store.scope(state: \.$alert, action: {.alert($0)}))
             .onChange(of: scenePhase) {
                 switch scenePhase {
                 case .background:

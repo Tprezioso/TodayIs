@@ -33,12 +33,17 @@ struct TabBarFeature: Reducer {
 
             case .todayViewTab, .tomorrowViewTab, .monthViewTab:
                 return .none
+            
             case .reloadTodayView:
-                if state.selectedTab == .today {
+                switch state.selectedTab {
+                case .today:
                     return .send(.todayViewTab(.onAppear))
-
-                } else {
+                case .tomorrow:
                     return .send(.tomorrowViewTab(.onAppear))
+                case .monthly:
+                    return .none
+                case .more:
+                    return .none
                 }
             }
         }
@@ -46,7 +51,7 @@ struct TabBarFeature: Reducer {
         Scope(state: \.todayViewTab, action: /Action.todayViewTab) {
             NationalDayListDomain()
         }
-        
+
         Scope(state: \.tomorrowViewTab, action: /Action.tomorrowViewTab) {
             NationalDayListDomain()
         }

@@ -15,6 +15,7 @@ struct NationalDayDomain: Reducer {
         }
         var holiday: Holiday
         var detailHoliday: DetailHoliday?
+        @BindingState var isLoading = false
     }
 
     enum Action: Equatable {
@@ -27,6 +28,7 @@ struct NationalDayDomain: Reducer {
         Reduce<State, Action> { state, action in
             switch action {
             case .onAppear:
+                state.isLoading = true
                 return .run { [url = state.holiday.url] send in
                     let response = try await currentHolidayClient.getCurrentHolidayDetail(url)
                     await send(.receivedDetailHoliday(TaskResult(response)))
@@ -34,11 +36,15 @@ struct NationalDayDomain: Reducer {
             case let .receivedDetailHoliday(response):
                 switch response {
                 case let .success(detailHoliday):
+                    state.isLoading = false
                     state.detailHoliday = detailHoliday
+                    return .none
+
                 case .failure:
+                    state.isLoading = false
                     return .none
                 }
-                return .none
+
             }
         }
     }
@@ -50,6 +56,9 @@ struct NationalDayDetailFeature: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             ScrollView {
+                if viewStore.isLoading {
+                    ProgressView().controlSize(.large)
+                }
                 AsyncImage(url: URL(string: viewStore.holiday.imageURL ?? "")) { phase in
                     if let image = phase.image {
                         image

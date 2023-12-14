@@ -16,11 +16,12 @@ struct NationalDayListDomain: Reducer {
 
         var isTodayView: Bool
         var holidays = [Holiday]()
-        var isLoading = false
+        @BindingState var isLoading = false
         @PresentationState var nationalDayDetailState: NationalDayDomain.State?
     }
 
-    enum Action: Equatable {
+    enum Action: Equatable, BindableAction{
+        case binding(BindingAction<State>)
         case onAppear
         case didReceiveHolidays(TaskResult<[Holiday]>)
         case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
@@ -29,14 +30,21 @@ struct NationalDayListDomain: Reducer {
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     var body: some ReducerOf<Self> {
+        BindingReducer()
         Reduce { state, action in
             switch action {
+            case .binding:
+                return .none
+
             case .onAppear:
                 state.isLoading = true
                 return .run { [isToday = state.isTodayView] send in
                     let response = try await currentHolidayClient.getCurrentHoliday(isToday)
                     return await send(.didReceiveHolidays(TaskResult(response)))
+                } catch: { error, send in
+                    //TODO: - Handle error
                 }
+
             case let .didReceiveHolidays(holidays):
                 switch holidays {
                 case let .success(holidays):
@@ -44,7 +52,7 @@ struct NationalDayListDomain: Reducer {
                     state.holidays = holidays
                     return .none
 
-                case .failure(_):
+                case .failure:
                     state.isLoading = false
                     return .none
 
@@ -93,7 +101,7 @@ struct NationalDayListFeature: View {
                             }
                         }
                 }.refreshable {
-                    viewStore.send(.onAppear)
+                    await viewStore.send(.onAppear).finish()
                 }
             }
             .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")

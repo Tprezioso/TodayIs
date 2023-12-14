@@ -9,6 +9,7 @@ import WidgetKit
 import SwiftUI
 import Intents
 import SwiftSoup
+import ComposableArchitecture
 
 struct TodayIsTimelineProvider: TimelineProvider {
     func placeholder(in context: Context) -> TodayIsTimelineEntry {

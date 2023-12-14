@@ -14,11 +14,11 @@ struct SelectedMonthDomain: Reducer {
             self.dayNumber = dayNumber
             self.month = month
         }
-        // TODO: - Need to add loading
+
+        @BindingState var isLoading = false
         var dayNumber: Int
         var month: MonthDomain.State.Months
         var holidays = [Holiday]()
-        var isLoading = false
         @PresentationState var nationalDayDetailState: NationalDayDomain.State?
     }
 
@@ -34,6 +34,7 @@ struct SelectedMonthDomain: Reducer {
         Reduce { state, action in
             switch action {
             case .onAppear:
+                state.isLoading = true
                 return .run { [state] send in
                     let response = try await currentHolidayClient.getMonthsHolidays(state.month.rawValue, state.dayNumber)
                     return await send(.didReceiveHolidays(TaskResult(response)))
@@ -41,10 +42,12 @@ struct SelectedMonthDomain: Reducer {
             case let .didReceiveHolidays(holidays):
                 switch holidays {
                 case let .success(holidays):
+                    state.isLoading = false
                     state.holidays = holidays
                     return .none
 
-                case .failure(_):
+                case .failure:
+                    state.isLoading = false
                     return .none
 
                 }
@@ -69,6 +72,9 @@ struct SelectedMonthView: View {
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             VStack {
+                if viewStore.isLoading {
+                    ProgressView().controlSize(.large)
+                }
                 ScrollView {
                     LazyVStack(spacing: 20) {
                         ForEach(viewStore.holidays, id: \.self) { holiday in
@@ -84,7 +90,6 @@ struct SelectedMonthView: View {
                         }
                     }.scrollTargetLayout()
                 }.scrollTargetBehavior(.viewAligned)
-                Spacer()
             }
             .navigationTitle("\(viewStore.month.description.month) \(viewStore.dayNumber) Holidays")
             .onAppear { viewStore.send(.onAppear) }

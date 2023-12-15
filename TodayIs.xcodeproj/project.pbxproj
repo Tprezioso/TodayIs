@@ -81,6 +81,10 @@
 		55E56238266C5109006F77C8 /* NationalHolidayLinkLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E56237266C5109006F77C8 /* NationalHolidayLinkLogo.swift */; };
 		55E77C1D262C99E4000AF1BD /* TIButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E77C1C262C99E4000AF1BD /* TIButton.swift */; };
 		55F69BEE2B2950020054F3B8 /* HolidayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593A01A2AE1D761008FCE1A /* HolidayClient.swift */; };
+		55F69BF32B2CA2160054F3B8 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
+		55F69BF42B2CA2240054F3B8 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
+		55F69BF52B2CA2310054F3B8 /* HolidayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593A01A2AE1D761008FCE1A /* HolidayClient.swift */; };
+		55F69BF72B2CA6BE0054F3B8 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 55F69BF62B2CA6BE0054F3B8 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -207,6 +211,7 @@
 			files = (
 				553C68C2268277FB00367E0C /* SwiftUI.framework in Frameworks */,
 				553C68C0268277FB00367E0C /* WidgetKit.framework in Frameworks */,
+				55F69BF72B2CA6BE0054F3B8 /* ComposableArchitecture in Frameworks */,
 				553C68D62682845F00367E0C /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -618,6 +623,7 @@
 			name = TodayIsWidgetExtension;
 			packageProductDependencies = (
 				553C68D52682845F00367E0C /* SwiftSoup */,
+				55F69BF62B2CA6BE0054F3B8 /* ComposableArchitecture */,
 			);
 			productName = TodayIsWidgetExtension;
 			productReference = 553C68BD268277FB00367E0C /* TodayIsWidgetExtension.appex */;
@@ -786,8 +792,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F69BF32B2CA2160054F3B8 /* Holiday.swift in Sources */,
 				553C68CA268277FC00367E0C /* TodayIsWidget.intentdefinition in Sources */,
 				553C68C5268277FB00367E0C /* TodayIsWidget.swift in Sources */,
+				55F69BF52B2CA2310054F3B8 /* HolidayClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +840,7 @@
 			files = (
 				55A32EDB26EBE5B800E8B853 /* NotificationController.swift in Sources */,
 				55A32ED926EBE5B800E8B853 /* TodayWatchView.swift in Sources */,
+				55F69BF42B2CA2240054F3B8 /* Holiday.swift in Sources */,
 				556C966626FE5A6700978D09 /* HolidayWatchDetailView.swift in Sources */,
 				556C966A26FE5B1F00978D09 /* RemoteImage.swift in Sources */,
 				556C965826FBAD8E00978D09 /* Holiday.swift in Sources */,
@@ -1291,6 +1300,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 55E5621926684839006F77C8 /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = Purchases;
+		};
+		55F69BF62B2CA6BE0054F3B8 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5593A0152ADF6CD1008FCE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

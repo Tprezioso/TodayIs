@@ -11,22 +11,25 @@ import Intents
 import SwiftSoup
 import ComposableArchitecture
 
+
 struct TodayIsTimelineProvider: TimelineProvider {
+    @Dependency(\.currentHolidayClient) var currentHolidayClient
     func placeholder(in context: Context) -> TodayIsTimelineEntry {
-        TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Placeholder", url:"")])
+        TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Holiday", url:"")])
     }
     
     func getSnapshot(in context: Context, completion: @escaping (TodayIsTimelineEntry) -> ()) {
-        let entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Placeholder", url:"")])
+        let entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Holiday", url:"")])
         completion(entry)
     }
     
     func getTimeline(in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        WidgetNetworkManager.shared.getHolidayData { result in
+        Task { @MainActor in
             var entries: [TodayIsTimelineEntry] = []
-            let policy: TimelineReloadPolicy = .atEnd
             var entry: TodayIsTimelineEntry
-            
+            let policy: TimelineReloadPolicy = .atEnd
+
+            let result = try await currentHolidayClient.getCurrentHoliday(true)
             switch result {
             case .success(let holidays):
                 entry = TodayIsTimelineEntry(date: Date(), holidays: holidays)
@@ -34,12 +37,32 @@ struct TodayIsTimelineProvider: TimelineProvider {
             case .failure(let error):
                 entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Error", url:"")])
                 print(error)
-                
+
             }
             entries.append(entry)
-            
+
             let timeline = Timeline(entries: entries, policy: policy)
             completion(timeline)
+
+//            WidgetNetworkManager.shared.getHolidayData { result in
+//                var entries: [TodayIsTimelineEntry] = []
+//                let policy: TimelineReloadPolicy = .atEnd
+//                var entry: TodayIsTimelineEntry
+//
+//                switch result {
+//                case .success(let holidays):
+//                    entry = TodayIsTimelineEntry(date: Date(), holidays: holidays)
+//                    print(holidays)
+//                case .failure(let error):
+//                    entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Error", url:"")])
+//                    print(error)
+//
+//                }
+//                entries.append(entry)
+//
+//                let timeline = Timeline(entries: entries, policy: policy)
+//                completion(timeline)
+//            }
         }
     }
 }
@@ -64,7 +87,7 @@ struct TodayIsWidgetEntryView : View {
                         .font(.title)
                         .bold()
                         .padding(.top)
-                    Text(entry.holidays[1].name)
+                    Text(entry.holidays[0].name)
                         .bold()
                     Spacer()
                 }
@@ -78,12 +101,12 @@ struct TodayIsWidgetEntryView : View {
                     Text(entry.holidays[0].name)
                         .font(.title2)
                         .bold()
-                    Text(entry.holidays[1].name)
-                        .bold()
-                    Text(entry.holidays[2].name)
-                        .bold()
-                    Text(entry.holidays[3].name)
-                        .bold()
+//                    Text(entry.holidays[1].name)
+//                        .bold()
+//                    Text(entry.holidays[2].name)
+//                        .bold()
+//                    Text(entry.holidays[3].name)
+//                        .bold()
                 }
                 
                 
@@ -137,76 +160,76 @@ struct TodayIsWidget_Previews: PreviewProvider {
     }
 }
 
-class WidgetNetworkManager {
-    static let shared = WidgetNetworkManager()
-    private init() {}
-    private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
-    var holidays = [Holiday]()
-    
-    // MARK: - Get Todays Holidays
-    func getHolidayData(completed: @escaping (Result<[Holiday], Error>) -> Void) {
-        guard let url = URL(string: baseURL) else {
-            completed(.failure(Error.self as! Error))
-            return
-        }
-        
-        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
-            guard let data = data else {
-                completed(.failure(Error.self as! Error))
-                return
-            }
-            
-            guard let htmlString = String(data: data, encoding: .utf8) else {
-                completed(.failure(Error.self as! Error))
-                return
-            }
-            
-            do {
-                let doc: Document = try SwiftSoup.parse(htmlString)
-                let price: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()! // eventon_events_list
-                let links: [Element] = try price.select("h3").array() //p
-                holidays.removeAll()
-                if links.isEmpty {
-                    let price: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
-                    let links: [Element] = try price.select("p").array() //p
-                    for title: Element in links {
-                        let linksText: String = try title.text()
-                        var linksHref: String = try title.select("a").attr("href")
-                        if linksHref != "" {
-                            if Array(linksHref)[4] != "s" {
-                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-                            }
-                        }
-                        let holiday = Holiday(name: linksText, url: linksHref)
-                        holidays.append(holiday)
-                    }
-                    completed(.success(holidays))
-                } else {
-                    for title: Element in links {
-                        let linksText: String = try title.text()
-                        var linksHref: String = try title.select("a").attr("href")
-                        if linksHref != "" {
-                            if Array(linksHref)[4] != "s" {
-                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-                            }
-                        }
-                        let holiday = Holiday(name: linksText, url: linksHref)
-                        holidays.append(holiday)
-                    }
-                    completed(.success(holidays))
-                }
-            } catch Exception.Error(let type, let message) {
-                print(type, message)
-            } catch {
-                completed(.failure(Error.self as! Error))
-            }
-        }
-        task.resume()
-    }
-}
+//class WidgetNetworkManager {
+//    static let shared = WidgetNetworkManager()
+//    private init() {}
+//    private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
+//    var holidays = [Holiday]()
+//    
+//    // MARK: - Get Todays Holidays
+//    func getHolidayData(completed: @escaping (Result<[Holiday], Error>) -> Void) {
+//        guard let url = URL(string: baseURL) else {
+//            completed(.failure(Error.self as! Error))
+//            return
+//        }
+//        
+//        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
+//            guard let data = data else {
+//                completed(.failure(Error.self as! Error))
+//                return
+//            }
+//            
+//            guard let htmlString = String(data: data, encoding: .utf8) else {
+//                completed(.failure(Error.self as! Error))
+//                return
+//            }
+//            
+//            do {
+//                let doc: Document = try SwiftSoup.parse(htmlString)
+//                let price: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()! // eventon_events_list
+//                let links: [Element] = try price.select("h3").array() //p
+//                holidays.removeAll()
+//                if links.isEmpty {
+//                    let price: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
+//                    let links: [Element] = try price.select("p").array() //p
+//                    for title: Element in links {
+//                        let linksText: String = try title.text()
+//                        var linksHref: String = try title.select("a").attr("href")
+//                        if linksHref != "" {
+//                            if Array(linksHref)[4] != "s" {
+//                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+//                            }
+//                        }
+//                        let holiday = Holiday(name: linksText, url: linksHref)
+//                        holidays.append(holiday)
+//                    }
+//                    completed(.success(holidays))
+//                } else {
+//                    for title: Element in links {
+//                        let linksText: String = try title.text()
+//                        var linksHref: String = try title.select("a").attr("href")
+//                        if linksHref != "" {
+//                            if Array(linksHref)[4] != "s" {
+//                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
+//                            }
+//                        }
+//                        let holiday = Holiday(name: linksText, url: linksHref)
+//                        holidays.append(holiday)
+//                    }
+//                    completed(.success(holidays))
+//                }
+//            } catch Exception.Error(let type, let message) {
+//                print(type, message)
+//            } catch {
+//                completed(.failure(Error.self as! Error))
+//            }
+//        }
+//        task.resume()
+//    }
+//}
 
-struct Holiday: Identifiable {
-    let id = UUID()
-    var name: String
-    var url: String
-}
+//struct Holiday: Identifiable {
+//    let id = UUID()
+//    var name: String
+//    var url: String
+//}

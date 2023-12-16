@@ -11,7 +11,6 @@ import Intents
 import SwiftSoup
 import ComposableArchitecture
 
-
 struct TodayIsTimelineProvider: TimelineProvider {
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     func placeholder(in context: Context) -> TodayIsTimelineEntry {
@@ -43,26 +42,6 @@ struct TodayIsTimelineProvider: TimelineProvider {
 
             let timeline = Timeline(entries: entries, policy: policy)
             completion(timeline)
-
-//            WidgetNetworkManager.shared.getHolidayData { result in
-//                var entries: [TodayIsTimelineEntry] = []
-//                let policy: TimelineReloadPolicy = .atEnd
-//                var entry: TodayIsTimelineEntry
-//
-//                switch result {
-//                case .success(let holidays):
-//                    entry = TodayIsTimelineEntry(date: Date(), holidays: holidays)
-//                    print(holidays)
-//                case .failure(let error):
-//                    entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Error", url:"")])
-//                    print(error)
-//
-//                }
-//                entries.append(entry)
-//
-//                let timeline = Timeline(entries: entries, policy: policy)
-//                completion(timeline)
-//            }
         }
     }
 }
@@ -78,62 +57,60 @@ struct TodayIsWidgetEntryView : View {
     
     var body: some View {
         ZStack {
-            Color(.secondarySystemBackground)
-            
+
             switch widgetFamily {
             case .systemSmall:
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Today Is....")
-                        .font(.title)
+                    Text("\(Date().formatted(.dateTime.month(.abbreviated).day(.defaultDigits).year(.defaultDigits)))")
+                        .font(.subheadline)
                         .bold()
-                        .padding(.top)
+
                     Text(entry.holidays[0].name)
                         .bold()
-                    Spacer()
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(.red, lineWidth: 5)
+
+                        )
                 }
-                .padding(5)
-                
+
             case .systemMedium:
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("Today Is....")
-                        .font(.title)
+                    Text("\(Date().formatted(.dateTime.month(.abbreviated).day(.defaultDigits).year(.defaultDigits)))")
+                        .font(.subheadline)
                         .bold()
-                    Text(entry.holidays[0].name)
-                        .font(.title2)
-                        .bold()
-//                    Text(entry.holidays[1].name)
-//                        .bold()
-//                    Text(entry.holidays[2].name)
-//                        .bold()
-//                    Text(entry.holidays[3].name)
-//                        .bold()
-                }
-                
-                
-            case .systemLarge:
-                VStack(alignment: .leading) {
-                    Text("Today Is....")
-                        .font(.title)
-                        .bold()
-                        .padding(.bottom)
-                    ForEach(entry.holidays) { holiday in
-                        Text("\(holiday.name)")
+                    ForEach(entry.holidays.prefix(4), id: \.self) { index in
+                        Text(index.name)
                             .bold()
+                            .padding(.horizontal)
+                            .padding(.vertical, 3)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(.red, lineWidth: 2)
+
+                            )
                     }
                 }
-                .padding(5)
                 
+            case .systemLarge, .systemExtraLarge, .accessoryCircular, .accessoryRectangular, .accessoryInline: 
+                EmptyView()
+
             @unknown default:
                 VStack(alignment: .leading, spacing: 10) {
-                    Text("Today Is....")
-                        .font(.title)
+                    Text("\(Date().formatted(.dateTime.month(.abbreviated).day(.defaultDigits).year(.defaultDigits)))")
+                        .font(.subheadline)
                         .bold()
-                        .padding(.top)
-                    Text(entry.holidays[1].name)
+
+                    Text(entry.holidays[0].name)
                         .bold()
-                    Spacer()
+                        .padding()
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(.red, lineWidth: 5)
+
+                        )
                 }
-                .padding(5)
             }
         }
     }
@@ -150,6 +127,7 @@ struct TodayIsWidget: Widget {
         .configurationDisplayName("Today Is....")
         .description("This is will show the national holidays for today.")
         .supportedFamilies([.systemSmall, .systemMedium])
+        .contentMarginsDisabled()
     }
 }
 
@@ -159,77 +137,3 @@ struct TodayIsWidget_Previews: PreviewProvider {
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }
-
-//class WidgetNetworkManager {
-//    static let shared = WidgetNetworkManager()
-//    private init() {}
-//    private let baseURL = "https://nationaldaycalendar.com/what-day-is-it/"
-//    var holidays = [Holiday]()
-//    
-//    // MARK: - Get Todays Holidays
-//    func getHolidayData(completed: @escaping (Result<[Holiday], Error>) -> Void) {
-//        guard let url = URL(string: baseURL) else {
-//            completed(.failure(Error.self as! Error))
-//            return
-//        }
-//        
-//        let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { [self] (data, response, error) in
-//            guard let data = data else {
-//                completed(.failure(Error.self as! Error))
-//                return
-//            }
-//            
-//            guard let htmlString = String(data: data, encoding: .utf8) else {
-//                completed(.failure(Error.self as! Error))
-//                return
-//            }
-//            
-//            do {
-//                let doc: Document = try SwiftSoup.parse(htmlString)
-//                let price: Element = try doc.getElementsByClass("ndc-text-national-day-today-text-list").first()! // eventon_events_list
-//                let links: [Element] = try price.select("h3").array() //p
-//                holidays.removeAll()
-//                if links.isEmpty {
-//                    let price: Element = try doc.getElementsByClass("eventon_events_list").first()! //eventon_events_list
-//                    let links: [Element] = try price.select("p").array() //p
-//                    for title: Element in links {
-//                        let linksText: String = try title.text()
-//                        var linksHref: String = try title.select("a").attr("href")
-//                        if linksHref != "" {
-//                            if Array(linksHref)[4] != "s" {
-//                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-//                            }
-//                        }
-//                        let holiday = Holiday(name: linksText, url: linksHref)
-//                        holidays.append(holiday)
-//                    }
-//                    completed(.success(holidays))
-//                } else {
-//                    for title: Element in links {
-//                        let linksText: String = try title.text()
-//                        var linksHref: String = try title.select("a").attr("href")
-//                        if linksHref != "" {
-//                            if Array(linksHref)[4] != "s" {
-//                                linksHref.insert("s", at: linksHref.index(linksHref.startIndex, offsetBy: 4))
-//                            }
-//                        }
-//                        let holiday = Holiday(name: linksText, url: linksHref)
-//                        holidays.append(holiday)
-//                    }
-//                    completed(.success(holidays))
-//                }
-//            } catch Exception.Error(let type, let message) {
-//                print(type, message)
-//            } catch {
-//                completed(.failure(Error.self as! Error))
-//            }
-//        }
-//        task.resume()
-//    }
-//}
-
-//struct Holiday: Identifiable {
-//    let id = UUID()
-//    var name: String
-//    var url: String
-//}

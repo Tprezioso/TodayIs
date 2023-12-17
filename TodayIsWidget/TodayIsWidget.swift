@@ -127,7 +127,6 @@ struct TodayIsWidget: Widget {
         .configurationDisplayName("Today Is....")
         .description("This is will show the national holidays for today.")
         .supportedFamilies([.systemSmall, .systemMedium])
-        .contentMarginsDisabled()
     }
 }
 

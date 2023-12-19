@@ -6,6 +6,24 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+
+struct TomorrowWatchDomain: Reducer {
+    struct State: Equatable {
+
+    }
+
+    enum Action: Equatable {
+
+    }
+
+    var body: some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            }
+        }
+    }
+}
 
 struct TomorrowWatchView: View {
     @StateObject var viewModel = TomorrowWatchViewModel()

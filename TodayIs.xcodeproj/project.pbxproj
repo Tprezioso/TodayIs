@@ -23,7 +23,6 @@
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		556C965426FBACF600978D09 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965326FBACF600978D09 /* NetworkManager.swift */; };
 		556C965626FBAD3800978D09 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 556C965526FBAD3800978D09 /* SwiftSoup */; };
-		556C965826FBAD8E00978D09 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965726FBAD8E00978D09 /* Holiday.swift */; };
 		556C965A26FBADF500978D09 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965926FBADF500978D09 /* TIError.swift */; };
 		556C965C26FBAE0B00978D09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965B26FBAE0B00978D09 /* Alert.swift */; };
 		556C966126FE58FA00978D09 /* TodayWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966026FE58FA00978D09 /* TodayWatchViewModel.swift */; };
@@ -50,7 +49,7 @@
 		55A32EC626EBE5B700E8B853 /* TodayIsWatchApp WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 55A32EC526EBE5B700E8B853 /* TodayIsWatchApp WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		55A32ECB26EBE5B800E8B853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 55A32ECA26EBE5B800E8B853 /* Assets.xcassets */; };
 		55A32ED726EBE5B800E8B853 /* TodayIsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A32ED626EBE5B800E8B853 /* TodayIsApp.swift */; };
-		55A32ED926EBE5B800E8B853 /* TodayWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A32ED826EBE5B800E8B853 /* TodayWatchView.swift */; };
+		55A32ED926EBE5B800E8B853 /* HolidayWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A32ED826EBE5B800E8B853 /* HolidayWatchView.swift */; };
 		55A32EDB26EBE5B800E8B853 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A32EDA26EBE5B800E8B853 /* NotificationController.swift */; };
 		55A32EDD26EBE5B800E8B853 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A32EDC26EBE5B800E8B853 /* NotificationView.swift */; };
 		55A32EDF26EBE5B800E8B853 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A32EDE26EBE5B800E8B853 /* ComplicationController.swift */; };
@@ -85,6 +84,7 @@
 		55F69BF42B2CA2240054F3B8 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
 		55F69BF52B2CA2310054F3B8 /* HolidayClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5593A01A2AE1D761008FCE1A /* HolidayClient.swift */; };
 		55F69BF72B2CA6BE0054F3B8 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 55F69BF62B2CA6BE0054F3B8 /* ComposableArchitecture */; };
+		55F69BF92B3108D80054F3B8 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 55F69BF82B3108D80054F3B8 /* ComposableArchitecture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +142,6 @@
 		553C68C9268277FC00367E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		556C965326FBACF600978D09 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		556C965726FBAD8E00978D09 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
 		556C965926FBADF500978D09 /* TIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIError.swift; sourceTree = "<group>"; };
 		556C965B26FBAE0B00978D09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		556C966026FE58FA00978D09 /* TodayWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWatchViewModel.swift; sourceTree = "<group>"; };
@@ -172,7 +171,7 @@
 		55A32ECA26EBE5B800E8B853 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		55A32ECC26EBE5B800E8B853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		55A32ED626EBE5B800E8B853 /* TodayIsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayIsApp.swift; sourceTree = "<group>"; };
-		55A32ED826EBE5B800E8B853 /* TodayWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWatchView.swift; sourceTree = "<group>"; };
+		55A32ED826EBE5B800E8B853 /* HolidayWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayWatchView.swift; sourceTree = "<group>"; };
 		55A32EDA26EBE5B800E8B853 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		55A32EDC26EBE5B800E8B853 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		55A32EDE26EBE5B800E8B853 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -233,6 +232,7 @@
 			files = (
 				5536458E28D891CA00A8F646 /* SwiftSoup in Frameworks */,
 				556C965626FBAD3800978D09 /* SwiftSoup in Frameworks */,
+				55F69BF92B3108D80054F3B8 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,7 +314,6 @@
 		556C965E26FBAE3D00978D09 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				556C965726FBAD8E00978D09 /* Holiday.swift */,
 				556C966926FE5B1F00978D09 /* RemoteImage.swift */,
 			);
 			path = Model;
@@ -331,7 +330,7 @@
 		556C966226FE599B00978D09 /* TodayWatchView */ = {
 			isa = PBXGroup;
 			children = (
-				55A32ED826EBE5B800E8B853 /* TodayWatchView.swift */,
+				55A32ED826EBE5B800E8B853 /* HolidayWatchView.swift */,
 				556C966026FE58FA00978D09 /* TodayWatchViewModel.swift */,
 			);
 			path = TodayWatchView;
@@ -686,6 +685,7 @@
 			name = "TodayIsWatchApp WatchKit App";
 			packageProductDependencies = (
 				5574D0C528D62DCD008A8936 /* SwiftSoup */,
+				55F69BF82B3108D80054F3B8 /* ComposableArchitecture */,
 			);
 			productName = "TodayIsWatchApp WatchKit App";
 			productReference = 55A32EC526EBE5B700E8B853 /* TodayIsWatchApp WatchKit App.app */;
@@ -839,11 +839,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				55A32EDB26EBE5B800E8B853 /* NotificationController.swift in Sources */,
-				55A32ED926EBE5B800E8B853 /* TodayWatchView.swift in Sources */,
+				55A32ED926EBE5B800E8B853 /* HolidayWatchView.swift in Sources */,
 				55F69BF42B2CA2240054F3B8 /* Holiday.swift in Sources */,
 				556C966626FE5A6700978D09 /* HolidayWatchDetailView.swift in Sources */,
 				556C966A26FE5B1F00978D09 /* RemoteImage.swift in Sources */,
-				556C965826FBAD8E00978D09 /* Holiday.swift in Sources */,
 				55F69BEE2B2950020054F3B8 /* HolidayClient.swift in Sources */,
 				556C966F26FE60A600978D09 /* TomorrowWatchViewModel.swift in Sources */,
 				556C966426FE59E200978D09 /* EmptyState.swift in Sources */,
@@ -1302,6 +1301,11 @@
 			productName = Purchases;
 		};
 		55F69BF62B2CA6BE0054F3B8 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5593A0152ADF6CD1008FCE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		55F69BF82B3108D80054F3B8 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5593A0152ADF6CD1008FCE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;

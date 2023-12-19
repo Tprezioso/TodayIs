@@ -26,7 +26,7 @@ struct HolidayWatchDetailView: View {
                 } else {
                     // Fallback on earlier versions
                 }
-                AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL)) { image in
+                AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL ?? "")) { image in
                     image
                         .resizable()
                 } placeholder: {

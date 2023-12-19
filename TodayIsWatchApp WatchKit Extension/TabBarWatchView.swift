@@ -6,6 +6,26 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
+
+
+public struct TabBarFeature: Reducer {
+   public struct State: Equatable {
+//       var todayViewTab = NationalDayListDomain.State()
+//       var tomorrowViewTab = NationalDayListDomain.State(isTodayView: false)
+    }
+
+    public enum Action: Equatable {
+
+    }
+
+    public var body: some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            }
+        }
+    }
+}
 
 struct TabBarWatchView: View {
     @State var selection = 0
@@ -13,11 +33,15 @@ struct TabBarWatchView: View {
     var body: some View {
         TabView(selection: $selection) {
             NavigationView {
-                TodayWatchView()
+                HolidayWatchView(store: .init(initialState: .init()) {
+                    HolidayWatchDomain()
+                })
                     .tag(0)
             }
             NavigationView {
-                TomorrowWatchView()
+                HolidayWatchView(store: .init(initialState: .init(isTodayView: false)) {
+                    HolidayWatchDomain()
+                })
                     .tag(1)
             }
         }.tabViewStyle(PageTabViewStyle(indexDisplayMode: .automatic))

@@ -8,8 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct HolidayDetailDomain: Reducer {
-    struct State: Equatable {
+public struct HolidayDetailDomain: Reducer {
+    public struct State: Equatable {
         init(holiday: Holiday) {
             self.holiday = holiday
         }
@@ -18,13 +18,13 @@ struct HolidayDetailDomain: Reducer {
         @BindingState var isLoading = false
     }
 
-    enum Action: Equatable {
+    public enum Action: Equatable {
         case onAppear
         case receivedDetailHoliday(TaskResult<DetailHoliday>)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
-    var body: some ReducerOf<Self> {
+    public var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
             case .onAppear:

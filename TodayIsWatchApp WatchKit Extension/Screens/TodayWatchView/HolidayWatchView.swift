@@ -8,8 +8,8 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct HolidayWatchDomain: Reducer {
-    struct State: Equatable {
+public struct HolidayWatchDomain: Reducer {
+    public struct State: Equatable {
         init(isTodayView: Bool = true) {
             self.isTodayView = isTodayView
         }
@@ -19,7 +19,7 @@ struct HolidayWatchDomain: Reducer {
         @PresentationState var holidayDetailState: HolidayDetailDomain.State?
     }
 
-    enum Action: Equatable, BindableAction {
+    public enum Action: Equatable, BindableAction {
         case binding(BindingAction<State>)
         case onAppear
         case didReceiveHolidays(TaskResult<[Holiday]>)
@@ -28,7 +28,7 @@ struct HolidayWatchDomain: Reducer {
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
-    var body: some ReducerOf<Self> {
+    public var body: some ReducerOf<Self> {
         BindingReducer()
         Reduce { state, action in
             switch action {
@@ -88,7 +88,6 @@ struct HolidayWatchView: View {
                                     .fontWeight(.semibold)
                             }
                         }
-//                         HolidayWatchListView(holidays: viewStore.holidays)
                     } else {
                         EmptyState(message: "There was an issue loading Today's Holidays!\n Try again later")
                     }
@@ -129,27 +128,3 @@ struct TodayWatchView_Previews: PreviewProvider {
         })
     }
 }
-
-//struct HolidayWatchListView: View {
-//    var holidays: [Holiday]
-//    
-//    var body: some View {
-//        List(holidays) { holiday in
-//            if holiday.url == "" {
-//                Text("\(holiday.name)")
-//                    .font(.title)
-//                    .fontWeight(.semibold)
-//            } else {
-//                let split = holiday.name.components(separatedBy: "–")
-//                let firstPart = split.last
-//                let secondPart = split.first
-//                NavigationLink(destination: HolidayWatchDetailView(holiday: holiday)) {
-//                    VStack(alignment: .leading) {
-//                        Text(firstPart ?? "")
-//                            .font(.body)
-//                                            }
-//                }
-//            }
-//        }
-//    }
-//}

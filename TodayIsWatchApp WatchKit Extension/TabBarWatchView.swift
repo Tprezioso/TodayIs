@@ -17,12 +17,33 @@ public struct TabBarFeature: Reducer {
     }
 
     public enum Action: Equatable {
-
+        case todayViewTab(HolidayWatchDomain.Action)
+        case reloadTodayView
+        case tomorrowViewTab(HolidayWatchDomain.Action)
+        case selectedTabChanged(Tab)
     }
 
     public var body: some ReducerOf<Self> {
         Reduce { state, action in
             switch action {
+            case let .selectedTabChanged(tab):
+                state.selectedTab = tab
+                return .none
+
+            case .todayViewTab, .tomorrowViewTab:
+                return .none
+
+            case .reloadTodayView:
+                switch state.selectedTab {
+                case .today:
+                    return .send(.todayViewTab(.onAppear))
+                case .tomorrow:
+                    return .send(.tomorrowViewTab(.onAppear))
+                case .monthly:
+                    return .none
+                case .more:
+                    return .none
+                }
             }
         }
     }
@@ -34,11 +55,10 @@ public enum Tab {
 
 struct TabBarWatchView: View {
     let store: StoreOf<TabBarFeature>
-    @State var selection = 0
-    
+
     var body: some View {
         WithViewStore(self.store, observe: \.selectedTab) { viewStore in
-            TabView(selection: $selection) {
+            TabView(selection: viewStore.binding(send: TabBarFeature.Action.selectedTabChanged)) {
                 NavigationStack {
                     HolidayWatchView(store: .init(initialState: .init()) {
                         HolidayWatchDomain()

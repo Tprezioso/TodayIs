@@ -33,7 +33,7 @@ struct TomorrowWatchView: View {
         ZStack {
             VStack {
                 if !viewModel.isHolidaysEmpty {
-                    HolidayWatchListView(holidays: viewModel.holidays)
+//                    HolidayWatchListView(holidays: viewModel.holidays)
                 } else {
                     EmptyState(message: "There was an issue loading Tomorrow's Holidays!\n Try again later")
                 }

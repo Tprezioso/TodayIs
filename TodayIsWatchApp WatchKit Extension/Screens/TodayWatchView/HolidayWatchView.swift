@@ -16,18 +16,25 @@ struct HolidayWatchDomain: Reducer {
         var holidays = [Holiday]()
         var isTodayView: Bool
         @BindingState var isLoading = false
+        @PresentationState var holidayDetailState: HolidayDetailDomain.State?
     }
 
-    enum Action: Equatable {
+    enum Action: Equatable, BindableAction {
+        case binding(BindingAction<State>)
         case onAppear
         case didReceiveHolidays(TaskResult<[Holiday]>)
+        case holidayDetail(PresentationAction<HolidayDetailDomain.Action>)
         case didTapHoliday(Holiday)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     var body: some ReducerOf<Self> {
+        BindingReducer()
         Reduce { state, action in
             switch action {
+            case .binding:
+                return .none
+
             case .onAppear:
                 return .run { [isToday = state.isTodayView] send in
                     let response = try await currentHolidayClient.getCurrentHoliday(isToday)
@@ -50,8 +57,15 @@ struct HolidayWatchDomain: Reducer {
                 }
                 
             case let .didTapHoliday(holiday):
+                state.holidayDetailState = .init(holiday: holiday)
+                return .none
+
+            case .holidayDetail:
                 return .none
             }
+        }
+        .ifLet(\.$holidayDetailState, action: /Action.holidayDetail) {
+            HolidayDetailDomain()
         }
     }
 }
@@ -65,7 +79,16 @@ struct HolidayWatchView: View {
             ZStack {
                 VStack {
                     if !viewStore.holidays.isEmpty {
-                        HolidayWatchListView(holidays: viewStore.holidays)
+                        List(viewStore.holidays) { holiday in
+                            Button {
+                                viewStore.send(.didTapHoliday(holiday))
+                            } label: {
+                                Text("\(holiday.name)")
+                                    .font(.body)
+                                    .fontWeight(.semibold)
+                            }
+                        }
+//                         HolidayWatchListView(holidays: viewStore.holidays)
                     } else {
                         EmptyState(message: "There was an issue loading Today's Holidays!\n Try again later")
                     }
@@ -92,6 +115,9 @@ struct HolidayWatchView: View {
                         .scaleEffect(2, anchor: .center)
                 }
             }
+            .navigationDestination(store: self.store.scope(state: \.$holidayDetailState, action: { .holidayDetail($0) })) { store in
+                HolidayWatchDetailView(store: store)
+            }
         }
     }
 }
@@ -104,26 +130,26 @@ struct TodayWatchView_Previews: PreviewProvider {
     }
 }
 
-struct HolidayWatchListView: View {
-    var holidays: [Holiday]
-    
-    var body: some View {
-        List(holidays) { holiday in
-            if holiday.url == "" {
-                Text("\(holiday.name)")
-                    .font(.title)
-                    .fontWeight(.semibold)
-            } else {
-                let split = holiday.name.components(separatedBy: "–")
-                let firstPart = split.last
-                let secondPart = split.first
-                NavigationLink(destination: HolidayWatchDetailView(holiday: holiday)) {
-                    VStack(alignment: .leading) {
-                        Text(firstPart ?? "")
-                            .font(.body)
-                                            }
-                }
-            }
-        }
-    }
-}
+//struct HolidayWatchListView: View {
+//    var holidays: [Holiday]
+//    
+//    var body: some View {
+//        List(holidays) { holiday in
+//            if holiday.url == "" {
+//                Text("\(holiday.name)")
+//                    .font(.title)
+//                    .fontWeight(.semibold)
+//            } else {
+//                let split = holiday.name.components(separatedBy: "–")
+//                let firstPart = split.last
+//                let secondPart = split.first
+//                NavigationLink(destination: HolidayWatchDetailView(holiday: holiday)) {
+//                    VStack(alignment: .leading) {
+//                        Text(firstPart ?? "")
+//                            .font(.body)
+//                                            }
+//                }
+//            }
+//        }
+//    }
+//}

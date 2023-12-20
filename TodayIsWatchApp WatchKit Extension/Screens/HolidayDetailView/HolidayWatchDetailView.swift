@@ -6,52 +6,103 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
-struct HolidayWatchDetailView: View {
-    var holiday: Holiday
-    var navigationTitle: String {
-        var title = ""
-        if let range = holiday.name.range(of: "All Day") {
-            title = String(holiday.name[range.upperBound..<holiday.name.endIndex])
+struct HolidayDetailDomain: Reducer {
+    struct State: Equatable {
+        init(holiday: Holiday) {
+            self.holiday = holiday
         }
-        return title
+        var holiday: Holiday
+        var detailHoliday: DetailHoliday?
+        @BindingState var isLoading = false
     }
-    @StateObject var viewModel = HolidayWatchDetailViewModel()
+
+    enum Action: Equatable {
+        case onAppear
+        case receivedDetailHoliday(TaskResult<DetailHoliday>)
+    }
+
+    @Dependency(\.currentHolidayClient) var currentHolidayClient
+    var body: some ReducerOf<Self> {
+        Reduce { state, action in
+            switch action {
+            case .onAppear:
+                state.isLoading = true
+                return .run { [url = state.holiday.url] send in
+                    let response = try await currentHolidayClient.getCurrentHolidayDetail(url)
+                    await send(.receivedDetailHoliday(TaskResult(response)))
+                }
+            case let .receivedDetailHoliday(response):
+                switch response {
+                case let .success(detailHoliday):
+                    state.isLoading = false
+                    state.detailHoliday = detailHoliday
+                    return .none
+
+                case .failure:
+                    state.isLoading = false
+                    return .none
+                }
+
+            }
+        }
+    }
+}
+struct HolidayWatchDetailView: View {
+    let store: StoreOf<HolidayDetailDomain>
     
     var body: some View {
-        VStack {
-            ScrollView {
-                if #available(watchOSApplicationExtension 9.0, *) {
-                    ShareLink(item: holiday.url)
-                } else {
-                    // Fallback on earlier versions
+        WithViewStore(store, observe: { $0 }) { viewStore in
+            VStack {
+                ScrollView {
+                    if viewStore.isLoading {
+                        ProgressView().controlSize(.large)
+                    }
+                    AsyncImage(url: URL(string: viewStore.holiday.imageURL ?? "")) { phase in
+                        if let image = phase.image {
+                            image
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                        } else if phase.error != nil {
+                            Image(systemName: "PlaceholderImage")
+                        } else {
+                            ProgressView().progressViewStyle(.circular)
+                                .controlSize(.large)
+                        }
+                    }
+                    VStack(spacing: 20) {
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text(viewStore.holiday.description ?? "")
+                                .font(.title3)
+                                .bold()
+                                .multilineTextAlignment(.leading)
+                            Text(viewStore.detailHoliday?.description ?? "")
+                                .font(.headline)
+                                .bold()
+                        }
+                    }
                 }
-                AsyncImage(url: URL(string: viewModel.detailHoliday.imageURL ?? "")) { image in
-                    image
-                        .resizable()
-                } placeholder: {
-                    Image("PlaceholderImage")
-                        .resizable()
-                }.scaledToFit()
-                    .padding(.bottom)
-                Text(viewModel.detailHoliday.description)
-                    .lineLimit(nil)
+                .onAppear {
+                    viewStore.send(.onAppear)
+                }
+                if viewStore.isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle(tint: .gray))
+                        .scaleEffect(2, anchor: .center)
+                }
             }
-            .onAppear {
-                viewModel.getHoliday(url: holiday.url)
-            }
-            if viewModel.isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .gray))
-                    .scaleEffect(2, anchor: .center)
-            }
+            .navigationTitle(viewStore.holiday.name)
         }
-        .navigationTitle(navigationTitle)
     }
 }
 
 struct HolidayWatchDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        HolidayWatchDetailView(holiday: Holiday(name: "Tom's Day", url: "http://www.swifttom.com"))
+        HolidayWatchDetailView(store: .init(initialState: .init(holiday: .init(name: "Christmas", url: "https://www.google.com"))) {
+            HolidayDetailDomain()
+        })
     }
 }

@@ -21,17 +21,11 @@
 		553C68D62682845F00367E0C /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553C68D52682845F00367E0C /* SwiftSoup */; };
 		553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5A726225A2A000D5757 /* SwiftSoup */; };
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
-		556C965426FBACF600978D09 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965326FBACF600978D09 /* NetworkManager.swift */; };
 		556C965626FBAD3800978D09 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 556C965526FBAD3800978D09 /* SwiftSoup */; };
 		556C965A26FBADF500978D09 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965926FBADF500978D09 /* TIError.swift */; };
 		556C965C26FBAE0B00978D09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965B26FBAE0B00978D09 /* Alert.swift */; };
-		556C966126FE58FA00978D09 /* TodayWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966026FE58FA00978D09 /* TodayWatchViewModel.swift */; };
 		556C966426FE59E200978D09 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966326FE59E200978D09 /* EmptyState.swift */; };
 		556C966626FE5A6700978D09 /* HolidayWatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966526FE5A6700978D09 /* HolidayWatchDetailView.swift */; };
-		556C966826FE5A9800978D09 /* HolidayWatchDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966726FE5A9800978D09 /* HolidayWatchDetailViewModel.swift */; };
-		556C966A26FE5B1F00978D09 /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966926FE5B1F00978D09 /* RemoteImage.swift */; };
-		556C966D26FE606F00978D09 /* TomorrowWatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966C26FE606F00978D09 /* TomorrowWatchView.swift */; };
-		556C966F26FE60A600978D09 /* TomorrowWatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966E26FE60A600978D09 /* TomorrowWatchViewModel.swift */; };
 		5574D0D228D7E231008A8936 /* Navigation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5574D0D128D7E231008A8936 /* Navigation+Ext.swift */; };
 		557AED0A2628F50E009B6FCD /* RemoteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557AED092628F50E009B6FCD /* RemoteImage.swift */; };
 		558A54EC25F6A4C9003E1072 /* TodayIsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558A54EB25F6A4C9003E1072 /* TodayIsApp.swift */; };
@@ -141,16 +135,10 @@
 		553C68C7268277FC00367E0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		553C68C9268277FC00367E0C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		553ED5AB26226C0B000D5757 /* Holiday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Holiday.swift; sourceTree = "<group>"; };
-		556C965326FBACF600978D09 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		556C965926FBADF500978D09 /* TIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIError.swift; sourceTree = "<group>"; };
 		556C965B26FBAE0B00978D09 /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		556C966026FE58FA00978D09 /* TodayWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWatchViewModel.swift; sourceTree = "<group>"; };
 		556C966326FE59E200978D09 /* EmptyState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyState.swift; sourceTree = "<group>"; };
 		556C966526FE5A6700978D09 /* HolidayWatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayWatchDetailView.swift; sourceTree = "<group>"; };
-		556C966726FE5A9800978D09 /* HolidayWatchDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayWatchDetailViewModel.swift; sourceTree = "<group>"; };
-		556C966926FE5B1F00978D09 /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
-		556C966C26FE606F00978D09 /* TomorrowWatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowWatchView.swift; sourceTree = "<group>"; };
-		556C966E26FE60A600978D09 /* TomorrowWatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TomorrowWatchViewModel.swift; sourceTree = "<group>"; };
 		5574D0D128D7E231008A8936 /* Navigation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Ext.swift"; sourceTree = "<group>"; };
 		557AED092628F50E009B6FCD /* RemoteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImage.swift; sourceTree = "<group>"; };
 		558A54E825F6A4C9003E1072 /* TodayIs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodayIs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,7 +284,6 @@
 			isa = PBXGroup;
 			children = (
 				556C966226FE599B00978D09 /* TodayWatchView */,
-				556C967026FE614A00978D09 /* TomorrowWatchView */,
 				556C966B26FE5B2C00978D09 /* HolidayDetailView */,
 			);
 			path = Screens;
@@ -311,27 +298,10 @@
 			path = Alert;
 			sourceTree = "<group>";
 		};
-		556C965E26FBAE3D00978D09 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				556C966926FE5B1F00978D09 /* RemoteImage.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		556C965F26FBAE8200978D09 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-				556C965326FBACF600978D09 /* NetworkManager.swift */,
-			);
-			path = Manager;
-			sourceTree = "<group>";
-		};
 		556C966226FE599B00978D09 /* TodayWatchView */ = {
 			isa = PBXGroup;
 			children = (
 				55A32ED826EBE5B800E8B853 /* HolidayWatchView.swift */,
-				556C966026FE58FA00978D09 /* TodayWatchViewModel.swift */,
 			);
 			path = TodayWatchView;
 			sourceTree = "<group>";
@@ -340,18 +310,8 @@
 			isa = PBXGroup;
 			children = (
 				556C966526FE5A6700978D09 /* HolidayWatchDetailView.swift */,
-				556C966726FE5A9800978D09 /* HolidayWatchDetailViewModel.swift */,
 			);
 			path = HolidayDetailView;
-			sourceTree = "<group>";
-		};
-		556C967026FE614A00978D09 /* TomorrowWatchView */ = {
-			isa = PBXGroup;
-			children = (
-				556C966C26FE606F00978D09 /* TomorrowWatchView.swift */,
-				556C966E26FE60A600978D09 /* TomorrowWatchViewModel.swift */,
-			);
-			path = TomorrowWatchView;
 			sourceTree = "<group>";
 		};
 		558A54DF25F6A4C9003E1072 = {
@@ -436,8 +396,6 @@
 				55A32EF226EBE70800E8B853 /* TabBarWatchView.swift */,
 				5544084A26FF708500B9DB4E /* Screens */,
 				5544084926FF704500B9DB4E /* View */,
-				556C965F26FBAE8200978D09 /* Manager */,
-				556C965E26FBAE3D00978D09 /* Model */,
 				556C965D26FBAE2A00978D09 /* Alert */,
 				55A32EDC26EBE5B800E8B853 /* NotificationView.swift */,
 				55A32EDA26EBE5B800E8B853 /* NotificationController.swift */,
@@ -842,18 +800,12 @@
 				55A32ED926EBE5B800E8B853 /* HolidayWatchView.swift in Sources */,
 				55F69BF42B2CA2240054F3B8 /* Holiday.swift in Sources */,
 				556C966626FE5A6700978D09 /* HolidayWatchDetailView.swift in Sources */,
-				556C966A26FE5B1F00978D09 /* RemoteImage.swift in Sources */,
 				55F69BEE2B2950020054F3B8 /* HolidayClient.swift in Sources */,
-				556C966F26FE60A600978D09 /* TomorrowWatchViewModel.swift in Sources */,
 				556C966426FE59E200978D09 /* EmptyState.swift in Sources */,
 				55A32EF326EBE70800E8B853 /* TabBarWatchView.swift in Sources */,
-				556C965426FBACF600978D09 /* NetworkManager.swift in Sources */,
 				55A32EDF26EBE5B800E8B853 /* ComplicationController.swift in Sources */,
-				556C966826FE5A9800978D09 /* HolidayWatchDetailViewModel.swift in Sources */,
 				55A32ED726EBE5B800E8B853 /* TodayIsApp.swift in Sources */,
-				556C966126FE58FA00978D09 /* TodayWatchViewModel.swift in Sources */,
 				556C965A26FBADF500978D09 /* TIError.swift in Sources */,
-				556C966D26FE606F00978D09 /* TomorrowWatchView.swift in Sources */,
 				556C965C26FBAE0B00978D09 /* Alert.swift in Sources */,
 				55A32EDD26EBE5B800E8B853 /* NotificationView.swift in Sources */,
 			);

@@ -86,6 +86,9 @@ struct NationalDayDetailFeature: View {
                     Link(destination: URL(string: viewStore.holiday.url)!) {
                         TIButton(title: "Learn More")
                     }
+                    ShareLink(item: URL(string: viewStore.holiday.url)!) {
+                        TIButton(title: "Share")
+                    }
                 }
             }
             .padding(.horizontal)

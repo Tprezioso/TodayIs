@@ -40,7 +40,7 @@ public struct HolidayView: View {
                         .bold()
                         .multilineTextAlignment(.leading)
 
-                    Text(holiday.description ?? "")
+                    Text(holiday.holidayDescription ?? "")
                         .font(.subheadline)
                         .bold()
                         .multilineTextAlignment(.leading)
@@ -58,5 +58,5 @@ public struct HolidayView: View {
 }
 
 #Preview {
-    HolidayView(holiday: .init(name: "asdf", url: "asdf"))
+    HolidayView(holiday: .init(name: "National Pizza Day", month: 2, day: 9, url: "https://nationaltoday.com/national-pizza-day/", holidayDescription: "Celebrate America's favorite food"))
 }

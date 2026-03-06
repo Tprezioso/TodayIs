@@ -10,6 +10,18 @@
 		550714E72630E2FD0036DE22 /* NationalDayLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550714E62630E2FD0036DE22 /* NationalDayLogo.swift */; };
 		550FDB6B267AA596000A211C /* Blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB6A267AA596000A211C /* Blue@2x.png */; };
 		550FDB6D267AA59D000A211C /* Blue@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 550FDB6C267AA59D000A211C /* Blue@3x.png */; };
+		552917DE2F57DE9300AD317B /* DatabaseSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552917DD2F57DE9300AD317B /* DatabaseSchema.swift */; };
+		552917DF2F57DE9300AD317B /* DatabaseSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552917DD2F57DE9300AD317B /* DatabaseSchema.swift */; };
+		552917E02F57DE9300AD317B /* DatabaseSchema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552917DD2F57DE9300AD317B /* DatabaseSchema.swift */; };
+		552917E52F57E1C900AD317B /* SQLiteData in Frameworks */ = {isa = PBXBuildFile; productRef = 552917E42F57E1C900AD317B /* SQLiteData */; };
+		552917E72F57E1D200AD317B /* StructuredQueries in Frameworks */ = {isa = PBXBuildFile; productRef = 552917E62F57E1D200AD317B /* StructuredQueries */; };
+		552917E92F57E1D900AD317B /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = 552917E82F57E1D900AD317B /* Tagged */; };
+		552917EB2F586BE400AD317B /* SQLiteData in Frameworks */ = {isa = PBXBuildFile; productRef = 552917EA2F586BE400AD317B /* SQLiteData */; };
+		552917ED2F586C5500AD317B /* SQLiteData in Frameworks */ = {isa = PBXBuildFile; productRef = 552917EC2F586C5500AD317B /* SQLiteData */; };
+		552917EF2F586C5C00AD317B /* StructuredQueries in Frameworks */ = {isa = PBXBuildFile; productRef = 552917EE2F586C5C00AD317B /* StructuredQueries */; };
+		552917F12F586C6900AD317B /* StructuredQueries in Frameworks */ = {isa = PBXBuildFile; productRef = 552917F02F586C6900AD317B /* StructuredQueries */; };
+		552917F32F586C9300AD317B /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = 552917F22F586C9300AD317B /* Tagged */; };
+		552917F52F586CA800AD317B /* Tagged in Frameworks */ = {isa = PBXBuildFile; productRef = 552917F42F586CA800AD317B /* Tagged */; };
 		5536458E28D891CA00A8F646 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 5574D0C528D62DCD008A8936 /* SwiftSoup */; };
 		553C68C0268277FB00367E0C /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553C68BF268277FB00367E0C /* WidgetKit.framework */; };
 		553C68C2268277FB00367E0C /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 553C68C1268277FB00367E0C /* SwiftUI.framework */; };
@@ -21,7 +33,6 @@
 		553C68D62682845F00367E0C /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553C68D52682845F00367E0C /* SwiftSoup */; };
 		553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 553ED5A726225A2A000D5757 /* SwiftSoup */; };
 		553ED5AC26226C0B000D5757 /* Holiday.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553ED5AB26226C0B000D5757 /* Holiday.swift */; };
-		556C965626FBAD3800978D09 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 556C965526FBAD3800978D09 /* SwiftSoup */; };
 		556C965A26FBADF500978D09 /* TIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965926FBADF500978D09 /* TIError.swift */; };
 		556C965C26FBAE0B00978D09 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C965B26FBAE0B00978D09 /* Alert.swift */; };
 		556C966426FE59E200978D09 /* EmptyState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556C966326FE59E200978D09 /* EmptyState.swift */; };
@@ -127,6 +138,7 @@
 		550714E62630E2FD0036DE22 /* NationalDayLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NationalDayLogo.swift; sourceTree = "<group>"; };
 		550FDB6A267AA596000A211C /* Blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue@2x.png"; sourceTree = "<group>"; };
 		550FDB6C267AA59D000A211C /* Blue@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Blue@3x.png"; sourceTree = "<group>"; };
+		552917DD2F57DE9300AD317B /* DatabaseSchema.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSchema.swift; sourceTree = "<group>"; };
 		553C68BD268277FB00367E0C /* TodayIsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayIsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		553C68BF268277FB00367E0C /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		553C68C1268277FB00367E0C /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -198,8 +210,11 @@
 			files = (
 				553C68C2268277FB00367E0C /* SwiftUI.framework in Frameworks */,
 				553C68C0268277FB00367E0C /* WidgetKit.framework in Frameworks */,
+				552917F12F586C6900AD317B /* StructuredQueries in Frameworks */,
+				552917EB2F586BE400AD317B /* SQLiteData in Frameworks */,
 				55F69BF72B2CA6BE0054F3B8 /* ComposableArchitecture in Frameworks */,
 				553C68D62682845F00367E0C /* SwiftSoup in Frameworks */,
+				552917F32F586C9300AD317B /* Tagged in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,8 +224,11 @@
 			files = (
 				55E1FF6F26350576007FA5CB /* SwiftUIRefresh in Frameworks */,
 				553ED5A826225A2A000D5757 /* SwiftSoup in Frameworks */,
+				552917E72F57E1D200AD317B /* StructuredQueries in Frameworks */,
+				552917E52F57E1C900AD317B /* SQLiteData in Frameworks */,
 				5593A0192AE0B1B7008FCE1A /* ComposableArchitecture in Frameworks */,
 				55E5621B26684839006F77C8 /* Purchases in Frameworks */,
+				552917E92F57E1D900AD317B /* Tagged in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,8 +236,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552917F52F586CA800AD317B /* Tagged in Frameworks */,
+				552917EF2F586C5C00AD317B /* StructuredQueries in Frameworks */,
 				5536458E28D891CA00A8F646 /* SwiftSoup in Frameworks */,
-				556C965626FBAD3800978D09 /* SwiftSoup in Frameworks */,
+				552917ED2F586C5500AD317B /* SQLiteData in Frameworks */,
 				55F69BF92B3108D80054F3B8 /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +288,7 @@
 			children = (
 				553ED5AB26226C0B000D5757 /* Holiday.swift */,
 				557AED092628F50E009B6FCD /* RemoteImage.swift */,
+				552917DD2F57DE9300AD317B /* DatabaseSchema.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -581,6 +602,9 @@
 			packageProductDependencies = (
 				553C68D52682845F00367E0C /* SwiftSoup */,
 				55F69BF62B2CA6BE0054F3B8 /* ComposableArchitecture */,
+				552917EA2F586BE400AD317B /* SQLiteData */,
+				552917F02F586C6900AD317B /* StructuredQueries */,
+				552917F22F586C9300AD317B /* Tagged */,
 			);
 			productName = TodayIsWidgetExtension;
 			productReference = 553C68BD268277FB00367E0C /* TodayIsWidgetExtension.appex */;
@@ -606,6 +630,9 @@
 				55E1FF6E26350576007FA5CB /* SwiftUIRefresh */,
 				55E5621A26684839006F77C8 /* Purchases */,
 				5593A0182AE0B1B7008FCE1A /* ComposableArchitecture */,
+				552917E42F57E1C900AD317B /* SQLiteData */,
+				552917E62F57E1D200AD317B /* StructuredQueries */,
+				552917E82F57E1D900AD317B /* Tagged */,
 			);
 			productName = TodayIs;
 			productReference = 558A54E825F6A4C9003E1072 /* TodayIs.app */;
@@ -644,6 +671,9 @@
 			packageProductDependencies = (
 				5574D0C528D62DCD008A8936 /* SwiftSoup */,
 				55F69BF82B3108D80054F3B8 /* ComposableArchitecture */,
+				552917EC2F586C5500AD317B /* SQLiteData */,
+				552917EE2F586C5C00AD317B /* StructuredQueries */,
+				552917F42F586CA800AD317B /* Tagged */,
 			);
 			productName = "TodayIsWatchApp WatchKit App";
 			productReference = 55A32EC526EBE5B700E8B853 /* TodayIsWatchApp WatchKit App.app */;
@@ -686,6 +716,9 @@
 				55E1FF6D26350576007FA5CB /* XCRemoteSwiftPackageReference "SwiftUIRefresh" */,
 				55E5621926684839006F77C8 /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				5593A0152ADF6CD1008FCE1A /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				552917E12F57E0CC00AD317B /* XCRemoteSwiftPackageReference "sqlite-data" */,
+				552917E22F57E13D00AD317B /* XCRemoteSwiftPackageReference "swift-structured-queries" */,
+				552917E32F57E1A200AD317B /* XCRemoteSwiftPackageReference "swift-tagged" */,
 			);
 			productRefGroup = 558A54E925F6A4C9003E1072 /* Products */;
 			projectDirPath = "";
@@ -753,6 +786,7 @@
 				55F69BF32B2CA2160054F3B8 /* Holiday.swift in Sources */,
 				553C68CA268277FC00367E0C /* TodayIsWidget.intentdefinition in Sources */,
 				553C68C5268277FB00367E0C /* TodayIsWidget.swift in Sources */,
+				552917DE2F57DE9300AD317B /* DatabaseSchema.swift in Sources */,
 				55F69BF52B2CA2310054F3B8 /* HolidayClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -780,6 +814,7 @@
 				558DE5F22AE8931800E8C581 /* NationalDayDetailFeature.swift in Sources */,
 				55E56230266C4EAB006F77C8 /* EmptyState.swift in Sources */,
 				55E5620F2666B2DB006F77C8 /* Date+Ext.swift in Sources */,
+				552917DF2F57DE9300AD317B /* DatabaseSchema.swift in Sources */,
 				5593A01B2AE1D761008FCE1A /* HolidayClient.swift in Sources */,
 				55E5622A266985EE006F77C8 /* IconNames.swift in Sources */,
 				5593A0172AE0B0F0008FCE1A /* NationalDayListFeature.swift in Sources */,
@@ -796,6 +831,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				552917E02F57DE9300AD317B /* DatabaseSchema.swift in Sources */,
 				55A32EDB26EBE5B800E8B853 /* NotificationController.swift in Sources */,
 				55A32ED926EBE5B800E8B853 /* HolidayWatchView.swift in Sources */,
 				55F69BF42B2CA2240054F3B8 /* Holiday.swift in Sources */,
@@ -833,7 +869,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = TodayIsWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -842,7 +878,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIs.TodayIsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -857,7 +893,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				INFOPLIST_FILE = TodayIsWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
@@ -866,7 +902,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIs.TodayIsWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1000,7 +1036,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"TodayIs/Preview Content\"";
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				ENABLE_PREVIEWS = YES;
@@ -1010,7 +1046,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 4.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1025,7 +1061,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 35;
 				DEVELOPMENT_ASSET_PATHS = "\"TodayIs/Preview Content\"";
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				ENABLE_PREVIEWS = YES;
@@ -1035,7 +1071,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 4.0;
+				MARKETING_VERSION = 4.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1058,7 +1094,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIsWatchApp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1084,7 +1120,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIsWatchApp.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
@@ -1099,10 +1135,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIsWatchApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1117,10 +1153,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = 6JBM5ZNF6C;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.5.1;
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Swifttom.TodayIsWatchApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -1182,6 +1218,30 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		552917E12F57E0CC00AD317B /* XCRemoteSwiftPackageReference "sqlite-data" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/sqlite-data/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
+		552917E22F57E13D00AD317B /* XCRemoteSwiftPackageReference "swift-structured-queries" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-structured-queries";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.31.0;
+			};
+		};
+		552917E32F57E1A200AD317B /* XCRemoteSwiftPackageReference "swift-tagged" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-tagged";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.10.0;
+			};
+		};
 		553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/scinfu/SwiftSoup";
@@ -1217,17 +1277,57 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		552917E42F57E1C900AD317B /* SQLiteData */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E12F57E0CC00AD317B /* XCRemoteSwiftPackageReference "sqlite-data" */;
+			productName = SQLiteData;
+		};
+		552917E62F57E1D200AD317B /* StructuredQueries */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E22F57E13D00AD317B /* XCRemoteSwiftPackageReference "swift-structured-queries" */;
+			productName = StructuredQueries;
+		};
+		552917E82F57E1D900AD317B /* Tagged */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E32F57E1A200AD317B /* XCRemoteSwiftPackageReference "swift-tagged" */;
+			productName = Tagged;
+		};
+		552917EA2F586BE400AD317B /* SQLiteData */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E12F57E0CC00AD317B /* XCRemoteSwiftPackageReference "sqlite-data" */;
+			productName = SQLiteData;
+		};
+		552917EC2F586C5500AD317B /* SQLiteData */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E12F57E0CC00AD317B /* XCRemoteSwiftPackageReference "sqlite-data" */;
+			productName = SQLiteData;
+		};
+		552917EE2F586C5C00AD317B /* StructuredQueries */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E22F57E13D00AD317B /* XCRemoteSwiftPackageReference "swift-structured-queries" */;
+			productName = StructuredQueries;
+		};
+		552917F02F586C6900AD317B /* StructuredQueries */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E22F57E13D00AD317B /* XCRemoteSwiftPackageReference "swift-structured-queries" */;
+			productName = StructuredQueries;
+		};
+		552917F22F586C9300AD317B /* Tagged */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E32F57E1A200AD317B /* XCRemoteSwiftPackageReference "swift-tagged" */;
+			productName = Tagged;
+		};
+		552917F42F586CA800AD317B /* Tagged */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 552917E32F57E1A200AD317B /* XCRemoteSwiftPackageReference "swift-tagged" */;
+			productName = Tagged;
+		};
 		553C68D52682845F00367E0C /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;
 		};
 		553ED5A726225A2A000D5757 /* SwiftSoup */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
-			productName = SwiftSoup;
-		};
-		556C965526FBAD3800978D09 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 553ED5A626225A2A000D5757 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
 			productName = SwiftSoup;

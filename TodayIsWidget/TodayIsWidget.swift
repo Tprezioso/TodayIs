@@ -14,11 +14,11 @@ import ComposableArchitecture
 struct TodayIsTimelineProvider: TimelineProvider {
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     func placeholder(in context: Context) -> TodayIsTimelineEntry {
-        TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Holiday", url:"")])
+        TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Holiday", month: 1, day: 1, url:"")])
     }
     
     func getSnapshot(in context: Context, completion: @escaping (TodayIsTimelineEntry) -> ()) {
-        let entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Holiday", url:"")])
+        let entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Holiday", month: 1, day: 1, url:"")])
         completion(entry)
     }
     
@@ -28,15 +28,13 @@ struct TodayIsTimelineProvider: TimelineProvider {
             var entry: TodayIsTimelineEntry
             let policy: TimelineReloadPolicy = .atEnd
 
-            let result = try await currentHolidayClient.getCurrentHoliday(true)
-            switch result {
-            case .success(let holidays):
+            do {
+                let holidays = try await currentHolidayClient.getCurrentHoliday(true)
                 entry = TodayIsTimelineEntry(date: Date(), holidays: holidays)
                 print(holidays)
-            case .failure(let error):
-                entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Error", url:"")])
+            } catch {
+                entry = TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Error", month: 1, day: 1, url:"")])
                 print(error)
-
             }
             entries.append(entry)
 
@@ -132,7 +130,7 @@ struct TodayIsWidget: Widget {
 
 struct TodayIsWidget_Previews: PreviewProvider {
     static var previews: some View {
-        TodayIsWidgetEntryView(entry: TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Test", url:"")]))
+        TodayIsWidgetEntryView(entry: TodayIsTimelineEntry(date: Date(), holidays: [Holiday(name:"Test", month: 1, day: 1, url:"")]))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

@@ -8,55 +8,54 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct NationalDayListDomain: Reducer {
-    struct State: Equatable {
+@Reducer
+struct NationalDayListDomain {
+    @ObservableState
+    struct State {
         init(isTodayView: Bool = true) {
             self.isTodayView = isTodayView
         }
 
         var isTodayView: Bool
         var holidays = [Holiday]()
-        @BindingState var isLoading = false
-        @PresentationState var nationalDayDetailState: NationalDayDomain.State?
+        var isLoading = false
+        @Presents var nationalDayDetailState: NationalDayDomain.State?
     }
 
-    enum Action: Equatable, BindableAction{
-        case binding(BindingAction<State>)
+    enum Action {
         case onAppear
-        case didReceiveHolidays(TaskResult<[Holiday]>)
+        case didReceiveHolidays(Result<[Holiday], any Error>)
         case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
         case didTapHoliday(Holiday)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     var body: some ReducerOf<Self> {
-        BindingReducer()
         Reduce { state, action in
             switch action {
-            case .binding:
-                return .none
-
             case .onAppear:
                 state.isLoading = true
                 return .run { [isToday = state.isTodayView] send in
-                    let response = try await currentHolidayClient.getCurrentHoliday(isToday)
-                    return await send(.didReceiveHolidays(TaskResult(response)))
-                } catch: { error, send in
-                    //TODO: - Handle error
+                    await send(
+                        .didReceiveHolidays(
+                            Result {
+                                try await currentHolidayClient.getCurrentHoliday(isToday)
+                            }
+                        )
+                    )
                 }
 
-            case let .didReceiveHolidays(holidays):
-                switch holidays {
+            case let .didReceiveHolidays(result):
+                state.isLoading = false
+                switch result {
                 case let .success(holidays):
-                    state.isLoading = false
                     state.holidays = holidays
                     return .none
 
                 case .failure:
-                    state.isLoading = false
                     return .none
-
                 }
+                
             case .nationalDayDetail:
                 return .none
 
@@ -65,65 +64,57 @@ struct NationalDayListDomain: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$nationalDayDetailState , action: /Action.nationalDayDetail) {
+        .ifLet(\.$nationalDayDetailState, action: \.nationalDayDetail) {
             NationalDayDomain()
         }
     }
 }
 
 struct NationalDayListFeature: View {
-    let store: StoreOf<NationalDayListDomain>
+    @Bindable var store: StoreOf<NationalDayListDomain>
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            VStack {
-                ScrollViewReader { value in
-                    ScrollView {
-                        LazyVStack(spacing: 20) {
-                            ForEach(viewStore.holidays, id: \.self) { holiday in
-                                Button {
-                                    viewStore.send(.didTapHoliday(holiday))
-                                } label: {
-                                    HolidayView(holiday: holiday)
-                                }
-                                .id(holiday)
-                                .scrollTransition(.interactive, axis: .vertical) { view, phase in
-                                    view.opacity(phase.value > 0 ? 0.1 : 1)
-                                        .blur(radius: phase.value > 0 ? 5 : 0)
-                                }
+        VStack {
+            ScrollViewReader { value in
+                ScrollView {
+                    LazyVStack(spacing: 20) {
+                        ForEach(store.holidays, id: \.self) { holiday in
+                            Button {
+                                store.send(.didTapHoliday(holiday))
+                            } label: {
+                                HolidayView(holiday: holiday)
                             }
-                        }.scrollTargetLayout()
-                    }.scrollTargetBehavior(.viewAligned)
-                        .onChange(of: viewStore.holidays) {
-                            withAnimation {
-                                value.scrollTo(viewStore.holidays.first, anchor: .top)
+                            .id(holiday)
+                            .scrollTransition(.interactive, axis: .vertical) { view, phase in
+                                view.opacity(phase.value > 0 ? 0.1 : 1)
+                                    .blur(radius: phase.value > 0 ? 5 : 0)
                             }
                         }
-                }.refreshable {
-                    await viewStore.send(.onAppear).finish()
-                }
+                    }.scrollTargetLayout()
+                }.scrollTargetBehavior(.viewAligned)
+                    .onChange(of: store.holidays) {
+                        withAnimation {
+                            value.scrollTo(store.holidays.first, anchor: .top)
+                        }
+                    }
+            }.refreshable {
+                await store.send(.onAppear).finish()
             }
-            .navigationTitle(viewStore.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")
-            .onAppear { viewStore.send(.onAppear) }
-            .foregroundColor(.white)
-            .padding()
-            .navigationDestination(store: self.store.scope(state: \.$nationalDayDetailState, action: { .nationalDayDetail($0) })) { store in
-                NationalDayDetailFeature(store: store)
-            }
-            // TODO: - Need to add alerts on error with reloading
-            // .alert(store: self.store.scope(state: \.$alert, action: {.alert($0)}))
-            .onChange(of: scenePhase) {
-                switch scenePhase {
-                case .background:
-                    break
-                case .inactive:
-                    break
-                case .active:
-                    viewStore.send(.onAppear)
-                @unknown default:
-                    break
-                }
+        }
+        .navigationTitle(store.isTodayView ? "Today's Holidays" : "Tomorrow's Holidays")
+        .onAppear { store.send(.onAppear) }
+        .foregroundColor(.white)
+        .padding()
+        .navigationDestination(item: $store.scope(state: \.nationalDayDetailState, action: \.nationalDayDetail)) { store in
+            NationalDayDetailFeature(store: store)
+        }
+        .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .active:
+                store.send(.onAppear)
+            default:
+                break
             }
         }
     }

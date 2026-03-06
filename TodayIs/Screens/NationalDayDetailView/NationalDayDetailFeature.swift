@@ -8,43 +8,48 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct NationalDayDomain: Reducer {
-    struct State: Equatable {
+@Reducer
+struct NationalDayDomain {
+    @ObservableState
+    struct State {
         init(holiday: Holiday) {
             self.holiday = holiday
         }
         var holiday: Holiday
         var detailHoliday: DetailHoliday?
-        @BindingState var isLoading = false
+        var isLoading = false
     }
 
-    enum Action: Equatable {
+    enum Action {
         case onAppear
-        case receivedDetailHoliday(TaskResult<DetailHoliday>)
+        case receivedDetailHoliday(Result<DetailHoliday, any Error>)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     var body: some ReducerOf<Self> {
-        Reduce<State, Action> { state, action in
+        Reduce { state, action in
             switch action {
             case .onAppear:
                 state.isLoading = true
                 return .run { [url = state.holiday.url] send in
-                    let response = try await currentHolidayClient.getCurrentHolidayDetail(url)
-                    await send(.receivedDetailHoliday(TaskResult(response)))
+                    await send(
+                        .receivedDetailHoliday(
+                            Result {
+                                try await currentHolidayClient.getCurrentHolidayDetail(url)
+                            }
+                        )
+                    )
                 }
-            case let .receivedDetailHoliday(response):
-                switch response {
+            case let .receivedDetailHoliday(result):
+                state.isLoading = false
+                switch result {
                 case let .success(detailHoliday):
-                    state.isLoading = false
                     state.detailHoliday = detailHoliday
                     return .none
 
                 case .failure:
-                    state.isLoading = false
                     return .none
                 }
-
             }
         }
     }
@@ -54,54 +59,52 @@ struct NationalDayDetailFeature: View {
     let store: StoreOf<NationalDayDomain>
     
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            ScrollView {
-                if viewStore.isLoading {
-                    ProgressView().controlSize(.large)
-                }
-                AsyncImage(url: URL(string: viewStore.holiday.imageURL ?? "")) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: .infinity)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                    } else if phase.error != nil {
-                        Image(systemName: "PlaceholderImage")
-                    } else {
-                        ProgressView().progressViewStyle(.circular)
-                            .controlSize(.large)
-                    }
-                }
-                VStack(spacing: 20) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        Text(viewStore.holiday.description ?? "")
-                            .font(.title3)
-                            .bold()
-                            .multilineTextAlignment(.leading)
-                        Text(viewStore.detailHoliday?.description ?? "")
-                            .font(.headline)
-                            .bold()
-                    }
-                    Link(destination: URL(string: viewStore.holiday.url)!) {
-                        TIButton(title: "Learn More")
-                    }
-                    ShareLink(item: URL(string: viewStore.holiday.url)!) {
-                        TIButton(title: "Share")
-                    }
+        ScrollView {
+            if store.isLoading {
+                ProgressView().controlSize(.large)
+            }
+            AsyncImage(url: URL(string: store.holiday.imageURL ?? "")) { phase in
+                if let image = phase.image {
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity)
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                } else if phase.error != nil {
+                    Image(systemName: "PlaceholderImage")
+                } else {
+                    ProgressView().progressViewStyle(.circular)
+                        .controlSize(.large)
                 }
             }
-            .padding(.horizontal)
-            .navigationTitle(viewStore.holiday.name)
-            .onAppear {
-                viewStore.send(.onAppear)
+            VStack(spacing: 20) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(store.holiday.holidayDescription ?? "")
+                        .font(.title3)
+                        .bold()
+                        .multilineTextAlignment(.leading)
+                    Text(store.detailHoliday?.description ?? "")
+                        .font(.headline)
+                        .bold()
+                }
+                Link(destination: URL(string: store.holiday.url)!) {
+                    TIButton(title: "Learn More")
+                }
+                ShareLink(item: URL(string: store.holiday.url)!) {
+                    TIButton(title: "Share")
+                }
             }
+        }
+        .padding(.horizontal)
+        .navigationTitle(store.holiday.name)
+        .onAppear {
+            store.send(.onAppear)
         }
     }
 }
 
 #Preview {
-    NationalDayDetailFeature(store: .init(initialState: .init(holiday: .init(name: "Test", url: "https://www.google.com"))) {
+    NationalDayDetailFeature(store: .init(initialState: .init(holiday: .init(name: "National Pizza Day", month: 2, day: 9, url: "https://nationaltoday.com/national-pizza-day/", holidayDescription: "Celebrate America's favorite food"))) {
         NationalDayDomain()
     })
 }

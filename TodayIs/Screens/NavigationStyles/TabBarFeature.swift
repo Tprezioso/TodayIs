@@ -8,15 +8,17 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct TabBarFeature: Reducer {
-    struct State: Equatable {
+@Reducer
+struct TabBarFeature {
+    @ObservableState
+    struct State {
         var todayViewTab = NationalDayListDomain.State()
         var tomorrowViewTab = NationalDayListDomain.State(isTodayView: false)
         var monthViewTab = MonthDomain.State()
         var selectedTab: Tab = .today
     }
 
-    enum Action: Equatable {
+    enum Action {
         case todayViewTab(NationalDayListDomain.Action)
         case reloadTodayView
         case tomorrowViewTab(NationalDayListDomain.Action)
@@ -48,15 +50,15 @@ struct TabBarFeature: Reducer {
             }
         }
 
-        Scope(state: \.todayViewTab, action: /Action.todayViewTab) {
+        Scope(state: \.todayViewTab, action: \.todayViewTab) {
             NationalDayListDomain()
         }
 
-        Scope(state: \.tomorrowViewTab, action: /Action.tomorrowViewTab) {
+        Scope(state: \.tomorrowViewTab, action: \.tomorrowViewTab) {
             NationalDayListDomain()
         }
 
-        Scope(state: \.monthViewTab, action: /Action.monthViewTab) {
+        Scope(state: \.monthViewTab, action: \.monthViewTab) {
             MonthDomain()
         }
     }
@@ -67,58 +69,56 @@ enum Tab {
 }
 
 struct TabBarFeatureView: View {
-    let store: StoreOf<TabBarFeature>
+    @Bindable var store: StoreOf<TabBarFeature>
 
     var body: some View {
-        WithViewStore(self.store, observe: \.selectedTab) { viewStore in
-            TabView(selection: viewStore.binding(send: TabBarFeature.Action.selectedTabChanged)) {
-                NavigationStack {
-                    NationalDayListFeature(
-                        store: self.store.scope(
-                            state: \.todayViewTab,
-                            action: TabBarFeature.Action.todayViewTab
-                        )
+        TabView(selection: $store.selectedTab.sending(\.selectedTabChanged)) {
+            NavigationStack {
+                NationalDayListFeature(
+                    store: self.store.scope(
+                        state: \.todayViewTab,
+                        action: \.todayViewTab
                     )
-                }
-                .tabItem { Label("Today", systemImage: "calendar") }
-                .tag(Tab.today)
-
-                NavigationStack {
-                    NationalDayListFeature(
-                        store: self.store.scope(
-                            state: \.tomorrowViewTab,
-                            action: TabBarFeature.Action.tomorrowViewTab
-                        )
-                    )
-                }
-                .tabItem { Label("Tomorrow", systemImage: "calendar.badge.plus") }
-                .tag(Tab.tomorrow)
-
-                NavigationStack {
-                    MonthFeature(
-                        store: self.store.scope(
-                            state: \.monthViewTab,
-                            action: TabBarFeature.Action.monthViewTab
-                        )
-                    )
-                }
-                .tabItem { Label("Month", systemImage: "calendar.badge.clock") }
-                .tag(Tab.monthly)
-
-                NavigationView {
-                    MoreView()
-                        .navigationTitle("More")
-                }
-                .tabItem {
-                    Label("More", systemImage: "ellipsis")
-                }
-                .tag(Tab.more)
+                )
             }
-            .onTapGesture(count: 2) {
-                viewStore.send(.reloadTodayView)
+            .tabItem { Label("Today", systemImage: "calendar") }
+            .tag(Tab.today)
+
+            NavigationStack {
+                NationalDayListFeature(
+                    store: self.store.scope(
+                        state: \.tomorrowViewTab,
+                        action: \.tomorrowViewTab
+                    )
+                )
             }
-            .tint(.red)
+            .tabItem { Label("Tomorrow", systemImage: "calendar.badge.plus") }
+            .tag(Tab.tomorrow)
+
+            NavigationStack {
+                MonthFeature(
+                    store: self.store.scope(
+                        state: \.monthViewTab,
+                        action: \.monthViewTab
+                    )
+                )
+            }
+            .tabItem { Label("Month", systemImage: "calendar.badge.clock") }
+            .tag(Tab.monthly)
+
+            NavigationView {
+                MoreView()
+                    .navigationTitle("More")
+            }
+            .tabItem {
+                Label("More", systemImage: "ellipsis")
+            }
+            .tag(Tab.more)
         }
+        .onTapGesture(count: 2) {
+            store.send(.reloadTodayView)
+        }
+        .tint(.red)
     }
 }
 

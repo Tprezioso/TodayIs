@@ -6,143 +6,97 @@
 //
 
 import Foundation
-import SwiftSoup
-import ComposableArchitecture
+import Dependencies
+import GRDB
 
 public struct HolidayClient {
-    public var getCurrentHoliday:(_ isToday: Bool) async throws -> Result<[Holiday], Error>
-    public var getCurrentHolidayDetail:(_ url: String) async throws -> Result<DetailHoliday, Error>
-    public var getMonthsHolidays:(_ month: String, _ day: Int) async throws -> Result<[Holiday], Error>
+    public var getCurrentHoliday:(_ isToday: Bool) async throws -> [Holiday]
+    public var getCurrentHolidayDetail:(_ url: String) async throws -> DetailHoliday
+    public var getMonthsHolidays:(_ month: String, _ day: Int) async throws -> [Holiday]
 }
 
 extension HolidayClient: DependencyKey {
-    public static let baseURL = "https://www.holidaycalendar.io"
-    public static let todaysHoliday = "/what-holiday-is-today"
-    public static let tomorrowsHoliday = "/what-holiday-is-tomorrow"
-
-    public static var liveValue = HolidayClient(
-        getCurrentHoliday: { isToday in
-            guard let url = URL(string: isToday ? baseURL + todaysHoliday : baseURL + tomorrowsHoliday) else { throw NetworkError.invalidURL }
-
-            let (data, response) = try await URLSession.shared.data(from: url)
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print(" ❌ Invalid Response")
-                throw NetworkError.invalidResponse
-            }
-            guard let htmlString = String(data: data, encoding: .utf8) else { throw NetworkError.invalidURL }
-
-            var holidays = [Holiday]()
-
-            do {
-                let html: String = htmlString
-                let doc: Document = try SwiftSoup.parse(html)
-                let todaysHolidays: Elements = try doc.getElementsByClass("card")
-                for holiday in todaysHolidays {
-                    let title = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("alt") //title
-                    let link = try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") //link
-                    let image = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") //image
-                    let description = try holiday.select("p").text() //description
-                    holidays.append(Holiday(name: title, url: baseURL + link, imageURL: image, description: description))
+    public static var liveValue: HolidayClient {
+        @Dependency(\.defaultDatabase) var database
+        @Dependency(\.calendar) var calendar
+        @Dependency(\.date.now) var now
+        
+        return HolidayClient(
+            getCurrentHoliday: { isToday in
+                let targetDate = isToday ? now : calendar.date(byAdding: .day, value: 1, to: now)!
+                let month = calendar.component(.month, from: targetDate)
+                let day = calendar.component(.day, from: targetDate)
+                
+                return try await database.read { db in
+                    try Holiday
+                        .filter(Column("month") == month && Column("day") == day)
+                        .order(Column("name"))
+                        .fetchAll(db)
                 }
-                return .success(holidays)
-            } catch {
-                print(error.localizedDescription)
-                return .failure(error.localizedDescription as! Error)
-            }
-        }, 
-        getCurrentHolidayDetail: { url in
-            guard let url = URL(string: url) else { throw NetworkError.invalidURL }
-
-            let (data, response) = try await URLSession.shared.data(from: url)
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print(" ❌ Invalid Response")
-                throw NetworkError.invalidResponse
-            }
-            guard let htmlString = String(data: data, encoding: .utf8) else { throw NetworkError.invalidURL }
-            do {
-                let html: String = htmlString
-                let doc: Document = try SwiftSoup.parse(html)
-                let selectedHolidayDescription: String = try doc.getElementsByClass("t_holiday_intro_text").text() // description
-                let selectedHolidayDetails: Elements = try doc.getElementsByClass(".facts-title")
-                print(selectedHolidayDetails)
-
-                return .success(DetailHoliday(description: selectedHolidayDescription))
-            } catch {
-                print(error.localizedDescription)
-                return .failure(error.localizedDescription as! Error)
-            }
-        }, 
-        getMonthsHolidays: { month, day in
-            guard let url = URL(string: baseURL + "/day/\(month)-\(day)-holidays") else { throw NetworkError.invalidURL }
-
-            let (data, response) = try await URLSession.shared.data(from: url)
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                print(" ❌ Invalid Response")
-                throw NetworkError.invalidResponse
-            }
-            guard let htmlString = String(data: data, encoding: .utf8) else { throw NetworkError.invalidURL }
-
-            var holidays = [Holiday]()
-            do {
-                let html: String = htmlString
-                let doc: Document = try SwiftSoup.parse(html)
-                let todaysHolidays: Elements = try doc.getElementsByClass("card")
-                for holiday in todaysHolidays {
-
-                    let title = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("alt") //title
-                    let link = try holiday.select("a.card-link-image---image-wrapper").select("a").attr("href") //link
-                    let image = try holiday.select("a.card-link-image---image-wrapper").select("img").attr("src") //image
-                    let description = try holiday.select("p").text() //description
-                    holidays.append(Holiday(name: title, url: baseURL + link, imageURL: image, description: description))
+            }, 
+            getCurrentHolidayDetail: { url in
+                // For now, return a simple detail with the URL
+                // In the future, you could scrape the URL or store more detailed info in the database
+                return DetailHoliday(description: "Visit the link to learn more about this holiday!")
+            }, 
+            getMonthsHolidays: { monthName, day in
+                let monthNumber = monthNameToNumber(monthName)
+                
+                return try await database.read { db in
+                    try Holiday
+                        .filter(Column("month") == monthNumber && Column("day") == day)
+                        .order(Column("name"))
+                        .fetchAll(db)
                 }
-                return .success(holidays)
-            } catch {
-                print(error.localizedDescription)
-                return .failure(error.localizedDescription as! Error)
             }
-        }
-    )
+        )
+    }
+    
+    private static func monthNameToNumber(_ monthName: String) -> Int {
+        let months = [
+            "january": 1, "february": 2, "march": 3, "april": 4,
+            "may": 5, "june": 6, "july": 7, "august": 8,
+            "september": 9, "october": 10, "november": 11, "december": 12
+        ]
+        return months[monthName.lowercased()] ?? 1
+    }
 }
 
 extension HolidayClient: TestDependencyKey {
     public static var previewValue = HolidayClient(
         getCurrentHoliday: { _ in
-            .success([
-                Holiday(name: "Holiday 1", url: ""),
-                Holiday(name: "Holiday 2", url: ""),
-                Holiday(name: "Holiday 3", url: "")
-            ])
+            [
+                Holiday(name: "National Pizza Day", month: 2, day: 9, url: "https://nationaltoday.com/national-pizza-day/", holidayDescription: "Celebrate America's favorite food"),
+                Holiday(name: "Valentine's Day", month: 2, day: 14, url: "https://nationaltoday.com/valentines-day/", holidayDescription: "Celebrate love and affection"),
+                Holiday(name: "Random Acts of Kindness Day", month: 2, day: 17, url: "https://nationaltoday.com/random-acts-of-kindness-day/", holidayDescription: "Spread kindness")
+            ]
         },
                                                    
         getCurrentHolidayDetail: { _ in
-            .success(DetailHoliday(description: ""))
+            DetailHoliday(description: "This is a preview holiday!")
         }, 
-        getMonthsHolidays: { _,_ in
-                .success([
-                    Holiday(name: "Holiday 1", url: ""),
-                    Holiday(name: "Holiday 2", url: ""),
-                    Holiday(name: "Holiday 3", url: "")
-                ])
+        getMonthsHolidays: { _, _ in
+            [
+                Holiday(name: "National Pizza Day", month: 2, day: 9, url: "https://nationaltoday.com/national-pizza-day/", holidayDescription: "Celebrate America's favorite food"),
+                Holiday(name: "Valentine's Day", month: 2, day: 14, url: "https://nationaltoday.com/valentines-day/", holidayDescription: "Celebrate love and affection")
+            ]
         }
     )
 
     public static var testValue = HolidayClient(
         getCurrentHoliday: { _ in
-            .success([
-                Holiday(name: "Holiday 1", url: ""),
-                Holiday(name: "Holiday 2", url: ""),
-                Holiday(name: "Holiday 3", url: "")
-            ])
+            [
+                Holiday(name: "Test Holiday 1", month: 1, day: 1, url: "https://example.com", holidayDescription: "Test description 1"),
+                Holiday(name: "Test Holiday 2", month: 1, day: 1, url: "https://example.com", holidayDescription: "Test description 2")
+            ]
         }, 
         getCurrentHolidayDetail: { _ in
-            .success(DetailHoliday(description: ""))
+            DetailHoliday(description: "Test detail description")
         }, 
-        getMonthsHolidays: { _,_ in
-            .success([
-                Holiday(name: "Holiday 1", url: ""),
-                Holiday(name: "Holiday 2", url: ""),
-                Holiday(name: "Holiday 3", url: "")
-            ])
+        getMonthsHolidays: { _, _ in
+            [
+                Holiday(name: "Test Holiday 1", month: 1, day: 1, url: "https://example.com", holidayDescription: "Test description 1")
+            ]
         }
     )
 }
@@ -154,29 +108,3 @@ extension DependencyValues {
     }
 }
 
-extension String {
-
-    func slice(from: String, to: String) -> String? {
-        return (range(of: from)?.upperBound).flatMap { substringFrom in
-            (range(of: to, range: substringFrom..<endIndex)?.lowerBound).map { substringTo in
-                String(self[substringFrom..<substringTo])
-            }
-        }
-    }
-}
-
-extension StringProtocol { // for Swift 4 you need to add the constrain `where Index == String.Index`
-    var byWords: [SubSequence] {
-        var byWords: [SubSequence] = []
-        enumerateSubstrings(in: startIndex..., options: .byWords) { _, range, _, _ in
-            byWords.append(self[range])
-        }
-        return byWords
-    }
-}
-
-public enum NetworkError: Error, Equatable {
-    case invalidURL
-    case invalidResponse
-    case invalidData
-}

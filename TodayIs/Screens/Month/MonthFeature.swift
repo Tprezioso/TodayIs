@@ -8,11 +8,13 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct MonthDomain: Reducer {
-    struct State: Equatable {
+@Reducer
+struct MonthDomain {
+    @ObservableState
+    struct State {
         var isLoading = false
-        @BindingState var isShowingDays = false
-        @PresentationState var monthDayFeature: DayDomain.State?
+        var isShowingDays = false
+        @Presents var monthDayFeature: DayDomain.State?
 
 
        public enum Months: String, Equatable, CaseIterable {
@@ -48,14 +50,14 @@ struct MonthDomain: Reducer {
         }
     }
 
-    enum Action: Equatable {
+    enum Action {
         case monthDayFeature(PresentationAction<DayDomain.Action>)
         case didTapHoliday(MonthDomain.State.Months)
     }
 
     @Dependency(\.currentHolidayClient) var currentHolidayClient
     var body: some ReducerOf<Self> {
-        Reduce<State, Action> { state, action in
+        Reduce { state, action in
             switch action {
             case let .didTapHoliday(holiday):
                 state.monthDayFeature = .init(day: holiday)
@@ -65,7 +67,7 @@ struct MonthDomain: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$monthDayFeature, action: /Action.monthDayFeature) {
+        .ifLet(\.$monthDayFeature, action: \.monthDayFeature) {
             DayDomain()
         }
     }
@@ -78,35 +80,33 @@ struct MonthFeature: View {
         GridItem(.flexible())
     ]
 
-    let store: StoreOf<MonthDomain>
+    @Bindable var store: StoreOf<MonthDomain>
     @State var date = Date()
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 50) {
-                    ForEach(MonthDomain.State.Months.allCases, id: \.self) { month in
-                        Button {
-                            viewStore.send(.didTapHoliday(month))
-                        } label: {
-                            Text(month.description.month)
-                                .bold()
-                                .frame(maxWidth: .infinity)
-                                .foregroundColor(.accentColor)
-                                .padding()
-                                .background {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(.white)
-                                        .stroke(Color.accentColor, lineWidth: 3)
-                                }
-                        }
-
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 50) {
+                ForEach(MonthDomain.State.Months.allCases, id: \.self) { month in
+                    Button {
+                        store.send(.didTapHoliday(month))
+                    } label: {
+                        Text(month.description.month)
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.accentColor)
+                            .padding()
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(.white)
+                                    .stroke(Color.accentColor, lineWidth: 3)
+                            }
                     }
-                }.padding(.vertical)
-                .navigationTitle("Months")
-            }
-            .navigationDestination(store:  self.store.scope(state: \.$monthDayFeature, action: { .monthDayFeature($0) })) { store in
-                DayFeature(store: store)
-            }
+
+                }
+            }.padding(.vertical)
+            .navigationTitle("Months")
+        }
+        .navigationDestination(item: $store.scope(state: \.monthDayFeature, action: \.monthDayFeature)) { store in
+            DayFeature(store: store)
         }
     }
 }
@@ -121,23 +121,25 @@ struct MonthFeature: View {
 //TODO: Make mini Domain
 
 
-struct DayDomain: Reducer {
-    struct State: Equatable {
+@Reducer
+struct DayDomain {
+    @ObservableState
+    struct State {
         init(day: MonthDomain.State.Months) {
             self.day = day
         }
         var day: MonthDomain.State.Months
-        @BindingState var selectedDay = "1"
-        @PresentationState var selectedMonthState: SelectedMonthDomain.State?
+        var selectedDay = "1"
+        @Presents var selectedMonthState: SelectedMonthDomain.State?
     }
 
-    enum Action: Equatable {
+    enum Action {
         case selectedMonth(PresentationAction<SelectedMonthDomain.Action>)
         case didTapDay(Int)
     }
 
     var body: some ReducerOf<Self> {
-        Reduce<State, Action> { state, action in
+        Reduce { state, action in
             switch action {
             
             case .selectedMonth:
@@ -149,7 +151,7 @@ struct DayDomain: Reducer {
 
             }
         }
-        .ifLet(\.$selectedMonthState, action: /Action.selectedMonth) {
+        .ifLet(\.$selectedMonthState, action: \.selectedMonth) {
             SelectedMonthDomain()
         }
     }
@@ -162,33 +164,31 @@ struct DayFeature: View {
         GridItem(.flexible()),
         GridItem(.flexible())
     ]
-    let store: StoreOf<DayDomain>
+    @Bindable var store: StoreOf<DayDomain>
     @State var date = Date()
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: 20) {
-                    ForEach(1..<(viewStore.day.description.days) + 1, id: \.self) { day in
-                            Button {
-                                viewStore.send(.didTapDay(day))
-                            } label: {
-                                Text("\(day)")
-                                    .bold()
-                                    .frame(maxWidth: .infinity)
-                                    .foregroundColor(.accentColor)
-                                    .padding()
-                                    .background {
-                                        RoundedRectangle(cornerRadius: 10)
-                                            .fill(.white)
-                                            .stroke(Color.accentColor, lineWidth: 3)
-                                    }
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(1..<(store.day.description.days) + 1, id: \.self) { day in
+                    Button {
+                        store.send(.didTapDay(day))
+                    } label: {
+                        Text("\(day)")
+                            .bold()
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(.accentColor)
+                            .padding()
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(.white)
+                                    .stroke(Color.accentColor, lineWidth: 3)
                             }
-                        }
-                }.navigationTitle("Months")
-            }
-            .navigationDestination(store:  self.store.scope(state: \.$selectedMonthState, action: { .selectedMonth($0) })) { store in
-                SelectedMonthView(store: store)
-            }
+                    }
+                }
+            }.navigationTitle("Months")
+        }
+        .navigationDestination(item: $store.scope(state: \.selectedMonthState, action: \.selectedMonth)) { store in
+            SelectedMonthView(store: store)
         }
     }
 }

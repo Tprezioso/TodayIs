@@ -8,23 +8,25 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct SelectedMonthDomain: Reducer {
-    struct State: Equatable {
+@Reducer
+struct SelectedMonthDomain {
+    @ObservableState
+    struct State {
         init(dayNumber: Int, month: MonthDomain.State.Months) {
             self.dayNumber = dayNumber
             self.month = month
         }
 
-        @BindingState var isLoading = false
+        var isLoading = false
         var dayNumber: Int
         var month: MonthDomain.State.Months
         var holidays = [Holiday]()
-        @PresentationState var nationalDayDetailState: NationalDayDomain.State?
+        @Presents var nationalDayDetailState: NationalDayDomain.State?
     }
 
-    enum Action: Equatable {
+    enum Action {
         case onAppear
-        case didReceiveHolidays(TaskResult<[Holiday]>)
+        case didReceiveHolidays(Result<[Holiday], any Error>)
         case nationalDayDetail(PresentationAction<NationalDayDomain.Action>)
         case didTapHoliday(Holiday)
     }
@@ -36,21 +38,25 @@ struct SelectedMonthDomain: Reducer {
             case .onAppear:
                 state.isLoading = true
                 return .run { [state] send in
-                    let response = try await currentHolidayClient.getMonthsHolidays(state.month.rawValue, state.dayNumber)
-                    return await send(.didReceiveHolidays(TaskResult(response)))
+                    await send(
+                        .didReceiveHolidays(
+                            Result {
+                                try await currentHolidayClient.getMonthsHolidays(state.month.rawValue, state.dayNumber)
+                            }
+                        )
+                    )
                 }
-            case let .didReceiveHolidays(holidays):
-                switch holidays {
+            case let .didReceiveHolidays(result):
+                state.isLoading = false
+                switch result {
                 case let .success(holidays):
-                    state.isLoading = false
                     state.holidays = holidays
                     return .none
 
                 case .failure:
-                    state.isLoading = false
                     return .none
-
                 }
+                
             case .nationalDayDetail:
                 return .none
 
@@ -59,57 +65,50 @@ struct SelectedMonthDomain: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$nationalDayDetailState , action: /Action.nationalDayDetail) {
+        .ifLet(\.$nationalDayDetailState, action: \.nationalDayDetail) {
             NationalDayDomain()
         }
     }
 }
 
 struct SelectedMonthView: View {
-    let store: StoreOf<SelectedMonthDomain>
+    @Bindable var store: StoreOf<SelectedMonthDomain>
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        WithViewStore(store, observe: { $0 }) { viewStore in
-            VStack {
-                if viewStore.isLoading {
-                    ProgressView().controlSize(.large)
-                }
-                ScrollView {
-                    LazyVStack(spacing: 20) {
-                        ForEach(viewStore.holidays, id: \.self) { holiday in
-                            Button {
-                                viewStore.send(.didTapHoliday(holiday))
-                            } label: {
-                                HolidayView(holiday: holiday)
-                            }
-                            .scrollTransition(.interactive, axis: .vertical) { view, phase in
-                                view.opacity(phase.value > 0 ? 0.1 : 1)
-                                    .blur(radius: phase.value > 0 ? 5 : 0)
-                            }
+        VStack {
+            if store.isLoading {
+                ProgressView().controlSize(.large)
+            }
+            ScrollView {
+                LazyVStack(spacing: 20) {
+                    ForEach(store.holidays, id: \.self) { holiday in
+                        Button {
+                            store.send(.didTapHoliday(holiday))
+                        } label: {
+                            HolidayView(holiday: holiday)
                         }
-                    }.scrollTargetLayout()
-                }.scrollTargetBehavior(.viewAligned)
-            }
-            .navigationTitle("\(viewStore.month.description.month) \(viewStore.dayNumber) Holidays")
-            .onAppear { viewStore.send(.onAppear) }
-            .foregroundColor(.white)
-            .padding()
-            .navigationDestination(store: self.store.scope(state: \.$nationalDayDetailState, action: { .nationalDayDetail($0) })) { store in
-                NationalDayDetailFeature(store: store)
-            }
-            //                .alert(store: self.store.scope(state: \.$alert, action: {.alert($0)}))
-            .onChange(of: scenePhase) {
-                switch scenePhase {
-                case .background:
-                    break
-                case .inactive:
-                    break
-                case .active:
-                    viewStore.send(.onAppear)
-                @unknown default:
-                    break
-                }
+                        .scrollTransition(.interactive, axis: .vertical) { view, phase in
+                            view.opacity(phase.value > 0 ? 0.1 : 1)
+                                .blur(radius: phase.value > 0 ? 5 : 0)
+                        }
+                    }
+                }.scrollTargetLayout()
+            }.scrollTargetBehavior(.viewAligned)
+        }
+        .navigationTitle("\(store.month.description.month) \(store.dayNumber) Holidays")
+        .onAppear { store.send(.onAppear) }
+        .foregroundColor(.white)
+        .padding()
+        .navigationDestination(item: $store.scope(state: \.nationalDayDetailState, action: \.nationalDayDetail)) { store in
+            NationalDayDetailFeature(store: store)
+        }
+        .onChange(of: scenePhase) {
+            switch scenePhase {
+            case .active:
+                store.send(.onAppear)
+            default:
+                break
             }
         }
     }

@@ -6,10 +6,20 @@
 //
 
 import SwiftUI
+import Dependencies
+import IssueReporting
 
 @main
 struct TodayIsApp: App {
     @Environment(\.scenePhase) var scenePhase
+    
+    init() {
+        withErrorReporting {
+            try prepareDependencies {
+                try $0.bootstrapDatabase()
+            }
+        }
+    }
    
     var body: some Scene {
         WindowGroup {
